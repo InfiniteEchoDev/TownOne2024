@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cargo
   m_EditorClassIdentifier: 
   pickupType: 1
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 9181022b6f7093c40b0f0553f55b2d25, type: 3}
   hasTimer: 0
   timer: 0
   pointValue: 0
