@@ -21,6 +21,9 @@ public class Pickup : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    float randomRotSpeed;
+    public float SetRandomRotSpeed { set { randomRotSpeed = value; } }
+
     private void Awake()
     {
         UpdateConfig();
@@ -32,12 +35,13 @@ public class Pickup : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
 
+        StartCoroutine(SpawnAnim());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(new Vector3(0,0,randomRotSpeed * Time.deltaTime));
     }
 
     void UpdateConfig()
@@ -53,11 +57,32 @@ public class Pickup : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
 
+        for (int i = 0; i < 9; i++)
+        {
+            spriteRenderer.DOFade(0.5f, 0.33f);
+            yield return new WaitForSeconds(0.33f);
+            spriteRenderer.DOFade(1f, 0.33f);
+            yield return new WaitForSeconds(0.33f);
+        }
+
+        transform.DOScale(0f, 0.75f);
+        spriteRenderer.DOFade(0f, 0.75f);
+        yield return new WaitForSeconds(0.75f);
+        Destroy(gameObject);
 
     }
 
     IEnumerator SpawnAnim()
     {
+        transform.DOScale(1f, 0.75f);
+        spriteRenderer.DOFade(1f, 0.75f);
+
+        
+        if (hasTimer)
+        {
+            StartCoroutine(DespawnTimer());
+        }
+        
         yield return null;
     }
 }

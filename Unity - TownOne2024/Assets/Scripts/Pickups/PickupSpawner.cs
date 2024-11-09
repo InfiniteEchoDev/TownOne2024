@@ -31,7 +31,8 @@ public class PickupSpawner : MonoBehaviour
             yield return new WaitForSeconds(randomTime);
             int randomPickup = GetWeightedRandomPickup();
             SetObjectSpawnPosition();
-            GameObject newPickup = Instantiate(pickups[randomPickup], randomPos, Quaternion.identity);
+            GameObject newPickup = Instantiate(pickups[randomPickup], randomPos, Quaternion.Euler(new Vector3(0,0,Random.Range(0,360))));
+            newPickup.GetComponent<Pickup>().SetRandomRotSpeed = Random.Range(10, 30);
         }
 
     }
