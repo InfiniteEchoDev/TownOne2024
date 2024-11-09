@@ -21,10 +21,17 @@ public class CollectionBin : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("I HAPPEN");
-        if (other.GetComponent<Pickup>().GetPickupType() == collectType)
+        other.enabled = false;
+        if (other.GetComponent<Pickup>().GetPickupType == collectType)
         {
+            Debug.Log("I HAPPEN");
             //TODO: Gain Score
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            Debug.Log("BAD HAPPEN");
+            Destroy(other.gameObject);
         }
         //{
         //    Debug.Log("ship crash)

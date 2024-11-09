@@ -18,7 +18,6 @@ public class Mothership : MonoBehaviour
     [SerializeField]
     public bool reverse;
 
-    [SerializeField]
     int sliceCount = 24;
 
     [SerializeField]
