@@ -17,3 +17,4 @@ MonoBehaviour:
   hasTimer: 0
   timer: 0
   pointValue: 0
+  spawnWeight: 2

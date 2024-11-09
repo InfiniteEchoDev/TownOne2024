@@ -4,6 +4,7 @@ public class Pickup : MonoBehaviour
 {
 
     [SerializeField] PickupSO pickupConfig;
+    public PickupSO GetPickupConfig { get { return pickupConfig; } }
 
     PickupTypes pickupType;
 
@@ -17,10 +18,16 @@ public class Pickup : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    private void Awake()
+    {
+        UpdateConfig();
+        
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        UpdateConfig();
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
     }

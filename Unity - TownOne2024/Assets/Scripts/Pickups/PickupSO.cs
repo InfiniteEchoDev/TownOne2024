@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "Create PickupSO", fileName ="PickupSO",order =0)]
+[CreateAssetMenu(menuName = "Create PickupSO", fileName ="PickupSO", order = 0)]
 
 public class PickupSO : ScriptableObject
 {
@@ -20,6 +20,9 @@ public class PickupSO : ScriptableObject
 
     // Points
     public float pointValue;
+
+    // Spawn Weight
+    public int spawnWeight;
 }
 
 public enum PickupTypes
