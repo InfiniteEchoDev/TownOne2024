@@ -7,11 +7,11 @@ public class CollectionBin : MonoBehaviour
 
     [SerializeField]
     List<Color> color = new List<Color>();
-    //Public Enum
 
+    PickupTypes collectType;
     void Start()
     {
-
+        
         col.autoTiling = true;
 
         int ran = Random.Range(0, 3);
@@ -20,6 +20,10 @@ public class CollectionBin : MonoBehaviour
         SpriteRenderer.color = color[ran];
     }
 
+    public void SetPickUpType(PickupTypes pickup)
+    {
+        collectType = pickup;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
