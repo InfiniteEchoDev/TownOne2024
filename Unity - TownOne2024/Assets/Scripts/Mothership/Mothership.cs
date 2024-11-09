@@ -33,7 +33,6 @@ public class Mothership : MonoBehaviour
     void Start()
     {
         trans = GetComponent<Transform>();
-        //Instantiate(slices[0], trans.position, Quaternion.identity);
         SpawnSlices(sliceCount);
     }
 
@@ -55,11 +54,11 @@ public class Mothership : MonoBehaviour
         {
             rotateZAxis = rotateZAxis - turnAmount;
         }
-        //ChangeRotationTarget();
+
         float tiltAroundZ = rotateZAxis * tiltAngle;
         target = Quaternion.Euler(0, 0, tiltAroundZ);
-        // Dampen towards the target rotation
 
+        // Dampen towards the target rotation
         trans.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
     }
 
