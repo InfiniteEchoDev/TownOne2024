@@ -58,6 +58,6 @@ public class Pickup : MonoBehaviour
 
     IEnumerator SpawnAnim()
     {
-
+        yield return null;
     }
 }
