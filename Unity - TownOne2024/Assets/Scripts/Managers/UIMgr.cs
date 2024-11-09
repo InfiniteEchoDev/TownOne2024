@@ -5,8 +5,7 @@ using UnityEngine;
 
 
 public class UIMgr : Singleton<UIMgr> {
-
-
+    
     [SerializeField]
     private Canvas _mainMenu;
 
