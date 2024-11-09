@@ -81,7 +81,7 @@ public class PickupSpawner : MonoBehaviour
 
         //Mathf.Round(targetPosition.x);
         //Debug.Log(Mathf.Round(targetPosition.x));
-        targetPosition = new Vector3(Mathf.Round(targetPosition.x) + 0.5f, Mathf.Round(targetPosition.y) + 0.5f, 0);
+        targetPosition = new Vector3(Mathf.Round(targetPosition.x) - 0.5f, Mathf.Round(targetPosition.y) - 0.5f, 0);
         //Mathf.Round(targetPosition.y);
         //Debug.Log(Mathf.Round(targetPosition.y));
 
