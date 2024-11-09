@@ -19,7 +19,10 @@ public class Mothership : MonoBehaviour
     public bool reverse;
 
     [SerializeField]
-    public int sliceCount;
+    int sliceCount = 24;
+
+    [SerializeField]
+    public int containerTypeCount;
 
     //[SerializeField]
     Transform trans;
@@ -33,7 +36,7 @@ public class Mothership : MonoBehaviour
     void Start()
     {
         trans = GetComponent<Transform>();
-        SpawnSlices(sliceCount);
+        SpawnSlices(containerTypeCount);
     }
 
     public bool Reverse
@@ -69,29 +72,44 @@ public class Mothership : MonoBehaviour
     }
 
 
-    void SpawnSlices(int count) { 
+    void SpawnSlices(int containerTypeCount) {
 
 
-        if (count == 4)
+        if(containerTypeCount == 2)
         {
-            for(int i = 0; i < count; i++){
-            Instantiate(slices[0], trans.position, Quaternion.Euler(0, 0, (90*i)), trans);
-            }
-        }
-        else if(count == 3)
-        {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < sliceCount; i++)
             {
-                Instantiate(slices[0], trans.position, Quaternion.Euler(0, 0, (120 * i)), trans);
+                if(i < sliceCount/2)
+                {
+                    Instantiate(slices[0], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
+                }
+                else
+                {
+                    Instantiate(slices[1], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
+                }
+
             }
         }
-        else
+
+        else if (containerTypeCount == 3)
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < sliceCount; i++)
             {
-                Instantiate(slices[0], trans.position, Quaternion.Euler(0, 0, (180 * i)), trans);
+                if (i < sliceCount / 3)
+                {
+                    Instantiate(slices[0], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
+                }
+                else if(i < ((sliceCount/3)*2)){
+                    Instantiate(slices[1], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
+                }
+                else
+                {
+                    Instantiate(slices[2], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
+                }
+
             }
         }
+
     }
 
 
