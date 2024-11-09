@@ -42,6 +42,12 @@ public class Mothership : MonoBehaviour
         set { reverse = value; }
     }
 
+    public int SliceCount
+    {
+        get { return sliceCount; }
+        set { sliceCount = value; }
+    }
+
 
     // Update is called once per frame
     void Update()
