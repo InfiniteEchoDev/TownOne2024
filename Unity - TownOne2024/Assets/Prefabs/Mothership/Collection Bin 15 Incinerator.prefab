@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2889498909017539077}
   - component: {fileID: 8374350269778056158}
   m_Layer: 6
-  m_Name: Collection Bin 91
+  m_Name: Collection Bin 15 Incinerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.621, y: -0.639, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5102554337480410232, guid: 84ee35273dc0d614292b8c29eb819ed1, type: 3}
+  m_Sprite: {fileID: 909256554150622350, guid: 96a4b8ba42f41244988ac2453bbe0fd2, type: 3}
   m_Color: {r: 0.8207547, g: 0.18970275, b: 0.18970275, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,8 +127,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 1, y: 1}
-    oldSize: {x: 2.57, y: 2.56}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.1875, y: 8.533334}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -137,11 +137,11 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.0067293644, y: 0.018107414}
-      - {x: -0.023055315, y: -2.5724}
-      - {x: -1.1421202, y: -2.3552454}
-      - {x: -1.8526639, y: -1.8410192}
-      - {x: -2.5126233, y: -0.7945446}
-      - {x: -2.605476, y: 0.008478045}
+      - {x: 0.37866688, y: 2.248263}
+      - {x: 0.6192757, y: 3.9177964}
+      - {x: 1.1448003, y: 8.480143}
+      - {x: 0.11401987, y: 8.445059}
+      - {x: -1.1530967, y: 8.413736}
   m_UseDelaunayMesh: 0
 --- !u!50 &2889498909017539077
 Rigidbody2D:
@@ -183,8 +183,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 6480666746796610161}
-  color:
-  - {r: 0.7178933, g: 0.745283, b: 0.12304199, a: 0}
-  - {r: 0.5377358, g: 0.09385012, b: 0.09385012, a: 0}
-  - {r: 0.18560876, g: 0.31488773, b: 0.9150943, a: 0}
-  - {r: 0.7924528, g: 0.1981132, b: 0.74349236, a: 0}
+  collectType: 0
