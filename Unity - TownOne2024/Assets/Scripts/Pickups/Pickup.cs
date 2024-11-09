@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 public class Pickup : MonoBehaviour
 {
 
@@ -8,6 +9,7 @@ public class Pickup : MonoBehaviour
     public PickupSO GetPickupConfig { get { return pickupConfig; } }
 
     PickupTypes pickupType;
+    public PickupTypes GetPickupType { get { return pickupType; } }
 
     Sprite sprite;
 
@@ -30,10 +32,6 @@ public class Pickup : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
 
-        if (hasTimer)
-        {
-            StartCoroutine(DespawnTimer());
-        }
     }
 
     // Update is called once per frame
@@ -55,6 +53,11 @@ public class Pickup : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
 
+
+    }
+
+    IEnumerator SpawnAnim()
+    {
 
     }
 }
