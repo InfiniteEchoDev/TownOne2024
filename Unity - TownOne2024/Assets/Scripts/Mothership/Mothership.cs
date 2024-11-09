@@ -6,13 +6,18 @@ public class Mothership : MonoBehaviour
     [SerializeField]
     float smooth = 5.0f;
     [SerializeField]
-    float tiltAngle = 60.0f;
-    [SerializeField]
-    Transform trans;
+    float tiltAngle = 20.0f;
     [SerializeField]
     float rotateZAxis = 0.5f;
     [SerializeField]
     float turnAmount = 0.5f;
+    [SerializeField]
+    Transform trans;
+
+    [SerializeField]
+    GameObject slices;
+
+
 
     //float tiltAroundZ = 0f;
     //float tiltAroundX = 0f;
