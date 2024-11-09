@@ -1,15 +1,23 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class CollectionBin : MonoBehaviour
 {
     [SerializeField]
     PolygonCollider2D col;
 
+    [SerializeField]
+    List<Color> color = new List<Color>();
     //Public Enum
-    
+
     void Start()
     {
+
         col.autoTiling = true;
+
+        int ran = Random.Range(0, 3);
+        Debug.Log(ran);
+        //Depending on type change sprite to whatever
+        SpriteRenderer.color = color[ran];
     }
 
 

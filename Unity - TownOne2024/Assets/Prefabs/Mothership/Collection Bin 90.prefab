@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6480666746796610161}
   - component: {fileID: 2889498909017539077}
   - component: {fileID: 8374350269778056158}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collection Bin 90
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,3 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 6480666746796610161}
+  color:
+  - {r: 0.7178933, g: 0.745283, b: 0.12304199, a: 0}
+  - {r: 0.5377358, g: 0.09385012, b: 0.09385012, a: 0}
+  - {r: 0.18560876, g: 0.31488773, b: 0.9150943, a: 0}
+  - {r: 0.7924528, g: 0.1981132, b: 0.74349236, a: 0}
