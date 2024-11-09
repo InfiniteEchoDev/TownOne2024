@@ -35,6 +35,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using System.IO;
+// ReSharper disable InconsistentNaming
 
 namespace Bonnate
 {

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Singleton<SingletonClass> : MonoBehaviour where SingletonClass : MonoBehaviour {
+public class Singleton<TSingletonClass> : MonoBehaviour where TSingletonClass : MonoBehaviour {
 
-    public static SingletonClass Instance { get; private set; }
+    public static TSingletonClass Instance { get; private set; }
 
     public virtual void Awake() {
         if( Instance != null ) {
@@ -14,7 +14,7 @@ public class Singleton<SingletonClass> : MonoBehaviour where SingletonClass : Mo
             return;
         }
 
-        Instance = this as SingletonClass;
+        Instance = this as TSingletonClass;
     }
 
     void OnApplicationQuit() {
