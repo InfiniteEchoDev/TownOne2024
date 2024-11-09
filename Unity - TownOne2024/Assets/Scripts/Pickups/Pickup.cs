@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 public class Pickup : MonoBehaviour
 {
 
@@ -21,15 +22,18 @@ public class Pickup : MonoBehaviour
     private void Awake()
     {
         UpdateConfig();
-        
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
+
+        if (hasTimer)
+        {
+            StartCoroutine(DespawnTimer());
+        }
     }
 
     // Update is called once per frame
@@ -45,5 +49,12 @@ public class Pickup : MonoBehaviour
         hasTimer = pickupConfig.hasTimer;
         hasTimer = pickupConfig.hasTimer;
         timer = pickupConfig.timer;
+    }
+
+    IEnumerator DespawnTimer()
+    {
+        yield return new WaitForSeconds(timer);
+
+
     }
 }

@@ -73,27 +73,23 @@ public class PickupSpawner : MonoBehaviour
     // Check if an object is at position already and then set a random position
     void SetObjectSpawnPosition()
     {
-        //float x = Random.Range(0, Screen.width);
-        //float y = Random.Range(0, Screen.height);
-
-        //Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), 10));
+        // Get initial position from within the camera view
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), 10));
 
-        //Mathf.Round(targetPosition.x);
-        //Debug.Log(Mathf.Round(targetPosition.x));
+        // Round to the nearest grid space
         targetPosition = new Vector3(Mathf.Round(targetPosition.x) - 0.5f, Mathf.Round(targetPosition.y) - 0.5f, 0);
-        //Mathf.Round(targetPosition.y);
-        //Debug.Log(Mathf.Round(targetPosition.y));
 
+
+        // Cast a sphere to check if there are any objects in the vicinity.
         Collider[] checkIfIntersecting = Physics.OverlapSphere(targetPosition, spawnBufferRadius);
 
         if(checkIfIntersecting.Length != 0)
         {
-            SetObjectSpawnPosition();
+            SetObjectSpawnPosition(); // If objects are in the vicinity, redo the check.
         }
         else
         {
-            randomPos = targetPosition;
+            randomPos = targetPosition; // Else, set the target position.
         }
     }
     
