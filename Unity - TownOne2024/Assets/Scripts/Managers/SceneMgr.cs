@@ -4,17 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneMgr : Singleton<SceneMgr>
 {
-    public void LoadScene(GameScenes sceneToLoad)
+    public void LoadScene(GameScenes sceneToLoad, GameMenus menuToOpen)
     {
-        SceneManager.LoadScene(sceneToLoad.ToString());
+        StartCoroutine(PerformLoadSequence(sceneToLoad, menuToOpen));
     }
 
-    public void LoadScene(string sceneName, GameMenus menuToOpen)
-    {
-        StartCoroutine(PerformLoadSequence(sceneName, menuToOpen));
-    }
-
-    private IEnumerator PerformLoadSequence(string sceneName, GameMenus menuToOpen)
+    private IEnumerator PerformLoadSequence(GameScenes sceneToLoad, GameMenus menuToOpen)
     {
         bool waiting = true;
 
@@ -24,13 +19,13 @@ public class SceneMgr : Singleton<SceneMgr>
         
         yield return new WaitWhile(() => waiting);
 
-        var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+        var asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad.ToString());
 
         while (asyncOperation is {isDone: false}) yield return null;
         
-        UIMgr.Instance.ShowMenu(menuToOpen);
-
         UIMgr.Instance.HideMenu(GameMenus.Fader);
+        
+        UIMgr.Instance.ShowMenu(menuToOpen);
 
     }
 }
