@@ -452,9 +452,12 @@ MonoBehaviour:
   tiltAngle: 20
   turnAmount: 0.1
   reverse: 0
-  sliceCount: 4
+  sliceCount: 24
+  containerTypeCount: 3
   slices:
-  - {fileID: 3000448410918083505, guid: 16222bf55f2b8ee4bbef97bf271d0b15, type: 3}
+  - {fileID: 3000448410918083505, guid: 5a337b3ee7bc3a842ad7f02888de7836, type: 3}
+  - {fileID: 3000448410918083505, guid: 982d214b644d4554ba3606640ca47159, type: 3}
+  - {fileID: 3000448410918083505, guid: c330c6b51190ad0448107004fc425f56, type: 3}
 --- !u!212 &1789944271
 SpriteRenderer:
   m_ObjectHideFlags: 0
