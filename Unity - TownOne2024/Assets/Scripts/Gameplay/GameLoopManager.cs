@@ -12,6 +12,9 @@ public class GameLoopManager : MonoBehaviour
 
     private void Start()
     {
+        // TODO don't call this if loading from another scene
+        UIMgr.Instance.ShowMenu(GameMenus.InGameUI);
+        
         GameMgr.Instance.StartGame();
 
         if (isCountdownTimer)
@@ -41,9 +44,14 @@ public class GameLoopManager : MonoBehaviour
 
             if (lives <= 0)
             {
-                GameMgr.Instance.GameOver();
+                GameOver();
             }
         }
+    }
+
+    private void GameOver()
+    {
+        GameMgr.Instance.GameOver();
     }
 
     public void RemoveLives()

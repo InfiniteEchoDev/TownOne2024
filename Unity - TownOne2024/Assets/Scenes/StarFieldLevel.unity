@@ -312,6 +312,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 8605411073358276642, guid: 991d607c0ea65004da996cd1944a7601, type: 3}
+      propertyPath: lives
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605411073358276642, guid: 991d607c0ea65004da996cd1944a7601, type: 3}
       propertyPath: isCountdownTimer
       value: 0
       objectReference: {fileID: 0}
@@ -472,7 +476,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6142475734817205069, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7204295713968070279, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -516,7 +520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7672137846295740515, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7684042194873378036, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
       propertyPath: m_Name
