@@ -10,6 +10,7 @@ public class PlayerMgr : Singleton<PlayerMgr>
 
     [Header( "Obj Refs" )]
     public PlayerShip PlayerShip;
+    public ShipStorage ShipStorage;
     // public PlayerMothership PlayerMothership;
 
     public override void Awake() {
@@ -24,5 +25,10 @@ public class PlayerMgr : Singleton<PlayerMgr>
     public void MothershipMove( float inputVec ) {
         // TODO: Connect to PlayerMothership
         // PlayerMothership.Move( inputVec );
+    }
+
+    public void Drop(float inputBool)
+    {
+        if(inputBool == 1f) ShipStorage.DropPickUp();
     }
 }

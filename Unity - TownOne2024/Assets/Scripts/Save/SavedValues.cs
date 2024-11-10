@@ -6,7 +6,9 @@ public class SavedValues
     public int IntValue;
     public string StringValue;
 
-
+    public float GlobalVolume;
+    public float MusicVolume;
+    public float SfxVolume;
 
 
 
