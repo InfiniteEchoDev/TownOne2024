@@ -30,6 +30,7 @@ public class PickupSpawner : MonoBehaviour
             // Use random range to check
             float randomTime = Random.Range(spawnTimeMin, spawnTimeMax);
             yield return new WaitForSeconds(randomTime);
+            yield return new WaitUntil(() => canSpawn == true);
             int randomPickup = GetWeightedRandomPickup();
             SetObjectSpawnPosition();
             GameObject newPickup = Instantiate(pickups[randomPickup], randomPos, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
@@ -104,6 +105,7 @@ public class PickupSpawner : MonoBehaviour
         {
             canSpawn = false;
         }
+
     }
 
 }
