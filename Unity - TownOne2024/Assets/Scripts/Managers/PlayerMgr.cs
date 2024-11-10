@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class PlayerMgr : Singleton<PlayerMgr>
 {
-
-
     [Header( "Obj Refs" )]
     public PlayerShip PlayerShip;
     public ShipStorage ShipStorage;
@@ -16,8 +14,6 @@ public class PlayerMgr : Singleton<PlayerMgr>
     public override void Awake() {
         base.Awake();
     }
-
-
 
     public void ShipMove( Vector2 inputVec ) {
         PlayerShip.Move( inputVec );
