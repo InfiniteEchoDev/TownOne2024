@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace UI
+public class GameUI : MenuBase
 {
-    public class GameUI : MonoBehaviour
+    public override GameMenus MenuType()
     {
-        
+        return GameMenus.InGameUI;
     }
 }
