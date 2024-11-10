@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &140686674 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8874453677960642354, guid: b130f090b53d89c4b8121312f733420f, type: 3}
-  m_PrefabInstance: {fileID: 7014917173952272487}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5450a198b9392041b68f894ff243ae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &140686678 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6091653206158767146, guid: b130f090b53d89c4b8121312f733420f, type: 3}
@@ -653,18 +642,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8509467341389974391, guid: 7fc904751edfd44bf9f6e2d818e2febc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8509467341389974391, guid: 7fc904751edfd44bf9f6e2d818e2febc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8509467341389974391, guid: 7fc904751edfd44bf9f6e2d818e2febc, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8509467341389974391, guid: 7fc904751edfd44bf9f6e2d818e2febc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -829,7 +806,7 @@ PrefabInstance:
     - target: {fileID: 7750405844785495712, guid: 5b216627e9f0e6d4fad2648333d8f455, type: 3}
       propertyPath: PlayerShip
       value: 
-      objectReference: {fileID: 140686674}
+      objectReference: {fileID: 0}
     - target: {fileID: 7750405844785495712, guid: 5b216627e9f0e6d4fad2648333d8f455, type: 3}
       propertyPath: ShipStorage
       value: 
