@@ -12,6 +12,7 @@ public class GameUI : MenuBase
     TMP_Text displayScore;
 
     GameLoopManager gameLoopManager;
+    GameMgr gameMgr;
     public override GameMenus MenuType()
     {
         return GameMenus.InGameUI;
@@ -24,7 +25,17 @@ public class GameUI : MenuBase
         }
         else if(GameLoopManager.Instance != null)
         {
+            Debug.Log("We load gameloopman");
             gameLoopManager = GameLoopManager.Instance;
+        }
+        if (GameMgr.Instance == null)
+        {
+            Debug.Log("GameMgr not loaded in yet problems");
+        }
+        else if (GameMgr.Instance != null)
+        {
+            Debug.Log("We load gameloopman");
+            gameMgr = GameMgr.Instance;
         }
     }
 
@@ -32,10 +43,22 @@ public class GameUI : MenuBase
     {
         if (GameLoopManager.Instance != null)
         {
+
             string livesCount;
 
             livesCount = "x " + gameLoopManager.Lives;
 
+            displayLives.text = livesCount;
+
+        }
+
+        if (gameMgr != null)
+        {
+            string score;
+            int integerScore = Mathf.FloorToInt(gameMgr.Score); 
+            score = integerScore.ToString();
+
+            displayScore.text = score;
         }
 
     }
