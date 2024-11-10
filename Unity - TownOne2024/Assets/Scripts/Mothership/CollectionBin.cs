@@ -31,7 +31,7 @@ public class CollectionBin : MonoBehaviour
         else
         {
             Debug.Log("BAD HAPPEN");
-            if (other.GetComponent<Pickup>().GetPickupType != null)
+            if (other.GetComponent<Pickup>() != null)
             {
                 //TODO: LOSE SCORE
                 Destroy(other.gameObject);
