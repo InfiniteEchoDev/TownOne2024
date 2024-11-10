@@ -406,6 +406,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTimer: 0
   lives: 5
+  maxTimer: 10
+  isCountdownTimer: 1
 --- !u!4 &1400282999
 Transform:
   m_ObjectHideFlags: 0
@@ -426,6 +428,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 735208268}
-  - {fileID: 778224776}
   - {fileID: 1400282999}
+  - {fileID: 778224776}
   - {fileID: 219652111}
