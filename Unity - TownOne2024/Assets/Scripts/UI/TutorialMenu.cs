@@ -10,8 +10,7 @@ public class TutorialMenu : MenuBase
 
     public void PlayGame()
     {
-
-        SceneMgr.Instance.LoadScene(GameScenes.StarFieldLevel, GameMenus.InGameUI);
+        SceneMgr.Instance.LoadScene(GameScenes.SnakeLike, GameMenus.InGameUI);
     }
 
     public void Back()

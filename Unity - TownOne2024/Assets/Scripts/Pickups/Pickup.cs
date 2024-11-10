@@ -1,10 +1,9 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
+
 public class Pickup : MonoBehaviour
 {
-
     [SerializeField] PickupSO pickupConfig;
     public PickupSO GetPickupConfig { get { return pickupConfig; } }
 
@@ -29,7 +28,9 @@ public class Pickup : MonoBehaviour
     Rigidbody2D rb;
     
     public Vector2Int SpawnedCoordinates { get; private set; }
-    
+    public float PointValue => pickupConfig.pointValue;
+    public float BasePointValue => pickupConfig.pointValue;
+
     private Vector2Int _currentPosition;
     private Vector2Int _previousPosition;
     private SnakeBody _nextSnake;
