@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PlayerShip : MonoBehaviour
 {
-    [Range( 0, 2 )]
+    [Range( 0, 20 )]
     public float Velocity = .25f;
     private float _lastMoveTime = 0;
 
@@ -51,19 +51,19 @@ public class PlayerShip : MonoBehaviour
         Vector2 newVel = transform.up * Velocity;
 
 
-        float divDist = ( Mathf.Abs( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) ) ) / StarFieldMgr.Instance.GridSize;
-        float divProjDist = ( Mathf.Abs( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) ) + ( _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) ) / StarFieldMgr.Instance.GridSize;
+        //float divDist = ( Mathf.Abs( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) ) ) / StarFieldMgr.Instance.GridSize;
+        //float divProjDist = ( Mathf.Abs( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) ) + ( _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) ) / StarFieldMgr.Instance.GridSize;
 
-        //Debug.Log( $"dist: {distFromOriginInVelDir}, projdist: {projDistFromOriginInVelDir}, divdist: {divDist}, divProj:{divProjDist}, next:{nextFrameDistTrav}" );
-        Debug.Log( $"divdist: {divDist}, divProj:{divProjDist}" );
+        ////Debug.Log( $"dist: {distFromOriginInVelDir}, projdist: {projDistFromOriginInVelDir}, divdist: {divDist}, divProj:{divProjDist}, next:{nextFrameDistTrav}" );
+        //Debug.Log( $"divdist: {divDist}, divProj:{divProjDist}" );
 
 
         if( _rigidbody.linearVelocity == newVel ) return;
 
  
-        if( Mathf.FloorToInt( divDist ) != Mathf.FloorToInt( divProjDist ) ) {
+        //if( Mathf.FloorToInt( divDist ) != Mathf.FloorToInt( divProjDist ) ) {
             _rigidbody.linearVelocity = newVel;
-        }
+        //}
     }
 
     public void Move( Vector2 moveDir ) {

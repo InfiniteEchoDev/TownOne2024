@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5450a198b9392041b68f894ff243ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 2
+  Velocity: 6
   ShipSprite: {fileID: 0}
   AttachPoint: {fileID: 0}
 --- !u!4 &140686675
