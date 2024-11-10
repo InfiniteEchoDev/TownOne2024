@@ -24,6 +24,8 @@ public class Pickup : MonoBehaviour
     float randomRotSpeed;
     public float SetRandomRotSpeed { set { randomRotSpeed = value; } }
 
+    GameLoopManager loopManager;
+
     private void Awake()
     {
         UpdateConfig();
@@ -34,6 +36,7 @@ public class Pickup : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
+        loopManager = FindAnyObjectByType<GameLoopManager>();
 
         StartCoroutine(SpawnAnim());
     }
@@ -41,7 +44,10 @@ public class Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0,0,randomRotSpeed * Time.deltaTime));
+        if (GameMgr.Instance.IsGameRunning)
+        {
+            transform.Rotate(new Vector3(0, 0, randomRotSpeed * Time.deltaTime));
+        }
     }
 
     void UpdateConfig()
@@ -55,6 +61,7 @@ public class Pickup : MonoBehaviour
 
     IEnumerator DespawnTimer()
     {
+        
         yield return new WaitForSeconds(timer);
 
         for (int i = 0; i < 9; i++)
@@ -68,6 +75,7 @@ public class Pickup : MonoBehaviour
         transform.DOScale(0f, 0.75f);
         spriteRenderer.DOFade(0f, 0.75f);
         yield return new WaitForSeconds(0.75f);
+        loopManager.RemoveLives();
         Destroy(gameObject);
 
     }

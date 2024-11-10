@@ -11,7 +11,6 @@ public class PickupSpawner : MonoBehaviour
 
     [SerializeField] float spawnBufferRadius = 1f;
 
-    [SerializeField] bool canSpawn = true;
     Vector3 randomPos;
 
 
@@ -24,14 +23,14 @@ public class PickupSpawner : MonoBehaviour
     // Spawning routine
     IEnumerator SpawnPickupRoutine()
     {
-        while (canSpawn)
+        while (GameMgr.Instance.IsGameRunning)
         {
             // Use random range to chec
             float randomTime = Random.Range(spawnTimeMin, spawnTimeMax);
             yield return new WaitForSeconds(randomTime);
             int randomPickup = GetWeightedRandomPickup();
             SetObjectSpawnPosition();
-            GameObject newPickup = Instantiate(pickups[randomPickup], randomPos, Quaternion.Euler(new Vector3(0,0,Random.Range(0,360))));
+            GameObject newPickup = Instantiate(pickups[randomPickup], randomPos, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
             newPickup.GetComponent<Pickup>().SetRandomRotSpeed = Random.Range(10, 30);
         }
 
