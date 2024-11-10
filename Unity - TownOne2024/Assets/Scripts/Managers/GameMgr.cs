@@ -38,8 +38,7 @@ public class GameMgr : Singleton<GameMgr>
 
     public void GameOver()
     {
-        //Transition to Game Over
-        Debug.Log("Game Over!");
+        SceneMgr.Instance.LoadScene(GameScenes.GameOver, GameMenus.GameOverMenu);
     }
 
     public void NextLevel()

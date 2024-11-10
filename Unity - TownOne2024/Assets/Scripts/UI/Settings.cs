@@ -6,4 +6,9 @@ public class Settings : MenuBase
     {
         return GameMenus.SettingsMenu;
     }
+
+    public void MainMenu()
+    {
+        UIMgr.Instance.ShowMenu(GameMenus.MainMenu);
+    }
 }

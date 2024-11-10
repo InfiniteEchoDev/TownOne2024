@@ -17,7 +17,7 @@ public class MainMenu : MenuBase
 
     public void StartButton()
     {
-        SceneMgr.Instance.LoadScene(GameScenes.MainGame, GameMenus.InGameUI);
+        SceneMgr.Instance.LoadScene(GameScenes.StarFieldLevel, GameMenus.InGameUI);
     }
 
     public void SettingsButton()

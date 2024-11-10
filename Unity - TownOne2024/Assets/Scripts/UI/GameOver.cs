@@ -9,7 +9,7 @@ public class GameOver : MenuBase
 
     public void Retry()
     {
-        SceneMgr.Instance.LoadScene(GameScenes.MainGame, GameMenus.InGameUI);
+        SceneMgr.Instance.LoadScene(GameScenes.StarFieldLevel, GameMenus.InGameUI);
     }
 
     public void MainMenu()
