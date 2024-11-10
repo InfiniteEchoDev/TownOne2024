@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PlayerShip : MonoBehaviour
 {
-    [Range( 0, 2 )]
+    [Range( 0, 20 )]
     public float Velocity = .25f;
     private float _lastMoveTime = 0;
 
@@ -30,7 +30,7 @@ public class PlayerShip : MonoBehaviour
     private void Awake() {
         _rigidbody = GetComponent<Rigidbody2D>();
 
-        _rigidbody.linearVelocity = transform.up / Velocity;
+        _rigidbody.linearVelocity = transform.up * Velocity;
     }
 
     private void FixedUpdate() {
@@ -48,17 +48,22 @@ public class PlayerShip : MonoBehaviour
     }
 
     public void processVelocity() {
-        Vector2 newVel = transform.up / Velocity;
+        Vector2 newVel = transform.up * Velocity;
+
+
+        //float divDist = ( Mathf.Abs( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) ) ) / StarFieldMgr.Instance.GridSize;
+        //float divProjDist = ( Mathf.Abs( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) ) + ( _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) ) / StarFieldMgr.Instance.GridSize;
+
+        ////Debug.Log( $"dist: {distFromOriginInVelDir}, projdist: {projDistFromOriginInVelDir}, divdist: {divDist}, divProj:{divProjDist}, next:{nextFrameDistTrav}" );
+        //Debug.Log( $"divdist: {divDist}, divProj:{divProjDist}" );
+
+
         if( _rigidbody.linearVelocity == newVel ) return;
 
-        float distFromOriginInVelDir = Vector2.Dot( transform.position, _rigidbody.linearVelocity );
-        float modDist = ( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) + _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) % StarFieldMgr.Instance.GridSize;
-        float nextFrameDistTrav = _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime;
-        ///Debug.Log( $"dist: {distFromOriginInVelDir}, moddist: {modDist}, next:{nextFrameDistTrav}" );
-
-        if( ( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) + _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) % StarFieldMgr.Instance.GridSize < _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) {
-            _rigidbody.linearVelocity = transform.up / Velocity;
-        }
+ 
+        //if( Mathf.FloorToInt( divDist ) != Mathf.FloorToInt( divProjDist ) ) {
+            _rigidbody.linearVelocity = newVel;
+        //}
     }
 
     public void Move( Vector2 moveDir ) {
