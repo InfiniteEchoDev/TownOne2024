@@ -24,7 +24,7 @@ public class CollectionBin : MonoBehaviour
         other.enabled = false;
         if (other.GetComponent<Pickup>().GetPickupType == collectType)
         {
-            Debug.Log("I HAPPEN");
+            Debug.Log("GOOD HAPPEN");
             //TODO: Gain Score
             Destroy(other.gameObject);
         }
