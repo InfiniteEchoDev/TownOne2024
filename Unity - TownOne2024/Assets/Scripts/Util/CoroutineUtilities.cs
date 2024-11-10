@@ -10,4 +10,10 @@ public class CoroutineUtilities : MonoBehaviour {
 
         execute();
     }
+
+    static public IEnumerator WaitForFixedUpdateFrameAndExecute( System.Action execute ) {
+        yield return new WaitForFixedUpdate();
+
+        execute();
+    }
 }
