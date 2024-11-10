@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 140686674}
   - component: {fileID: 140686676}
   - component: {fileID: 140686677}
+  - component: {fileID: 140686678}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -243,6 +244,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.8475511, y: 0.6646123}
   m_EdgeRadius: 0
+--- !u!114 &140686678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140686673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d799ba03b9d2e334cacc98da0e798349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickups: []
 --- !u!1 &415173116
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +353,10 @@ PrefabInstance:
     - target: {fileID: 7863792794930603020, guid: 991d607c0ea65004da996cd1944a7601, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605411073358276642, guid: 991d607c0ea65004da996cd1944a7601, type: 3}
+      propertyPath: isCountdownTimer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -693,6 +711,10 @@ PrefabInstance:
       propertyPath: PlayerShip
       value: 
       objectReference: {fileID: 140686674}
+    - target: {fileID: 7750405844785495712, guid: 5b216627e9f0e6d4fad2648333d8f455, type: 3}
+      propertyPath: ShipStorage
+      value: 
+      objectReference: {fileID: 140686678}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
