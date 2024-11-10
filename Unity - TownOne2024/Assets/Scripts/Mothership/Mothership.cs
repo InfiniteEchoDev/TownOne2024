@@ -50,20 +50,23 @@ public class Mothership : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!reverse)
+        if (GameMgr.Instance.IsGameRunning)
         {
-            rotateZAxis = rotateZAxis + turnAmount;
-        }
-        else
-        {
-            rotateZAxis = rotateZAxis - turnAmount;
-        }
+            if (!reverse)
+            {
+                rotateZAxis = rotateZAxis + turnAmount;
+            }
+            else
+            {
+                rotateZAxis = rotateZAxis - turnAmount;
+            }
 
-        float tiltAroundZ = rotateZAxis * tiltAngle;
-        target = Quaternion.Euler(0, 0, tiltAroundZ);
+            float tiltAroundZ = rotateZAxis * tiltAngle;
+            target = Quaternion.Euler(0, 0, tiltAroundZ);
 
-        // Dampen towards the target rotation
-        trans.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+            // Dampen towards the target rotation
+            trans.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+        }
     }
 
 

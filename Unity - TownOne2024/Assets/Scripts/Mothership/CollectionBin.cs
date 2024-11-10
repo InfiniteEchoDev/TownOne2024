@@ -21,7 +21,7 @@ public class CollectionBin : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        other.enabled = false;
+        //other.enabled = false;
         if (other.GetComponent<Pickup>().GetPickupType == collectType)
         {
             Debug.Log("GOOD HAPPEN");
