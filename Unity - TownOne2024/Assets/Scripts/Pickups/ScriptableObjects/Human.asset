@@ -16,5 +16,5 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 6afa9a8c85b284f43a6ce8b0a715ba20, type: 3}
   hasTimer: 1
   timer: 10
-  pointValue: 0
+  pointValue: 500
   spawnWeight: 1

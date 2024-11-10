@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameLoopManager : MonoBehaviour
+public class GameLoopManager : Singleton<GameLoopManager>
 {
 
     [SerializeField] float gameTimer;
@@ -9,6 +9,8 @@ public class GameLoopManager : MonoBehaviour
 
     [SerializeField] float maxTimer = 120f;
     [SerializeField] bool isCountdownTimer;
+
+    public int Lives { get => lives; set => lives = value; }
 
     private void Start()
     {

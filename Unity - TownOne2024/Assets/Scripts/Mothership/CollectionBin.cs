@@ -7,10 +7,21 @@ public class CollectionBin : MonoBehaviour
 
     [SerializeField]
     PickupTypes collectType;
+
+    GameMgr gameMgr;
+
+    float scoreMultiplier = 1f;
     void Start()
     {
-        
-        col.autoTiling = true;
+        if (GameMgr.Instance == null)
+        {
+            Debug.Log("GameMgr not loaded in yet problems");
+        }
+        else if (GameMgr.Instance != null)
+        {
+            Debug.Log("We load Gamemgrman");
+            gameMgr = GameMgr.Instance;
+        }
 
     }
 
@@ -21,11 +32,12 @@ public class CollectionBin : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //other.enabled = false;
         if (other.GetComponent<Pickup>().GetPickupType == collectType)
         {
             Debug.Log("GOOD HAPPEN");
             //TODO: Gain Score
+
+            gameMgr.AddScore(other.GetComponent<Pickup>().PointValue);
             Destroy(other.gameObject);
         }
         else
@@ -33,7 +45,11 @@ public class CollectionBin : MonoBehaviour
             Debug.Log("BAD HAPPEN");
             if (other.GetComponent<Pickup>() != null)
             {
-                //TODO: LOSE SCORE
+
+                if (other.GetComponent<Pickup>().GetPickupType == PickupTypes.Human)
+                {
+                    gameMgr.SubtractScore(other.GetComponent<Pickup>().BasePointValue);
+                }
                 Destroy(other.gameObject);
             }
             else

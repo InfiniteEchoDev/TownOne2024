@@ -16,6 +16,8 @@ public class GameMgr : Singleton<GameMgr>
         set { isGameRunning = value; }
     }
 
+    public float Score { get => score; set => score = value; }
+
     public override void Awake() {
         base.Awake();
     }
