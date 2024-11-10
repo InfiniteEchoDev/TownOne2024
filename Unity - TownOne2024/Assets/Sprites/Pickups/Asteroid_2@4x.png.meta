@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cc7a8e2bc23ee5348ac72868e8d473e0
+guid: 3237a9b06c196a040b229cef03c99b0a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4360530552843628718
-    second: ship_0
+      213: 544530213986196297
+    second: Asteroid_2@4x_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 512
+  spritePixelsToUnits: 480
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ship_0
+      name: Asteroid_2@4x_0
       rect:
         serializedVersion: 2
-        x: 177
-        y: 555
-        width: 1694
-        height: 1262
+        x: 20
+        y: 41
+        width: 388
+        height: 401
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 25f8485b0984c73c0800000000000000
-      internalID: -4360530552843628718
+      spriteID: 94b5d16385f8e8700800000000000000
+      internalID: 544530213986196297
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ship_0: -4360530552843628718
+      Asteroid_2@4x_0: 544530213986196297
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
