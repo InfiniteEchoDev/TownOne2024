@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework.Internal;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class PickupSpawner : MonoBehaviour
 {
@@ -22,6 +24,15 @@ public class PickupSpawner : MonoBehaviour
     private int NextSpawn => Random.Range(_spawnTimeMin, _spawnTimeMax);
     
     private List<Pickup> _spawnedPickedUps = new ();
+    
+    private Dictionary<Vector2Int, Pickup> _spawnedPickedUpsDict = new();
+    public Dictionary<Vector2Int, Pickup> SpawnedPickedUpsDict => _spawnedPickedUpsDict;
+
+
+    private void Start()
+    {
+        SpawnPickup();
+    }
 
     /// <summary>
     /// Should happen after all other updates for positions to be correct
@@ -47,6 +58,7 @@ public class PickupSpawner : MonoBehaviour
         Pickup newPickup = Instantiate(_pickups[randomPickup], randomPos, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
         newPickup.Setup(spawnCoords, Random.Range(10, 30));
         _grid.OccupiedPositions.Add(spawnCoords);
+        _spawnedPickedUpsDict.Add(spawnCoords, newPickup);
     }
 
     // // Spawning routine

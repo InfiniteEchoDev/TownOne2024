@@ -29,6 +29,12 @@ public class Pickup : MonoBehaviour
     Rigidbody2D rb;
     
     public Vector2Int SpawnedCoordinates { get; private set; }
+    
+    private Vector2Int _currentPosition;
+    private Vector2Int _previousPosition;
+    private SnakeBody _nextSnake;
+
+    private Coroutine _timerRoutine;
 
     public void Setup(Vector2Int coords, float rotSpeed)
     {
@@ -96,9 +102,30 @@ public class Pickup : MonoBehaviour
         
         if (hasTimer)
         {
-            StartCoroutine(DespawnTimer());
+            _timerRoutine = StartCoroutine(DespawnTimer());
         }
         
         yield return null;
+    }
+
+    public void OnPickup()
+    {
+        if (_timerRoutine != null)
+            StopCoroutine(_timerRoutine);
+    }
+    
+    public Vector2Int SetPosition(Vector2Int previousCoords, int cellX, int cellY)
+    {
+        var lastPosition = _previousPosition;
+        _currentPosition = previousCoords;
+        _previousPosition = _currentPosition;
+        transform.position = new Vector3(_currentPosition.x * cellX, _currentPosition.y * cellY, 0);
+        return lastPosition;
+    }
+
+    public void Drop()
+    {
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gravityScale = 5f;
     }
 }
