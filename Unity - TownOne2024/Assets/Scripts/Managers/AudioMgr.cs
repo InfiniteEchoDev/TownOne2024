@@ -32,7 +32,7 @@ public class AudioMgr : Singleton<AudioMgr>
         DropItems=11,     // in player controls
         ItemSpawn=12,     // in spawner code 
         ItemPickup=13,     // in collection code
-        PersonDespawn       // In pickup despawn code
+        PersonDespawn=14   // In pickup despawn code
     }
     
     [Header("Mixer")]
