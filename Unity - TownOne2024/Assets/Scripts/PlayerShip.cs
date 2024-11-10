@@ -36,7 +36,6 @@ public class PlayerShip : MonoBehaviour
     public void processVelocity() {
         Vector2 newVel = transform.up * Velocity;
 
-
         //float divDist = ( Mathf.Abs( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) ) ) / StarFieldMgr.Instance.GridSize;
         //float divProjDist = ( Mathf.Abs( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) ) + ( _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) ) / StarFieldMgr.Instance.GridSize;
 
