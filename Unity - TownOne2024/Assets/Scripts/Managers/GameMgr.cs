@@ -45,6 +45,7 @@ public class GameMgr : Singleton<GameMgr>
     public void NextLevel()
     {
         // Transition to next level
+        Debug.Log("Next level!");
     }
 
     public void StartGame()
