@@ -602,8 +602,8 @@ GameObject:
   - component: {fileID: 1440758967804895321}
   - component: {fileID: 6410805170598039409}
   - component: {fileID: 5978335890028513342}
-  - component: {fileID: 3337753152252030631}
   - component: {fileID: 6365801590835862676}
+  - component: {fileID: 4633760019947690283}
   m_Layer: 5
   m_Name: Game Over
   m_TagString: Untagged
@@ -696,18 +696,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3337753152252030631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8071609373031173996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f155282e0d5f4b50810182b78c59d78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!225 &6365801590835862676
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -720,6 +708,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &4633760019947690283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071609373031173996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f1a3276393461b8a69522e3fa5634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8301224081074711309
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class GameUI : MenuBase
+public class Settings : MenuBase
 {
     public override GameMenus MenuType()
     {
-        return GameMenus.InGameUI;
+        return GameMenus.SettingsMenu;
     }
 }
