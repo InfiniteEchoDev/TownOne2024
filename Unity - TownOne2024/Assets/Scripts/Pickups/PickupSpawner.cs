@@ -78,7 +78,7 @@ public class PickupSpawner : MonoBehaviour
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), 10));
 
         // Round to the nearest grid space
-        targetPosition = new Vector3(Mathf.Round(targetPosition.x) - 0.5f, Mathf.Round(targetPosition.y) - 0.5f, 0);
+        targetPosition = new Vector3(Mathf.Round(targetPosition.x)/*- 0.5f*/, Mathf.Round(targetPosition.y)/*- 0.5f*/, 0);
 
 
         // Cast a sphere to check if there are any objects in the vicinity.
