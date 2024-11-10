@@ -18,6 +18,8 @@ public class UIMgr : Singleton<UIMgr> {
     [SerializeField] private MenuBase _inGameUIPrefab;
     [SerializeField] private MenuBase _gameOverMenuPrefab;
     [SerializeField] private MenuBase _pauseMenuPrefab;
+    [SerializeField] private MenuBase _controlMenuPrefab;
+    [SerializeField] private MenuBase _tutorialMenuPrefab;
 
     private Dictionary<GameMenus, MenuBase> _menuInstances = new();
     private Stack<MenuBase> _activeMenus = new();
@@ -35,7 +37,9 @@ public class UIMgr : Singleton<UIMgr> {
     
     public MenuBase ShowMenu(GameMenus menuToOpen, Action onMenuOpenComplete = null, bool fadeIn = true)
     {
+        if(menuToOpen == GameMenus.None)return null;
         var menu = PushMenu(menuToOpen);
+        
         if (menu == null)
         {
             return null;
@@ -183,6 +187,12 @@ public class UIMgr : Singleton<UIMgr> {
                 break;
             case GameMenus.PauseMenu:
                 menu = _pauseMenuPrefab;
+                break;
+            case GameMenus.ControlMenu:
+                menu = _controlMenuPrefab;
+                break;
+            case GameMenus.TutorialMenu:
+                menu = _tutorialMenuPrefab;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(menuType), menuType, null);

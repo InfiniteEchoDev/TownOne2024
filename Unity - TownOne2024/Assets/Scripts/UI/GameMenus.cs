@@ -11,5 +11,7 @@ public enum GameMenus
     SettingsMenu,
     InGameUI,
     GameOverMenu,
-    PauseMenu
+    PauseMenu,
+    ControlMenu,
+    TutorialMenu
 }

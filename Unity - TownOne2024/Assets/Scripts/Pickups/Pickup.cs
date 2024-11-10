@@ -18,11 +18,18 @@ public class Pickup : MonoBehaviour
 
     float timer;
 
+    float basePointValue;
+
     float pointValue;
+
+    float scoreMultiplier = 1f;
 
     SpriteRenderer spriteRenderer;
 
     float randomRotSpeed;
+
+    public global::System.Single PointValue { get => pointValue; set => pointValue = value; }
+    public global::System.Single BasePointValue { get => basePointValue; set => basePointValue = value; }
 
     GameLoopManager loopManager;
 
@@ -54,6 +61,7 @@ public class Pickup : MonoBehaviour
         {
             rb.gravityScale = 0f;
         }
+        pointValue = basePointValue * scoreMultiplier;
     }
 
     void UpdateConfig()
@@ -63,7 +71,10 @@ public class Pickup : MonoBehaviour
         hasTimer = pickupConfig.hasTimer;
         hasTimer = pickupConfig.hasTimer;
         timer = pickupConfig.timer;
+        basePointValue = pickupConfig.pointValue;
     }
+
+    
 
     IEnumerator DespawnTimer()
     {
@@ -101,4 +112,6 @@ public class Pickup : MonoBehaviour
         
         yield return null;
     }
+
+
 }
