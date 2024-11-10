@@ -31,21 +31,16 @@ public class CollectionBin : MonoBehaviour
         else
         {
             Debug.Log("BAD HAPPEN");
-            Destroy(other.gameObject);
+            if (other.GetComponent<Pickup>().GetPickupType != null)
+            {
+                //TODO: LOSE SCORE
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                //TODO:Ship resets position somehow
+            }
         }
-        //{
-        //    Debug.Log("ship crash)
-        //TODO: Ship lose life
-        //}
-        //else if (other.publicEnumType == type)
-        //{
-        //    Debug.Log("Survivor is collected)
 
-        //}
-        //else{
-
-        //Debug.Log("They're dead now, cause of you, you should feel bad");
-        //TODO: Losing score
-        //}
     }
 }
