@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SnakePlayer : MonoBehaviour
@@ -9,6 +10,7 @@ public class SnakePlayer : MonoBehaviour
     [SerializeField] private int _cameraSize = 20;
     [SerializeField] private float _deadZone = 0.125f;
     [SerializeField] private SnakeGrid _snakeGrid;
+    [SerializeField] private PickupSpawner _pickupSpawner;
     
     private Vector2 _playerPosition = Vector2.zero;
     private Vector2 _previousPosition = Vector2.zero;
@@ -20,6 +22,9 @@ public class SnakePlayer : MonoBehaviour
 
     private CardinalDirection _previousDirection;
     private CardinalDirection _lastInput;
+
+    private LinkedList<Pickup> _snakeBody = new ();
+    private HashSet<Vector2Int> _bodyPositions = new ();
 
     private void Start()
     {
@@ -64,11 +69,48 @@ public class SnakePlayer : MonoBehaviour
         var nextPos = _snakeGrid.NextPositionInDirection(_lastInput, _coordinates);
         transform.position = new Vector3(nextPos.x * _snakeGrid.CellWidth, nextPos.y * _snakeGrid.CellHeight, 0);
         _coordinates = nextPos;
+
+        if (_bodyPositions.Contains(_coordinates))
+        {
+            // Crashed into our own tail!
+            GameMgr.Instance.GameOver();
+            // todo play explosion!
+        }
         
-        // todo
-        // if (snakebody.any)
-        // firstSnakebody.OnGridMove(previousCoords)
+        // check if object in coord
+        if (_pickupSpawner.SpawnedPickedUpsDict.Remove(_coordinates, out var pickup))
+        {
+            // pickup!
+            _snakeGrid.OccupiedPositions.Remove(_coordinates);
+            
+            pickup.transform.position = new Vector3 (previousCoords.x * _snakeGrid.CellWidth, previousCoords.y * _snakeGrid.CellHeight, 0);
+            pickup.OnPickup();
+            _snakeBody.AddLast(pickup);
+            
+        }
         
+        // player occupies it
+        _snakeGrid.OccupiedPositions.Add(_coordinates);
+        
+        // todo, asteroids?
+
+        // body position updates
+        _bodyPositions.Clear();
+        Vector2Int partCoords = previousCoords;
+        foreach (var body in _snakeBody)
+        {
+            _bodyPositions.Add(partCoords);
+            partCoords = body.SetPosition(partCoords, _snakeGrid.CellWidth, _snakeGrid.CellWidth);
+        }
     }
-    
+
+    public void Drop()
+    {
+        if (_snakeBody.Count > 0)
+        {
+            var first = _snakeBody.First.Value;
+            _snakeBody.Remove(first);
+            first.Drop();
+        }
+    }
 }

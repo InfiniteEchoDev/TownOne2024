@@ -29,4 +29,12 @@ public class SnakeInput : MonoBehaviour
             _snakePlayer.PlayerYInput(movement);
         }
     }
+
+    public void OnDrop(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _snakePlayer.Drop();
+        }
+    }
 }
