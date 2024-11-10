@@ -38,6 +38,7 @@ public class GameMgr : Singleton<GameMgr>
 
     public void GameOver()
     {
+        isGameRunning = false;
         SceneMgr.Instance.LoadScene(GameScenes.GameOver, GameMenus.GameOverMenu);
     }
 
