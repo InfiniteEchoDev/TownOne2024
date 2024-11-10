@@ -13,6 +13,7 @@ public class MainMenu : MenuBase
     private void OnEnable()
     {
         _startButton.Select();
+        AudioMgr.Instance.PlayMusic(AudioMgr.MusicTypes.MainMenu, 0.5f);
     }
 
     public void StartButton()
