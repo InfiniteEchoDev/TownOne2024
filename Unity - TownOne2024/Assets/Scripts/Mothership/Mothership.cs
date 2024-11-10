@@ -90,6 +90,7 @@ public class Mothership : MonoBehaviour
         {
             for (int i = 0; i < sliceCount; i++)
             {
+                
                 if (i < sliceCount / 3)
                 {
                     Instantiate(slices[0], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
