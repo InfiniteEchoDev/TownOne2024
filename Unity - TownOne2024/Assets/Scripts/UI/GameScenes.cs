@@ -5,6 +5,6 @@ public enum GameScenes
 {
     Bootloader,
     MainMenu,
-    MainGame,
+    StarFieldLevel,
     GameOver
 }
