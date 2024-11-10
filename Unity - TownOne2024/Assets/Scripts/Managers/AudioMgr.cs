@@ -26,11 +26,13 @@ public class AudioMgr : Singleton<AudioMgr>
         SpawnPerson=5,     //on spawn script for when people spawn
         PlayerLoseLife=6,  //in player ship after colison with astroids/obsticals
         PersonSaved=7,     // in mothership for person
-        PersonPickedUp=8,  // in pickups
+        PersonPickedUp=8,  // in collection code 
         ButtonExit=9,     // in settings prefab/exit game
         PersonSortingError=10, //in mothership for wrong location
         DropItems=11,     // in player controls
-        ItemSpawn=12,    
+        ItemSpawn=12,     // in spawner code 
+        ItemPickup=13,     // in collection code
+        PersonDespawn       // In pickup despawn code
     }
     
     [Header("Mixer")]
