@@ -11,8 +11,6 @@ public class SnakePlayer : MonoBehaviour
     [SerializeField] private float _deadZone = 0.125f;
     [SerializeField] private SnakeGrid _snakeGrid;
     [SerializeField] private PickupSpawner _pickupSpawner;
-
-    [SerializeField] private SnakeBody _snakePrefab;
     
     private Vector2 _playerPosition = Vector2.zero;
     private Vector2 _previousPosition = Vector2.zero;
