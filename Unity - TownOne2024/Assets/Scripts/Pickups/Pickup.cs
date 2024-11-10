@@ -23,20 +23,18 @@ public class Pickup : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     float randomRotSpeed;
-    public float SetRandomRotSpeed { set { randomRotSpeed = value; } }
 
     GameLoopManager loopManager;
 
     Rigidbody2D rb;
+    
+    public Vector2Int SpawnedCoordinates { get; private set; }
 
-    private void Awake()
+    public void Setup(Vector2Int coords, float rotSpeed)
     {
+        randomRotSpeed = rotSpeed;
+        SpawnedCoordinates = coords;
         UpdateConfig();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
         loopManager = FindAnyObjectByType<GameLoopManager>();

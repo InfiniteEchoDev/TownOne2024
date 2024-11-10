@@ -10,7 +10,6 @@ public class PlayerShip : MonoBehaviour
     [Range( 0, 20 )]
     public float Velocity = .25f;
 
-
     [Header( "Obj Refs" )]
     public SpriteRenderer ShipSprite;
     public GameObject AttachPoint;

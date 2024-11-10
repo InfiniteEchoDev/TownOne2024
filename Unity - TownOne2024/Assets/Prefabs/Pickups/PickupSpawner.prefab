@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4904c6be09dfa7e4eb460cd6040aa19b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickups:
-  - {fileID: 2523585043165949550, guid: c747a020a0eb0464f8200f67579f82f8, type: 3}
-  - {fileID: 5385410423525450439, guid: dd8415af18483b444b2e3e164baa0ef0, type: 3}
-  - {fileID: 8127385448604026699, guid: 13dd6541ecc60ba418d254c1f582c9b2, type: 3}
-  spawnTimeMin: 3
-  spawnTimeMax: 5
+  _grid: {fileID: 0}
+  _pickups:
+  - {fileID: 991249705482691547, guid: c747a020a0eb0464f8200f67579f82f8, type: 3}
+  - {fileID: 6613353059617320921, guid: dd8415af18483b444b2e3e164baa0ef0, type: 3}
+  - {fileID: 7565488287725231760, guid: 13dd6541ecc60ba418d254c1f582c9b2, type: 3}
+  _spawnTimeMin: 3
+  _spawnTimeMax: 5
   spawnBufferRadius: 1
