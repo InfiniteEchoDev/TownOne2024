@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class SnakeBody : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private Vector2 _currentPosition;
+    private Vector2 _previousPosition;
 
-    // Update is called once per frame
-    void Update()
+    private SnakeBody _nextSnake;
+
+    public void OnGridMove(Vector2 position)
     {
-        
+        _previousPosition = _currentPosition;
+        transform.position = _currentPosition = position;
+        _nextSnake.OnGridMove(_previousPosition);
     }
 }

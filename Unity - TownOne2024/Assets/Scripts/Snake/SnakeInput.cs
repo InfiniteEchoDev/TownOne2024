@@ -1,22 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SnakeInput : Singleton<SnakeInput>
+public class SnakeInput : MonoBehaviour
 {
-    public override void Awake() {
-        base.Awake();
-    }
-    
-    private void Update()
-    {
-        //PlayerMgr.Instance.ShipMove( _shipMoveAction.ReadValue<Vector2>() );
-        //PlayerMgr.Instance.MothershipMove( _mothershipMoveAction.ReadValue<float>() );
-        //PlayerMgr.Instance.Drop(_dropAction.ReadValue<float>());
-    }
+    [SerializeField] private SnakePlayer _snakePlayer;
 
     private void OnControlsChanged()
     {
-        
+        // change input controls for UI
     }
 
     public void OnNavigateX(InputAction.CallbackContext context)
@@ -25,7 +16,7 @@ public class SnakeInput : Singleton<SnakeInput>
         {
             float movement = context.ReadValue<float>();
             Debug.Log("OnNavigateX called: " + movement);
-            //PlayerMgr.Instance.ShipMove(context.ReadValue<Vector2>());
+            _snakePlayer.PlayerXInput(movement);
         }
     }
     
@@ -35,7 +26,7 @@ public class SnakeInput : Singleton<SnakeInput>
         {
             float movement = context.ReadValue<float>();
             Debug.Log("OnNavigateY called: " + movement);
-            //PlayerMgr.Instance.ShipMove();
+            _snakePlayer.PlayerYInput(movement);
         }
     }
 }
