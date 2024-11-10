@@ -14,6 +14,7 @@ public class Pickup : MonoBehaviour
     Sprite sprite;
 
     bool hasTimer;
+    public bool SetHasTimer { set { hasTimer = value; } }
 
     float timer;
 
