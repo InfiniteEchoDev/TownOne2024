@@ -55,11 +55,17 @@ public class Pickup : MonoBehaviour
         if (GameMgr.Instance.IsGameRunning)
         {
             transform.Rotate(new Vector3(0, 0, randomRotSpeed * Time.deltaTime));
-            rb.gravityScale = 5f;
+            if (rb.bodyType == RigidbodyType2D.Dynamic)
+            {
+                rb.gravityScale = 5f;
+            }
         }
         else
         {
-            rb.gravityScale = 0f;
+            if (rb.bodyType == RigidbodyType2D.Dynamic)
+            {
+                rb.gravityScale = 0f;
+            }
         }
     }
 

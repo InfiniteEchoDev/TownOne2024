@@ -37,4 +37,12 @@ public class SnakeInput : MonoBehaviour
             _snakePlayer.Drop();
         }
     }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameMgr.Instance.PauseGame();
+        }
+    }
 }
