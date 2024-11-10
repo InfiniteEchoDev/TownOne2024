@@ -16,13 +16,11 @@ public class CardinalDirectionUtils
     public static CardinalDirection VectorToClosestCardinal( Vector2 vec ) {
         float dirAngle = Vector2.SignedAngle( Vector2.up, vec );
 
-        dirAngle = Mathf.Floor( dirAngle / 90 ) * 90;
-
-        if( dirAngle == 0 )
+        if( dirAngle > -45 && dirAngle < 45 )
             return CardinalDirection.North;
-        if( dirAngle == 90 ) 
+        if( dirAngle >= 45 && dirAngle < 135 ) 
             return CardinalDirection.East;
-        if( dirAngle == -90 ) 
+        if( dirAngle >= -135 && dirAngle <= -45 ) 
             return CardinalDirection.West;
 
         return CardinalDirection.South;
