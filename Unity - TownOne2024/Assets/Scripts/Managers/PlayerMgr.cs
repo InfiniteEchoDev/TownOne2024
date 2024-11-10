@@ -11,6 +11,8 @@ public class PlayerMgr : Singleton<PlayerMgr>
     public ShipStorage ShipStorage;
     // public PlayerMothership PlayerMothership;
 
+    bool canPause;
+
     public override void Awake() {
         base.Awake();
     }
@@ -26,5 +28,18 @@ public class PlayerMgr : Singleton<PlayerMgr>
     public void Drop(float inputBool)
     {
         if(inputBool == 1f) ShipStorage.DropPickUp();
+    }
+
+    public void PauseInput(float inputFloat)
+    {
+        //Debug.Log(inputFloat);
+        // Run pause from game manager
+        if (canPause)
+        {
+            if (inputFloat == 1) GameMgr.Instance.PauseGame();
+            canPause = false;
+        }
+
+        if (inputFloat == 0) canPause = true;
     }
 }

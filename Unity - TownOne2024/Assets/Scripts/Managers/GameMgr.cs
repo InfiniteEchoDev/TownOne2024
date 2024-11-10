@@ -38,6 +38,7 @@ public class GameMgr : Singleton<GameMgr>
 
     public void GameOver()
     {
+        isGameRunning = false;
         SceneMgr.Instance.LoadScene(GameScenes.GameOver, GameMenus.GameOverMenu);
     }
 
@@ -54,7 +55,18 @@ public class GameMgr : Singleton<GameMgr>
 
     public void PauseGame()
     {
-        isGameRunning = false;
+        if (isGameRunning)
+        {
+            isGameRunning = false;
+            // Open pause menu here
+            Debug.Log("Pause state enabled");
+        }
+        else
+        {
+            isGameRunning = true;
+            // Close pause menu here
+            Debug.Log("Pause state disabled");
+        }
     }
 
 }
