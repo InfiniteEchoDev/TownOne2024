@@ -59,7 +59,8 @@ public class SnakePlayer : MonoBehaviour
     private void MovePlayerWithTimer()
     {
         _previousDirection = _lastInput;
-        _snakeGrid.NextPositionInDirection(_lastInput, _coordinates);
+        var nextPos = _snakeGrid.NextPositionInDirection(_lastInput, _coordinates);
+        transform.position = new Vector3(nextPos.x, nextPos.y, 0);
     }
     
 }

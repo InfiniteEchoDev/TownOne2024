@@ -53,7 +53,7 @@ public class SnakeGrid : MonoBehaviour
         }
     }
 
-    public void NextPositionInDirection(CardinalDirection direction, Vector2Int position)
+    public Vector2Int NextPositionInDirection(CardinalDirection direction, Vector2Int position)
     {
         switch (direction)
         {
@@ -72,6 +72,7 @@ public class SnakeGrid : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
         }
-        
+
+        return position;
     }
 }
