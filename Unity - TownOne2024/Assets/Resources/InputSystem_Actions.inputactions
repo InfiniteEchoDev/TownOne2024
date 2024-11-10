@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "351f2ccd-1f9f-44bf-9bec-d62ac5c5f408",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -98,7 +98,7 @@
                 {
                     "name": "Drop",
                     "type": "Button",
-                    "id": "d21a0741-a8ac-44d9-b8e7-c022b48921b3",
+                    "id": "9ed72e72-09cb-4ee3-9bf4-37306f0462b2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -559,7 +559,7 @@
                 },
                 {
                     "name": "",
-                    "id": "10cbaeae-9862-4f7f-8753-a398fae640ef",
+                    "id": "68fef75e-dc16-44ca-b283-6f025975515a",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
@@ -570,7 +570,7 @@
                 },
                 {
                     "name": "",
-                    "id": "126cfcd4-817e-4ac9-b323-d0b2ce63f156",
+                    "id": "b96b210f-bc4e-47e1-a4aa-0a4522e6594e",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
