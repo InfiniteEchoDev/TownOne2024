@@ -61,14 +61,19 @@ public class GameMgr : Singleton<GameMgr>
         {
             isGameRunning = false;
             // Open pause menu here
-            Debug.Log("Pause state enabled");
+            UIMgr.Instance.ShowMenu(GameMenus.PauseMenu);
+            //Debug.Log("Pause state enabled");
         }
         else
         {
-            isGameRunning = true;
-            // Close pause menu here
-            Debug.Log("Pause state disabled");
+            UnpauseGame();
         }
+    }
+
+    public void UnpauseGame()
+    {
+        isGameRunning = true;
+        UIMgr.Instance.HideMenu(GameMenus.PauseMenu);
     }
 
 }
