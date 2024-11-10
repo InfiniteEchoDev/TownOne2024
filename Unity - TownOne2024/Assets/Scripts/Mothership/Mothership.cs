@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class Mothership : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     float rotateZAxis = 0.5f;
 
     [SerializeField]
@@ -23,7 +22,6 @@ public class Mothership : MonoBehaviour
     [SerializeField]
     public int containerTypeCount;
 
-    //[SerializeField]
     Transform trans;
 
     [SerializeField]
