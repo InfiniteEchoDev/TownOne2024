@@ -22,7 +22,7 @@ public class ShipStorage : MonoBehaviour
     }
 
 
-    void DropPickUp()
+    public void DropPickUp()
     {
         if (pickups.Count > 0)
         {
@@ -30,6 +30,7 @@ public class ShipStorage : MonoBehaviour
             pickups[0].transform.position = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
             pickups[0].gameObject.SetActive(true);
             pickups[0].gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            pickups[0].gameObject.GetComponent<Rigidbody2D>().gravityScale = 5f;
             pickups.RemoveAt(0);
         }
     }
