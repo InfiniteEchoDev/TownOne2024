@@ -34,7 +34,7 @@ public class GameUI : MenuBase
         }
         else if (GameMgr.Instance != null)
         {
-            Debug.Log("We load gameloopman");
+            Debug.Log("We load Gamemgrman");
             gameMgr = GameMgr.Instance;
         }
     }
