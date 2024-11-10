@@ -8,7 +8,6 @@ public class Mothership : MonoBehaviour
     [SerializeField]
     float smooth = 5.0f;
 
-    [SerializeField]
     float tiltAngle = 20.0f;
 
     [SerializeField]
@@ -27,7 +26,6 @@ public class Mothership : MonoBehaviour
     [SerializeField]
     List<GameObject> slices = new List<GameObject>();
 
-    List<Quaternion> fortyFiveAngles = new List<Quaternion>();
     Quaternion target;
 
     void Start()
