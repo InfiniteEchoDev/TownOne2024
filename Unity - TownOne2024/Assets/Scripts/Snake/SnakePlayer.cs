@@ -24,8 +24,8 @@ public class SnakePlayer : MonoBehaviour
     private void Start()
     {
         _snakeGrid.TimerReset += MovePlayerWithTimer;
-        _coordinates = _snakeGrid.GridTotal / 2;
-        transform.position = new Vector3(Mathf.RoundToInt(_snakeGrid.GridTotal.x / 2f), Mathf.RoundToInt(_snakeGrid.GridTotal.y / 2f), 0);
+        _coordinates = new Vector2Int(_snakeGrid.GridWidth / 2, _snakeGrid.GridHeight / 2);
+        transform.position = new Vector3(_coordinates.x * _snakeGrid.CellWidth, _coordinates.y * _snakeGrid.CellHeight, 0);
     }
     
     public void PlayerXInput(float xInput)
@@ -59,8 +59,16 @@ public class SnakePlayer : MonoBehaviour
     private void MovePlayerWithTimer()
     {
         _previousDirection = _lastInput;
+        var previousCoords = _coordinates;
+        
         var nextPos = _snakeGrid.NextPositionInDirection(_lastInput, _coordinates);
-        transform.position = new Vector3(nextPos.x, nextPos.y, 0);
+        transform.position = new Vector3(nextPos.x * _snakeGrid.CellWidth, nextPos.y * _snakeGrid.CellHeight, 0);
+        _coordinates = nextPos;
+        
+        // todo
+        // if (snakebody.any)
+        // firstSnakebody.OnGridMove(previousCoords)
+        
     }
     
 }

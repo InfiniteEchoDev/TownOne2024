@@ -7,9 +7,14 @@ public class SnakeGrid : MonoBehaviour
 {
     [SerializeField] private int _gridWidth = 20;
     [SerializeField] private int _gridHeight = 20;
-    [SerializeField] private int _gridSize = 1;
+    [SerializeField] private int _cellWidth = 1;
+    [SerializeField] private int _cellHeight = 1;
     [SerializeField] private float _gridUpdateTime = 1f;
 
+    public int GridWidth => _gridWidth;
+    public int GridHeight => _gridHeight;
+    public int CellWidth => _cellWidth;
+    public int CellHeight => _cellHeight;
     public Vector2Int GridTotal => new Vector2Int(_gridWidth,_gridHeight);
 
     private HashSet<Vector2Int> _gridPositions = new();
@@ -48,31 +53,39 @@ public class SnakeGrid : MonoBehaviour
         {
             for (int j = 0; j < _gridHeight; j++)
             {
-                Gizmos.DrawWireCube(new Vector3(i * _gridWidth, j * _gridHeight, 0) , new Vector3(_gridWidth, _gridHeight, 1));
+                Gizmos.DrawWireCube(new Vector3(i * _cellWidth, j * _cellHeight, 0) , new Vector3(_cellWidth, _cellHeight, 1));
             }
         }
     }
 
-    public Vector2Int NextPositionInDirection(CardinalDirection direction, Vector2Int position)
+    public Vector2Int NextPositionInDirection(CardinalDirection direction, Vector2Int originalPos)
     {
+        Vector2Int position;
         switch (direction)
         {
             case CardinalDirection.North:
-                position += position + Vector2Int.up;
+                position = originalPos + Vector2Int.up;
                 break;
             case CardinalDirection.East:
-                position += position + Vector2Int.right;
+                position = originalPos + Vector2Int.right;
                 break;
             case CardinalDirection.South:
-                position += position + Vector2Int.down;
+                position = originalPos + Vector2Int.down;
                 break;
             case CardinalDirection.West:
-                position += position + Vector2Int.left;
+                position = originalPos + Vector2Int.left;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
         }
 
-        return position;
+        if (_gridPositions.Contains(position))
+        {
+            return position;
+        }
+        else
+        {
+            return originalPos;
+        }
     }
 }
