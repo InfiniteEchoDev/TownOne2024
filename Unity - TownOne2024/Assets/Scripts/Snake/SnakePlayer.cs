@@ -24,6 +24,7 @@ public class SnakePlayer : MonoBehaviour
     private CardinalDirection _lastInput;
 
     private LinkedList<Pickup> _snakeBody = new ();
+    private HashSet<Vector2Int> _bodyPositions = new ();
 
     private void Start()
     {
@@ -68,6 +69,13 @@ public class SnakePlayer : MonoBehaviour
         var nextPos = _snakeGrid.NextPositionInDirection(_lastInput, _coordinates);
         transform.position = new Vector3(nextPos.x * _snakeGrid.CellWidth, nextPos.y * _snakeGrid.CellHeight, 0);
         _coordinates = nextPos;
+
+        if (_bodyPositions.Contains(_coordinates))
+        {
+            // Crashed into our own tail!
+            GameMgr.Instance.GameOver();
+            // todo play explosion!
+        }
         
         // check if object in coord
         if (_pickupSpawner.SpawnedPickedUpsDict.Remove(_coordinates, out var pickup))
@@ -86,9 +94,12 @@ public class SnakePlayer : MonoBehaviour
         
         // todo, asteroids?
 
+        // body position updates
+        _bodyPositions.Clear();
         Vector2Int partCoords = previousCoords;
         foreach (var body in _snakeBody)
         {
+            _bodyPositions.Add(partCoords);
             partCoords = body.SetPosition(partCoords, _snakeGrid.CellWidth, _snakeGrid.CellWidth);
         }
     }
