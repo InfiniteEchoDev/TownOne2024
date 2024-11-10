@@ -6,4 +6,14 @@ public class GameOver : MenuBase
     {
         return GameMenus.GameOverMenu;
     }
+
+    public void Retry()
+    {
+        SceneMgr.Instance.LoadScene(GameScenes.StarFieldLevel, GameMenus.InGameUI);
+    }
+
+    public void MainMenu()
+    {
+        SceneMgr.Instance.LoadScene(GameScenes.MainMenu, GameMenus.MainMenu);
+    }
 }
