@@ -73,7 +73,7 @@ public class Mothership : MonoBehaviour
 
     void SpawnSlices(int containerTypeCount) {
 
-
+        //Half Half
         if(containerTypeCount == 2)
         {
             for (int i = 0; i < sliceCount; i++)
@@ -89,7 +89,7 @@ public class Mothership : MonoBehaviour
 
             }
         }
-
+        //Three Even Split
         else if (containerTypeCount == 3)
         {
             for (int i = 0; i < sliceCount; i++)
@@ -108,10 +108,8 @@ public class Mothership : MonoBehaviour
 
             }
         }
-
-
-
-        if (containerTypeCount > 3)
+        //Uneven Spread
+        else if (containerTypeCount > 3)
         {
             int humanRange = Random.Range(2, 4);
             int scrapRange = Random.Range(5, 6);
