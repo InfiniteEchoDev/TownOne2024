@@ -10,14 +10,29 @@ public class AudioMgr : Singleton<AudioMgr>
     {
         Login = 0,
         MainMenu = 1,
-        RunGameplay = 2
+        RunGameplay = 2,
+        LevelVictory=3,
+        
+
     }
     
     public enum SoundTypes
     {
-        ButtonSelect = 0,
+        ButtonSelect = 0, //buttons in button prefab
         ButtonHover = 1,
-        ButtonError = 2,
+        SortingError = 2,  // on mother ship for incorect items
+        GameOver = 3,     //whwen a player runs out of lives
+        CorrectObject= 4,  // on mothership for correct items
+        SpawnPerson=5,     //on spawn script for when people spawn
+        PlayerLoseLife=6,  //in player ship after colison with astroids/obsticals
+        PersonSaved=7,     // in mothership for person
+        PersonPickedUp=8,  // in collection code 
+        ButtonExit=9,     // in settings prefab/exit game
+        PersonSortingError=10, //in mothership for wrong location
+        DropItems=11,     // in player controls
+        ItemSpawn=12,     // in spawner code 
+        ItemPickup=13,     // in collection code
+        PersonDespawn=14   // In pickup despawn code
     }
     
     [Header("Mixer")]

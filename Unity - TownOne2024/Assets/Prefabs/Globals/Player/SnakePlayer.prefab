@@ -40,12 +40,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1770940082906083978}
-  - component: {fileID: 8874453677960642354}
+  - component: {fileID: 2956854984218232204}
   - component: {fileID: 8048576444175592639}
   - component: {fileID: 5052215658566864257}
   - component: {fileID: 6091653206158767146}
   m_Layer: 0
-  m_Name: PlayerShip
+  m_Name: SnakePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ Transform:
   - {fileID: 1325546752299911014}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8874453677960642354
+--- !u!114 &2956854984218232204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,12 +77,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 996087061709907379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5450a198b9392041b68f894ff243ae8, type: 3}
+  m_Script: {fileID: 11500000, guid: 64500340f69f9443085c214a7162a601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 2
-  ShipSprite: {fileID: 535500592155640308}
-  AttachPoint: {fileID: 609115725376265835}
+  _shipSprite: {fileID: 535500592155640308}
+  _attachPoint: {fileID: 609115725376265835}
+  _cameraSize: 20
+  _deadZone: 0.125
+  _snakeGrid: {fileID: 0}
 --- !u!50 &8048576444175592639
 Rigidbody2D:
   serializedVersion: 5

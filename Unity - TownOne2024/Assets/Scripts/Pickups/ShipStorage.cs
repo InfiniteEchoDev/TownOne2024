@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 public class ShipStorage : MonoBehaviour
@@ -12,7 +13,10 @@ public class ShipStorage : MonoBehaviour
         if (other.GetComponent<Pickup>())
         {
             Debug.Log("Suffering");
-            pickups.Add(other.GetComponent<Pickup>());
+            var pickup = other.GetComponent<Pickup>();
+            
+            
+            pickups.Add(pickup);
             other.gameObject.SetActive(false);
         }
 
@@ -26,7 +30,6 @@ public class ShipStorage : MonoBehaviour
     {
         if (pickups.Count > 0)
         {
-            
             pickups[0].transform.position = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
             pickups[0].gameObject.SetActive(true);
             pickups[0].gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;

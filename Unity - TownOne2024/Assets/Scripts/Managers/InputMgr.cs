@@ -16,7 +16,6 @@ public class InputMgr : Singleton<InputMgr>
         base.Awake();
     }
 
-
     private void Start() {
         _shipMoveAction = InputSystem.actions.FindAction( "ShipMove" );
         _mothershipMoveAction = InputSystem.actions.FindAction( "MothershipMove" );
@@ -25,8 +24,7 @@ public class InputMgr : Singleton<InputMgr>
     }
 
     private void Update() {
-        PlayerMgr.Instance.ShipMove( _shipMoveAction.ReadValue<Vector2>() );
-
+        PlayerMgr.Instance.ShipMove( _shipMoveAction.ReadValue<Vector2>());
         PlayerMgr.Instance.MothershipMove( _mothershipMoveAction.ReadValue<float>() );
         PlayerMgr.Instance.Drop(_dropAction.ReadValue<float>());
         PlayerMgr.Instance.PauseInput(_pauseAction.ReadValue<float>());
