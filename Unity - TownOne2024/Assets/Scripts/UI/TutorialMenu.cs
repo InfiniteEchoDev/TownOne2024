@@ -10,7 +10,14 @@ public class TutorialMenu : MenuBase
 
     public void PlayGame()
     {
+
         SceneMgr.Instance.LoadScene(GameScenes.StarFieldLevel, GameMenus.InGameUI);
+    }
+
+    public void Back()
+    {
+        UIMgr.Instance.HideMenu(GameMenus.TutorialMenu);
+        UIMgr.Instance.ShowMenu(GameMenus.ControlMenu);
     }
 
 }

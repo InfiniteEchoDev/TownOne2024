@@ -18,7 +18,7 @@ public class MainMenu : MenuBase
     public void StartButton()
     {
         UIMgr.Instance.HideMenu(GameMenus.MainMenu);
-        UIMgr.Instance.ShowMenu(GameMenus.TutorialMenu);
+        UIMgr.Instance.ShowMenu(GameMenus.ControlMenu);
     }
 
     public void SettingsButton()

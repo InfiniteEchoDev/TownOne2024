@@ -18,6 +18,7 @@ public class UIMgr : Singleton<UIMgr> {
     [SerializeField] private MenuBase _inGameUIPrefab;
     [SerializeField] private MenuBase _gameOverMenuPrefab;
     [SerializeField] private MenuBase _pauseMenuPrefab;
+    [SerializeField] private MenuBase _controlMenuPrefab;
     [SerializeField] private MenuBase _tutorialMenuPrefab;
 
     private Dictionary<GameMenus, MenuBase> _menuInstances = new();
@@ -186,6 +187,9 @@ public class UIMgr : Singleton<UIMgr> {
                 break;
             case GameMenus.PauseMenu:
                 menu = _pauseMenuPrefab;
+                break;
+            case GameMenus.ControlMenu:
+                menu = _controlMenuPrefab;
                 break;
             case GameMenus.TutorialMenu:
                 menu = _tutorialMenuPrefab;
