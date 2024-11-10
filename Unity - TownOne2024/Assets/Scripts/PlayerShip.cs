@@ -54,7 +54,7 @@ public class PlayerShip : MonoBehaviour
         float distFromOriginInVelDir = Vector2.Dot( transform.position, _rigidbody.linearVelocity );
         float modDist = ( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) + _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) % StarFieldMgr.Instance.GridSize;
         float nextFrameDistTrav = _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime;
-        Debug.Log( $"dist: {distFromOriginInVelDir}, moddist: {modDist}, next:{nextFrameDistTrav}" );
+        ///Debug.Log( $"dist: {distFromOriginInVelDir}, moddist: {modDist}, next:{nextFrameDistTrav}" );
 
         if( ( Vector2.Dot( transform.position, _rigidbody.linearVelocity ) + _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) % StarFieldMgr.Instance.GridSize < _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime ) {
             _rigidbody.linearVelocity = transform.up / Velocity;
