@@ -17,7 +17,7 @@ public class GameOver : MenuBase
     public void Retry()
     {
         AudioMgr.Instance.PauseMusic();
-        SceneMgr.Instance.LoadScene(GameScenes.StarFieldLevel, GameMenus.InGameUI);
+        SceneMgr.Instance.LoadScene(GameScenes.SnakeLike, GameMenus.InGameUI);
     }
 
     public void MainMenu()
