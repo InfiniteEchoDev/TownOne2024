@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class SnakeGrid : MonoBehaviour
@@ -10,15 +9,20 @@ public class SnakeGrid : MonoBehaviour
     [SerializeField] private int _cellWidth = 1;
     [SerializeField] private int _cellHeight = 1;
     [SerializeField] private float _gridUpdateTime = 1f;
+    [SerializeField] private PickupSpawner _pickupSpawner;
 
     public int GridWidth => _gridWidth;
     public int GridHeight => _gridHeight;
     public int CellWidth => _cellWidth;
     public int CellHeight => _cellHeight;
+    public float GridUpdateTime => _gridUpdateTime;
     public Vector2Int GridTotal => new Vector2Int(_gridWidth,_gridHeight);
 
     private HashSet<Vector2Int> _gridPositions = new();
     public HashSet<Vector2Int> GridPositions => _gridPositions;
+    
+    private HashSet<Vector2Int> _occupiedPositions = new();
+    public HashSet<Vector2Int> OccupiedPositions => _occupiedPositions;
     
     public Action TimerReset;
 
@@ -41,8 +45,10 @@ public class SnakeGrid : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer >= _gridUpdateTime)
         {
+            _occupiedPositions.Clear();
             _timer = 0f;
             TimerReset?.Invoke();
+            _pickupSpawner.OnGridTimerReset();
         }
     }
 

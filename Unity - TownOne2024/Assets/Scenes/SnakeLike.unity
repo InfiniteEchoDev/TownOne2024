@@ -760,6 +760,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2918020858875544766, guid: 16aa3555b9ec7774598e4c16f1df8d4c, type: 3}
+      propertyPath: _grid
+      value: 
+      objectReference: {fileID: 2137746212}
     - target: {fileID: 6647314842488572465, guid: 16aa3555b9ec7774598e4c16f1df8d4c, type: 3}
       propertyPath: m_Name
       value: PickupSpawner
