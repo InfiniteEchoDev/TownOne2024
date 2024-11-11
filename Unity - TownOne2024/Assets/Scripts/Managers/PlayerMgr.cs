@@ -9,7 +9,8 @@ public class PlayerMgr : Singleton<PlayerMgr>
     [Header( "Obj Refs" )]
     public PlayerShip PlayerShip;
     public ShipStorage ShipStorage;
-    // public PlayerMothership PlayerMothership;
+    
+    [SerializeField] private PickupSpawner _pickupSpawner;
 
     bool canPause;
 
@@ -41,5 +42,11 @@ public class PlayerMgr : Singleton<PlayerMgr>
         }
 
         if (inputFloat == 0) canPause = true;
+    }
+
+    public void DestroyPickup(Pickup p)
+    {
+        _pickupSpawner.SpawnedPickedUps.Remove(p);
+        Destroy(p);
     }
 }
