@@ -15,7 +15,8 @@ public class SceneMgr : Singleton<SceneMgr>
 
         UIMgr.Instance.CloseAllMenus();
 
-        UIMgr.Instance.ShowMenu(GameMenus.Fader, () => waiting = false);
+        //UIMgr.Instance.ShowMenu(GameMenus.Fader, () => waiting = false);s
+        waiting = false;
         
         yield return new WaitWhile(() => waiting);
 
@@ -23,7 +24,7 @@ public class SceneMgr : Singleton<SceneMgr>
 
         while (asyncOperation is {isDone: false}) yield return null;
         
-        UIMgr.Instance.HideMenu(GameMenus.Fader);
+        //UIMgr.Instance.HideMenu(GameMenus.Fader);
         
         UIMgr.Instance.ShowMenu(menuToOpen);
 
