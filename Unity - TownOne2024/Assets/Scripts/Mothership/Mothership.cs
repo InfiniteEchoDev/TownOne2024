@@ -87,7 +87,7 @@ public class Mothership : MonoBehaviour
             {
                 if(i < sliceCount/2)
                 {
-                    Instantiate(scrapSlices[0], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
+                    //Instantiate(scrapSlices[0], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
                     //Instantiate(slices[0], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
                 }
                 else
