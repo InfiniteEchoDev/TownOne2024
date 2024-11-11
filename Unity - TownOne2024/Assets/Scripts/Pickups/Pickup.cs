@@ -85,6 +85,7 @@ public class Pickup : MonoBehaviour
         yield return new WaitUntil(() => GameMgr.Instance.IsGameRunning);
         for (int i = 0; i < 9; i++)
         {
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonDying);
             yield return new WaitUntil(() => GameMgr.Instance.IsGameRunning);
             spriteRenderer.DOFade(0.5f, 0.33f);
             yield return new WaitForSeconds(0.33f);
@@ -92,6 +93,7 @@ public class Pickup : MonoBehaviour
             yield return new WaitForSeconds(0.33f);
         }
         yield return new WaitUntil(() => GameMgr.Instance.IsGameRunning);
+        AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonDespawn);
         transform.DOScale(0f, 0.75f);
         spriteRenderer.DOFade(0f, 0.75f);
         yield return new WaitForSeconds(0.75f);
@@ -119,6 +121,14 @@ public class Pickup : MonoBehaviour
     {
         if (_timerRoutine != null)
             StopCoroutine(_timerRoutine);
+        if (pickupType == PickupTypes.Human)
+        {
+
+        }
+        else
+        {
+
+        }
     }
     
     public Vector2Int SetPosition(Vector2Int previousCoords, int cellX, int cellY)

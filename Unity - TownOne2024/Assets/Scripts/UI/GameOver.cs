@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GameOver : MenuBase
 {
-    [SerializeField] AudioClip audioClip;
 
     public override GameMenus MenuType()
     {
@@ -11,7 +10,7 @@ public class GameOver : MenuBase
     
     private void OnEnable()
     {
-        AudioMgr.Instance.PlayOneShotMusic(audioClip, 0.5f);
+        AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.GameOver, 0.5f);
     }
 
     public void Retry()
