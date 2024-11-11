@@ -61,7 +61,7 @@ public class GameUI : MenuBase
 
             if (previousScore != integerScore)
             {
-                OnScoreChange(integerScore, previousScore-integerScore);
+                OnScoreChange(integerScore, integerScore-previousScore);
                 previousScore = integerScore;
             }
         }
