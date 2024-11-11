@@ -66,11 +66,13 @@ public class GameOver : MenuBase
 
     public void Retry()
     {
+        gameMgr.ResetScore();
         SceneMgr.Instance.LoadScene(GameScenes.SnakeLike, GameMenus.InGameUI);
     }
 
     public void MainMenu()
     {
+        gameMgr.ResetScore();
         SceneMgr.Instance.LoadScene(GameScenes.MainMenu, GameMenus.MainMenu);
     }
 }
