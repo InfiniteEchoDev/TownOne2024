@@ -11,6 +11,7 @@ public class SnakeInput : MonoBehaviour
     private bool _canDrop = true;
     private void Update()
     {
+        if (GameMgr.Instance.IsGameRunning == false) return;
         if (!_canDrop)
         {
             _timer += Time.deltaTime;
