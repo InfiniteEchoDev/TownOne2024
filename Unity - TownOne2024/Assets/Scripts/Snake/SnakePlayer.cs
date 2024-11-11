@@ -29,10 +29,17 @@ public class SnakePlayer : MonoBehaviour
     private Rigidbody2D _rigidbody;
 
     private CardinalDirection _previousDirection;
+    private CardinalDirection _currentDirection = CardinalDirection.North;
     private CardinalDirection _lastInput;
 
     private LinkedList<Pickup> _snakeBody = new ();
     private HashSet<Vector2Int> _bodyPositions = new ();
+
+    private Animator _animator = default;
+
+    private void Awake() {
+        _animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
@@ -46,13 +53,17 @@ public class SnakePlayer : MonoBehaviour
         if (xInput > _deadZone)
         {
             // Right move
-            if( _lastInput != CardinalDirection.West )
+            if( _lastInput != CardinalDirection.West ) {
+                _currentDirection = _lastInput;
                 _lastInput = CardinalDirection.East;
+            }
         } else if (xInput < -_deadZone)
         {
             // Left Move
-            if( _lastInput != CardinalDirection.East )
+            if( _lastInput != CardinalDirection.East ) {
+                _currentDirection = _lastInput;
                 _lastInput = CardinalDirection.West;
+            }
         }
     }
 
@@ -61,13 +72,17 @@ public class SnakePlayer : MonoBehaviour
         if (yInput > _deadZone)
         {
             // Right move
-            if( _lastInput != CardinalDirection.South )
+            if( _lastInput != CardinalDirection.South ) {
+                _currentDirection = _lastInput;
                 _lastInput = CardinalDirection.North;
+            }
         } else if (yInput < -_deadZone)
         {
             // Left Move
-            if( _lastInput != CardinalDirection.North )
-            _lastInput = CardinalDirection.South;
+            if( _lastInput != CardinalDirection.North ) {
+                _currentDirection = _lastInput;
+                _lastInput = CardinalDirection.South;
+            }
         }
     }
     
@@ -89,6 +104,30 @@ public class SnakePlayer : MonoBehaviour
         transform.position = new Vector3(nextPos.Value.x * _snakeGrid.CellWidth, nextPos.Value.y * _snakeGrid.CellHeight, 0);
         _previousCoordinates = _coordinates;
         _coordinates = nextPos.Value;
+
+
+        // Animate turn
+        if( _currentDirection != _lastInput ) {
+            switch( _lastInput ) {
+                case CardinalDirection.North:
+                    _animator.SetTrigger( "TurnToNorth" );
+                    CoroutineUtilities.WaitAFrameAndExecute( () => _animator.ResetTrigger( "TurnToNorth" ) );
+                    break;
+                case CardinalDirection.East:
+                    _animator.SetTrigger( "TurnToEast" );
+                    CoroutineUtilities.WaitAFrameAndExecute( () => _animator.ResetTrigger( "TurnToEast" ) );
+                    break;
+                case CardinalDirection.South:
+                    _animator.SetTrigger( "TurnToSouth" );
+                    CoroutineUtilities.WaitAFrameAndExecute( () => _animator.ResetTrigger( "TurnToSouth" ) );
+                    break;
+                case CardinalDirection.West:
+                    _animator.SetTrigger( "TurnToWest" );
+                    CoroutineUtilities.WaitAFrameAndExecute( () => _animator.ResetTrigger( "TurnToWest" ) );
+                    break;
+            }
+        }
+
 
         if (_bodyPositions.Contains(_coordinates))
         {
@@ -140,5 +179,5 @@ public class SnakePlayer : MonoBehaviour
             first.Drop();
         }
     }
-    
+
 }
