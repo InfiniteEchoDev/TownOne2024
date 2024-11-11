@@ -13,7 +13,10 @@ public class CollectionBin : MonoBehaviour
     GameMgr gameMgr;
 
     float scoreMultiplier = 1f;
-    
+
+    [SerializeField]
+    GameObject confirmationParticles;
+
     void Start()
     {
         if (GameMgr.Instance == null)
@@ -41,6 +44,18 @@ public class CollectionBin : MonoBehaviour
             Debug.Log("GOOD HAPPEN");
             //TODO: Gain Score
 
+            GameObject confirmation = Instantiate(confirmationParticles, transform.position, Quaternion.identity);
+            Destroy(confirmation, 3f);
+
+            if (collectType == PickupTypes.Human)
+            {
+                AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonSaved,0.5f);
+            }
+            else
+            {
+                AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.CorrectObject,0.5f);
+            }
+
             gameMgr.AddScore(p.PointValue);
             DestroyPickup(p);
         }
@@ -50,11 +65,16 @@ public class CollectionBin : MonoBehaviour
             
             if (p != null)
             {
+                CameraShake.Shake(0.25f, 0.5f);
                 if (p.GetPickupType == PickupTypes.Human)
                 {
                     gameMgr.SubtractScore(p.BasePointValue);
+                    AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonSortingError,0.5f);
                 }
-
+                else
+                {
+                    AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.SortingError,0.5f);
+                }
                 DestroyPickup(p);
             }
         }

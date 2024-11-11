@@ -42,13 +42,16 @@ public class SnakeGrid : MonoBehaviour
 
     private void Update()
     {
-        _timer += Time.deltaTime;
-        if (_timer >= _gridUpdateTime)
+        if (GameMgr.Instance.IsGameRunning)
         {
-            _occupiedPositions.Clear();
-            _timer = 0f;
-            TimerReset?.Invoke();
-            _pickupSpawner.OnGridTimerReset();
+            _timer += Time.deltaTime;
+            if (_timer >= _gridUpdateTime)
+            {
+                _occupiedPositions.Clear();
+                _timer = 0f;
+                TimerReset?.Invoke();
+                _pickupSpawner.OnGridTimerReset();
+            }
         }
     }
 

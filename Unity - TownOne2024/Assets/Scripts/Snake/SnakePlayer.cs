@@ -16,7 +16,9 @@ public class SnakePlayer : MonoBehaviour
     [SerializeField] private float _deadZone = 0.125f;
     [SerializeField] private SnakeGrid _snakeGrid;
     [SerializeField] private PickupSpawner _pickupSpawner;
-    
+
+    [SerializeField] GameObject explosionParticles;
+
     private Vector2 _playerPosition = Vector2.zero;
     private Vector2 _previousPosition = Vector2.zero;
 
@@ -136,6 +138,10 @@ public class SnakePlayer : MonoBehaviour
             }
             GameLoopManager.Instance.RemoveLives();
             // todo play explosion!
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PlayerLoseLife);
+            CameraShake.Shake(0.25f,1f);
+            GameObject explosion = Instantiate(explosionParticles, transform.position, Quaternion.identity);
+            Destroy(explosion, 3f);
         }
         
         // check if object in coord
