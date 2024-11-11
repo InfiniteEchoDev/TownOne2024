@@ -24,6 +24,7 @@ public class PickupSpawner : MonoBehaviour
     private int NextSpawn => Random.Range(_spawnTimeMin, _spawnTimeMax);
     
     private List<Pickup> _spawnedPickedUps = new ();
+    public List<Pickup> SpawnedPickedUps => _spawnedPickedUps;
     
     private Dictionary<Vector2Int, Pickup> _spawnedPickedUpsDict = new();
     public Dictionary<Vector2Int, Pickup> SpawnedPickedUpsDict => _spawnedPickedUpsDict;
@@ -148,4 +149,8 @@ public class PickupSpawner : MonoBehaviour
 
     }
 
+    public void OnPickupGrabbed(Vector2Int coords, Pickup grabbedPickup)
+    {
+        _spawnedPickedUpsDict.Remove(coords);
+    }
 }

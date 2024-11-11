@@ -1,18 +1,20 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class GameUI : MenuBase
 {
-
     [SerializeField]
     TMP_Text displayLives;
     [SerializeField]
     TMP_Text displayScore;
 
+    [SerializeField] private Transform _addedScoreParent;
+    [SerializeField] private TMP_Text _addedScoreMsg;
+
     GameLoopManager gameLoopManager;
     GameMgr gameMgr;
+
+    private int previousScore = 0;
     public override GameMenus MenuType()
     {
         return GameMenus.InGameUI;
@@ -55,13 +57,26 @@ public class GameUI : MenuBase
         if (gameMgr != null)
         {
             string score;
-            int integerScore = Mathf.FloorToInt(gameMgr.Score); 
-            score = integerScore.ToString();
+            int integerScore = Mathf.FloorToInt(gameMgr.Score);
 
-            displayScore.text = score;
+            if (previousScore != integerScore)
+            {
+                OnScoreChange(integerScore, integerScore-previousScore);
+                previousScore = integerScore;
+            }
         }
-
     }
 
-
+    private void OnScoreChange(int score, int diff)
+    {
+        var msg = Instantiate(_addedScoreMsg, _addedScoreParent, false);
+        if (diff < 0)
+        {
+            msg.color = Color.red;
+        }
+        msg.text = diff > 0 ? $"+{diff}" : $"{diff}";
+        msg.gameObject.SetActive(true);
+        
+        displayScore.text = score.ToString();
+    }
 }
