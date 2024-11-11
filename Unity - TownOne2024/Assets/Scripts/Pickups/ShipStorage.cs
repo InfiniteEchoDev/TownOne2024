@@ -3,28 +3,20 @@ using UnityEngine;
 using System.Collections.Generic;
 public class ShipStorage : MonoBehaviour
 {
-
     [SerializeField]
     List<Pickup> pickups = new List<Pickup>();
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (other.GetComponent<Pickup>())
         {
             Debug.Log("Suffering");
             var pickup = other.GetComponent<Pickup>();
             
-            
             pickups.Add(pickup);
-            other.gameObject.SetActive(false);
+            
         }
-
-        
-
-
     }
-
 
     public void DropPickUp()
     {
