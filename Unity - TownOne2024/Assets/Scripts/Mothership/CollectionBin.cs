@@ -37,6 +37,15 @@ public class CollectionBin : MonoBehaviour
             Debug.Log("GOOD HAPPEN");
             //TODO: Gain Score
 
+            if (collectType == PickupTypes.Human)
+            {
+                AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonSaved,0.5f);
+            }
+            else
+            {
+                AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.CorrectObject,0.5f);
+            }
+
             gameMgr.AddScore(other.GetComponent<Pickup>().PointValue);
             Destroy(other.gameObject);
         }
@@ -49,13 +58,15 @@ public class CollectionBin : MonoBehaviour
                 if (other.GetComponent<Pickup>().GetPickupType == PickupTypes.Human)
                 {
                     gameMgr.SubtractScore(other.GetComponent<Pickup>().BasePointValue);
+                    AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonSortingError,0.5f);
+                }
+                else
+                {
+                    AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.SortingError,0.5f);
                 }
                 Destroy(other.gameObject);
             }
-            else
-            {
-                //TODO:Ship resets position somehow
-            }
+
         }
 
     }
