@@ -59,6 +59,7 @@ public class CollectionBin : MonoBehaviour
             
             if (p != null)
             {
+                CameraShake.Shake(0.25f, 0.5f);
                 if (p.GetPickupType == PickupTypes.Human)
                 {
                     gameMgr.SubtractScore(p.BasePointValue);
