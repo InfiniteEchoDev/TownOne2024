@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameLoopManager : Singleton<GameLoopManager>
 {
@@ -61,6 +62,11 @@ public class GameLoopManager : Singleton<GameLoopManager>
     public void RemoveLives()
     {
         lives -= 1;
+    }
+
+    public void ResetLives()
+    {
+        lives = 5;
     }
 
 }

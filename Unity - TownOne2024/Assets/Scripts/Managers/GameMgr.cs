@@ -33,6 +33,7 @@ public class GameMgr : Singleton<GameMgr>
         score = 0;
     }
 
+
     public void SubtractScore(float value)
     {
         score -= value;
