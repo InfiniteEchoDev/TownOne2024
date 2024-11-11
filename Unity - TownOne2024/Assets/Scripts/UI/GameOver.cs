@@ -10,6 +10,7 @@ public class GameOver : MenuBase
     [SerializeField]
     TMP_Text highScore;
     GameMgr gameMgr;
+    GameLoopManager gameLoopManager;
 
     [SerializeField]
     Button retry;
@@ -66,11 +67,16 @@ public class GameOver : MenuBase
 
     public void Retry()
     {
+        gameMgr.ResetScore();
+        gameLoopManager.ResetLives();
+
         SceneMgr.Instance.LoadScene(GameScenes.SnakeLike, GameMenus.InGameUI);
     }
 
     public void MainMenu()
     {
+        gameMgr.ResetScore();
+        gameLoopManager.ResetLives();
         SceneMgr.Instance.LoadScene(GameScenes.MainMenu, GameMenus.MainMenu);
     }
 }

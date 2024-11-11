@@ -1,10 +1,17 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ControlMenu : MenuBase
 {
+    [SerializeField]
+    Button nextButton;
     public override GameMenus MenuType()
     {
         return GameMenus.ControlMenu;
+    }
+
+    private void Start()
+    {
+        nextButton.Select();
     }
 
     public void NextMenu()
