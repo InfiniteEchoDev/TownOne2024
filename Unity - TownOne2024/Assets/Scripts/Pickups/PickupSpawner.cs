@@ -24,6 +24,7 @@ public class PickupSpawner : MonoBehaviour
     private int NextSpawn => Random.Range(_spawnTimeMin, _spawnTimeMax);
     
     private List<Pickup> _spawnedPickedUps = new ();
+    public List<Pickup> SpawnedPickedUps => _spawnedPickedUps;
     
     private Dictionary<Vector2Int, Pickup> _spawnedPickedUpsDict = new();
     public Dictionary<Vector2Int, Pickup> SpawnedPickedUpsDict => _spawnedPickedUpsDict;
@@ -39,6 +40,7 @@ public class PickupSpawner : MonoBehaviour
     /// </summary>
     public void OnGridTimerReset()
     {
+
         _spawnTimer++;
         foreach (var pickup in _spawnedPickedUps)
         {
@@ -59,6 +61,14 @@ public class PickupSpawner : MonoBehaviour
         newPickup.Setup(spawnCoords, Random.Range(10, 30));
         _grid.OccupiedPositions.Add(spawnCoords);
         _spawnedPickedUpsDict.Add(spawnCoords, newPickup);
+        if(newPickup.GetPickupType == PickupTypes.Human)
+        {
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.SpawnPerson);
+        }
+        else
+        {
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.ItemSpawn);
+        }
     }
 
     // // Spawning routine
@@ -139,4 +149,8 @@ public class PickupSpawner : MonoBehaviour
 
     }
 
+    public void OnPickupGrabbed(Vector2Int coords, Pickup grabbedPickup)
+    {
+        _spawnedPickedUpsDict.Remove(coords);
+    }
 }

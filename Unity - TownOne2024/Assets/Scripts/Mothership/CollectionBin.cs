@@ -7,10 +7,13 @@ public class CollectionBin : MonoBehaviour
 
     [SerializeField]
     PickupTypes collectType;
+    
+    private PickupSpawner _collectSpawner;
 
     GameMgr gameMgr;
 
     float scoreMultiplier = 1f;
+    
     void Start()
     {
         if (GameMgr.Instance == null)
@@ -25,38 +28,53 @@ public class CollectionBin : MonoBehaviour
 
     }
 
-    public void SetPickUpType(PickupTypes pickup)
+    private void SetManager(PickupSpawner collectSpawner)
     {
-        collectType = pickup;
+        _collectSpawner = collectSpawner;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Pickup>().GetPickupType == collectType)
+        Pickup p = other.GetComponent<Pickup>();
+        if (p != null && p.GetPickupType == collectType)
         {
             Debug.Log("GOOD HAPPEN");
             //TODO: Gain Score
 
-            gameMgr.AddScore(other.GetComponent<Pickup>().PointValue);
-            Destroy(other.gameObject);
+            if (collectType == PickupTypes.Human)
+            {
+                AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonSaved,0.5f);
+            }
+            else
+            {
+                AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.CorrectObject,0.5f);
+            }
+
+            gameMgr.AddScore(p.PointValue);
+            DestroyPickup(p);
         }
         else
         {
             Debug.Log("BAD HAPPEN");
-            if (other.GetComponent<Pickup>() != null)
+            
+            if (p != null)
             {
-
-                if (other.GetComponent<Pickup>().GetPickupType == PickupTypes.Human)
+                if (p.GetPickupType == PickupTypes.Human)
                 {
-                    gameMgr.SubtractScore(other.GetComponent<Pickup>().BasePointValue);
+                    gameMgr.SubtractScore(p.BasePointValue);
+                    AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonSortingError,0.5f);
                 }
-                Destroy(other.gameObject);
-            }
-            else
-            {
-                //TODO:Ship resets position somehow
+                else
+                {
+                    AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.SortingError,0.5f);
+                }
+                DestroyPickup(p);
             }
         }
-
+    }
+    
+    private void DestroyPickup(Pickup p)
+    {
+        PlayerMgr.Instance.DestroyPickup(p);
     }
 }

@@ -1,9 +1,27 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SnakeInput : MonoBehaviour
 {
     [SerializeField] private SnakePlayer _snakePlayer;
+    [SerializeField] private float _dropCooldown = 0.2f;
+
+    private float _timer = 0f;
+    private bool _canDrop = true;
+    private void Update()
+    {
+        if (GameMgr.Instance.IsGameRunning == false) return;
+        if (!_canDrop)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= _dropCooldown)
+            {
+                _canDrop = true;
+                _timer = 0f;
+            }
+        }
+    }
 
     private void OnControlsChanged()
     {
@@ -32,9 +50,21 @@ public class SnakeInput : MonoBehaviour
 
     public void OnDrop(InputAction.CallbackContext context)
     {
+        if (_canDrop)
+        {
+            if (context.performed)
+            {
+                _canDrop = false;
+                _snakePlayer.Drop();
+            }
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
         if (context.performed)
         {
-            _snakePlayer.Drop();
+            GameMgr.Instance.PauseGame();
         }
     }
 }

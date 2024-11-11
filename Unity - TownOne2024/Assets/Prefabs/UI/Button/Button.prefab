@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e1567a4eae84b6f8e5778da2a40d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clickSound: {fileID: 0}
-  _hoverSound: {fileID: 0}
+  _clickSound: {fileID: 8300000, guid: 49d9c1a4829be0a47bd93573bc6dcc35, type: 3}
+  _hoverSound: {fileID: 8300000, guid: 80996f7f5dfcf964b90d9e75606593c0, type: 3}
 --- !u!114 &6047323679014493904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
+  m_fontSize: 18
   m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 1
