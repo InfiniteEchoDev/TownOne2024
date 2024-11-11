@@ -39,6 +39,7 @@ public class PickupSpawner : MonoBehaviour
     /// </summary>
     public void OnGridTimerReset()
     {
+
         _spawnTimer++;
         foreach (var pickup in _spawnedPickedUps)
         {
@@ -59,6 +60,14 @@ public class PickupSpawner : MonoBehaviour
         newPickup.Setup(spawnCoords, Random.Range(10, 30));
         _grid.OccupiedPositions.Add(spawnCoords);
         _spawnedPickedUpsDict.Add(spawnCoords, newPickup);
+        if(newPickup.GetPickupType == PickupTypes.Human)
+        {
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.SpawnPerson);
+        }
+        else
+        {
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.ItemSpawn);
+        }
     }
 
     // // Spawning routine
