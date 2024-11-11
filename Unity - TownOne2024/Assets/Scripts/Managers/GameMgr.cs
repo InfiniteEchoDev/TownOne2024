@@ -80,4 +80,6 @@ public class GameMgr : Singleton<GameMgr>
         UIMgr.Instance.HideMenu(GameMenus.PauseMenu);
     }
 
+
+
 }
