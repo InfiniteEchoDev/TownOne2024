@@ -492,18 +492,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 370628761666503611, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 9.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 370628761666503611, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6142475734817205069, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7204295713968070279, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -544,17 +532,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7672137846295740515, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7684042194873378036, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
       propertyPath: m_Name
       value: GameGlobals
       objectReference: {fileID: 0}
-    - target: {fileID: 8830634453829603153, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
+    - target: {fileID: 7684042194873378036, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
