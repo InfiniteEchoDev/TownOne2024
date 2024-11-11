@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Human
   m_EditorClassIdentifier: 
   pickupType: 2
-  sprite: {fileID: 21300000, guid: 6afa9a8c85b284f43a6ce8b0a715ba20, type: 3}
+  sprite: {fileID: 6362290972351372809, guid: f0e60b8d02dd20048a00a8a9a43e9f37, type: 3}
   hasTimer: 1
   timer: 10
   pointValue: 500
