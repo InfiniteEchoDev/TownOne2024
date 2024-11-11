@@ -806,6 +806,10 @@ PrefabInstance:
       propertyPath: ShipStorage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7750405844785495712, guid: 5b216627e9f0e6d4fad2648333d8f455, type: 3}
+      propertyPath: _pickupSpawner
+      value: 
+      objectReference: {fileID: 1713698349}
     - target: {fileID: 7900361673651315822, guid: 5b216627e9f0e6d4fad2648333d8f455, type: 3}
       propertyPath: m_UIInputModule
       value: 

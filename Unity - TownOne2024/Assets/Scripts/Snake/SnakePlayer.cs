@@ -1,8 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
+
 
 public class SnakePlayer : MonoBehaviour
 {
+
     [Header( "Obj Refs" )]
     public SpriteRenderer _shipSprite;
     public GameObject _attachPoint;
@@ -15,6 +20,7 @@ public class SnakePlayer : MonoBehaviour
     private Vector2 _playerPosition = Vector2.zero;
     private Vector2 _previousPosition = Vector2.zero;
 
+    private Vector2Int _previousCoordinates;
     private Vector2Int _coordinates;
     
     // Private Components
@@ -38,12 +44,13 @@ public class SnakePlayer : MonoBehaviour
         if (xInput > _deadZone)
         {
             // Right move
-            _lastInput = CardinalDirection.East;
-        }
-        else if (xInput < -_deadZone)
+            if( _lastInput != CardinalDirection.West )
+                _lastInput = CardinalDirection.East;
+        } else if (xInput < -_deadZone)
         {
             // Left Move
-            _lastInput = CardinalDirection.West;
+            if( _lastInput != CardinalDirection.East )
+                _lastInput = CardinalDirection.West;
         }
     }
 
@@ -52,11 +59,12 @@ public class SnakePlayer : MonoBehaviour
         if (yInput > _deadZone)
         {
             // Right move
-            _lastInput = CardinalDirection.North;
-        }
-        else if (yInput < -_deadZone)
+            if( _lastInput != CardinalDirection.South )
+                _lastInput = CardinalDirection.North;
+        } else if (yInput < -_deadZone)
         {
             // Left Move
+            if( _lastInput != CardinalDirection.North )
             _lastInput = CardinalDirection.South;
         }
     }
@@ -64,16 +72,30 @@ public class SnakePlayer : MonoBehaviour
     private void MovePlayerWithTimer()
     {
         _previousDirection = _lastInput;
-        var previousCoords = _coordinates;
+        var currentCoords = _coordinates;
         
-        var nextPos = _snakeGrid.NextPositionInDirection(_lastInput, _coordinates);
-        transform.position = new Vector3(nextPos.x * _snakeGrid.CellWidth, nextPos.y * _snakeGrid.CellHeight, 0);
-        _coordinates = nextPos;
+        var nextPos = _snakeGrid.NextValidPositionInDirection(_lastInput, _coordinates);
+        if( nextPos == null ) {
+            var validPosList = _snakeGrid.GetAllValidMovementPosFromPos( _coordinates );
+            validPosList.Remove( validPosList.First( validPos => validPos.pos == _previousCoordinates ) );
+
+            int randIdx = Random.Range( 0, validPosList.Count );
+            _lastInput = validPosList[randIdx].dir;
+            nextPos = validPosList[randIdx].pos;
+        }
+
+        transform.position = new Vector3(nextPos.Value.x * _snakeGrid.CellWidth, nextPos.Value.y * _snakeGrid.CellHeight, 0);
+        _previousCoordinates = _coordinates;
+        _coordinates = nextPos.Value;
 
         if (_bodyPositions.Contains(_coordinates))
         {
             // Crashed into our own tail!
-            GameMgr.Instance.GameOver();
+            while (_snakeBody.Count > 0)
+            {
+                Drop();
+            }
+            GameLoopManager.Instance.RemoveLives();
             // todo play explosion!
         }
         
@@ -83,10 +105,9 @@ public class SnakePlayer : MonoBehaviour
             // pickup!
             _snakeGrid.OccupiedPositions.Remove(_coordinates);
             
-            pickup.transform.position = new Vector3 (previousCoords.x * _snakeGrid.CellWidth, previousCoords.y * _snakeGrid.CellHeight, 0);
+            pickup.transform.position = new Vector3 (currentCoords.x * _snakeGrid.CellWidth, currentCoords.y * _snakeGrid.CellHeight, 0);
             pickup.OnPickup();
             _snakeBody.AddLast(pickup);
-            
         }
         
         // player occupies it
@@ -96,7 +117,7 @@ public class SnakePlayer : MonoBehaviour
 
         // body position updates
         _bodyPositions.Clear();
-        Vector2Int partCoords = previousCoords;
+        Vector2Int partCoords = currentCoords;
         foreach (var body in _snakeBody)
         {
             _bodyPositions.Add(partCoords);
@@ -113,4 +134,5 @@ public class SnakePlayer : MonoBehaviour
             first.Drop();
         }
     }
+    
 }

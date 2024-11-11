@@ -67,7 +67,7 @@ public class SnakeGrid : MonoBehaviour
         }
     }
 
-    public Vector2Int NextPositionInDirection(CardinalDirection direction, Vector2Int originalPos)
+    public Vector2Int? NextValidPositionInDirection(CardinalDirection direction, Vector2Int originalPos)
     {
         Vector2Int position;
         switch (direction)
@@ -92,9 +92,31 @@ public class SnakeGrid : MonoBehaviour
         {
             return position;
         }
-        else
-        {
-            return originalPos;
-        }
+
+        return null;
     }
+
+    public List<(Vector2Int pos, CardinalDirection dir)> GetAllValidMovementPosFromPos( Vector2Int fromPos ) {
+        List<(Vector2Int pos, CardinalDirection dir)> validPositions = new();
+
+        Vector2Int checkPos = new Vector2Int( fromPos.x + 1, fromPos.y );
+        if( _gridPositions.Contains( checkPos ) )
+            validPositions.Add( (checkPos, CardinalDirection.East) );
+
+        checkPos = new Vector2Int( fromPos.x - 1, fromPos.y );
+        if( _gridPositions.Contains( checkPos ) )
+            validPositions.Add( (checkPos, CardinalDirection.West) );
+
+        checkPos = new Vector2Int( fromPos.x, fromPos.y + 1 );
+        if( _gridPositions.Contains( checkPos ) )
+            validPositions.Add( (checkPos, CardinalDirection.North) );
+
+        checkPos = new Vector2Int( fromPos.x, fromPos.y - 1 );
+        if( _gridPositions.Contains( checkPos ) )
+            validPositions.Add( (checkPos, CardinalDirection.South) );
+
+        return validPositions;
+    }
+
+
 }
