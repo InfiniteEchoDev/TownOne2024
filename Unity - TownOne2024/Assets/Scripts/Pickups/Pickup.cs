@@ -87,7 +87,7 @@ public class Pickup : MonoBehaviour
         {
             AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonDying);
             yield return new WaitUntil(() => GameMgr.Instance.IsGameRunning);
-            spriteRenderer.DOFade(0.5f, 0.33f);
+            spriteRenderer.DOFade(0.25f, 0.33f);
             yield return new WaitForSeconds(0.33f);
             spriteRenderer.DOFade(1f, 0.33f);
             yield return new WaitForSeconds(0.33f);
@@ -121,13 +121,13 @@ public class Pickup : MonoBehaviour
     {
         if (_timerRoutine != null)
             StopCoroutine(_timerRoutine);
-        if (pickupType == PickupTypes.Human)
+        if (hasTimer)
         {
-
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonPickedUp);
         }
         else
         {
-
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.ItemPickup);
         }
     }
     
@@ -142,6 +142,7 @@ public class Pickup : MonoBehaviour
 
     public void Drop()
     {
+        AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.DropItems,0.5f);
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 5f;
     }
