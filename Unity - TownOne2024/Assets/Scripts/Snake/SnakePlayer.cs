@@ -128,6 +128,8 @@ public class SnakePlayer : MonoBehaviour
             }
         }
 
+        _currentDirection = _lastInput;
+
 
         if (_bodyPositions.Contains(_coordinates))
         {
