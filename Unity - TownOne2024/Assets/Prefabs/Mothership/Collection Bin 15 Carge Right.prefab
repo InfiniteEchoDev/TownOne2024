@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2889498909017539077}
   - component: {fileID: 8374350269778056158}
   m_Layer: 6
-  m_Name: Collection Bin 15 People
+  m_Name: Collection Bin 15 Carge Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,8 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 909256554150622350, guid: 96a4b8ba42f41244988ac2453bbe0fd2, type: 3}
-  m_Color: {r: 0.18823527, g: 0.81960785, b: 0.21955037, a: 1}
+  m_Sprite: {fileID: 6014270674809183632, guid: 28f4c3463371cdc4fa485d688d3a6106, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -128,7 +128,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 6.5625, y: 25.6}
+    oldSize: {x: 2.54, y: 9.49}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -136,11 +136,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.0067293644, y: 0.018107414}
-      - {x: 0.18447316, y: 1.3475859}
-      - {x: 0.4315008, y: 2.6057675}
-      - {x: 3.2925875, y: 25.378506}
-      - {x: -3.2646513, y: 25.384033}
+    - - {x: 1.305682, y: 9.540707}
+      - {x: 0.00812304, y: 0.007525444}
+      - {x: -1.1066576, y: 8.447977}
+      - {x: -1.3411862, y: 9.413397}
   m_UseDelaunayMesh: 0
 --- !u!50 &2889498909017539077
 Rigidbody2D:
@@ -182,4 +181,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 6480666746796610161}
-  collectType: 2
+  collectType: 1
