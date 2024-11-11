@@ -38,8 +38,11 @@ public class GameOver : MenuBase
         catch (Exception ex)
         {
             highScore.text = intScore.ToString();
-            SaveUtil.SavedValues.Score = intScore;
-            SaveUtil.Save();
+            if (SaveUtil.SavedValues != null)
+            {
+                SaveUtil.SavedValues.Score = intScore;
+                SaveUtil.Save();
+            }
         }
         /*
         if (SaveUtil.SavedValues.Score != null && intScore < SaveUtil.SavedValues.Score)

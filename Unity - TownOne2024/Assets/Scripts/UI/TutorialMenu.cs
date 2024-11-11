@@ -1,8 +1,16 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialMenu : MenuBase
 {
-    
+    [SerializeField] private Button _nextButton;
+
+    private void OnEnable()
+    {
+        _nextButton.Select();
+    }
+
     public override GameMenus MenuType()
     {
         return GameMenus.TutorialMenu;
@@ -11,7 +19,7 @@ public class TutorialMenu : MenuBase
     public void PlayGame()
     {
         AudioMgr.Instance.PauseMusic();
-        SceneMgr.Instance.LoadScene(GameScenes.SnakeLike, GameMenus.InGameUI);
+        SceneMgr.Instance.LoadScene(GameScenes.SnakeLike, GameMenus.None);
     }
 
     public void Back()
