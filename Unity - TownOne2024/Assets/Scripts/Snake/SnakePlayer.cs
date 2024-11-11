@@ -97,6 +97,7 @@ public class SnakePlayer : MonoBehaviour
             }
             GameLoopManager.Instance.RemoveLives();
             // todo play explosion!
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PlayerLoseLife);
         }
         
         // check if object in coord
