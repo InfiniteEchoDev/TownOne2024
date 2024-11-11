@@ -469,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8605411073358276642, guid: 991d607c0ea65004da996cd1944a7601, type: 3}
       propertyPath: lives
-      value: 400
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8605411073358276642, guid: 991d607c0ea65004da996cd1944a7601, type: 3}
       propertyPath: isCountdownTimer

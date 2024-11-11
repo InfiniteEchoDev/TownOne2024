@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using System.Collections;
 public class GameOver : MenuBase
 {
     [SerializeField]
@@ -19,17 +21,39 @@ public class GameOver : MenuBase
         int intScore = (int)Mathf.Round(GameMgr.Instance.Score); 
         SaveUtil.Load();
         playerScore.text = intScore.ToString();
+        try
+        {
+            if (SaveUtil.SavedValues.Score != null && intScore < SaveUtil.SavedValues.Score)
+            {
+                highScore.text = SaveUtil.SavedValues.Score.ToString();
 
-        if (intScore > SaveUtil.SavedValues.Score)
+            }
+            else
+            {
+                highScore.text = intScore.ToString();
+                SaveUtil.SavedValues.Score = intScore;
+                SaveUtil.Save();
+            }
+        }
+        catch (Exception ex)
         {
             highScore.text = intScore.ToString();
             SaveUtil.SavedValues.Score = intScore;
             SaveUtil.Save();
         }
-        else
+        /*
+        if (SaveUtil.SavedValues.Score != null && intScore < SaveUtil.SavedValues.Score)
         {
             highScore.text = SaveUtil.SavedValues.Score.ToString();
+
         }
+        else
+        {
+            highScore.text = intScore.ToString();
+            SaveUtil.SavedValues.Score = intScore;
+            SaveUtil.Save();
+        }
+        */
         retry.Select();
     }
     public override GameMenus MenuType()
