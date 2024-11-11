@@ -74,7 +74,7 @@ public class GameUI : MenuBase
         {
             msg.color = Color.red;
         }
-        msg.text = diff > 0 ? $"+{diff}" : $"-{diff}";
+        msg.text = diff > 0 ? $"+{diff}" : $"{diff}";
         msg.gameObject.SetActive(true);
         
         displayScore.text = score.ToString();
