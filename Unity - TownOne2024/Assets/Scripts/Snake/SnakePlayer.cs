@@ -15,6 +15,7 @@ public class SnakePlayer : MonoBehaviour
     [SerializeField] private int _cameraSize = 20;
     [SerializeField] private float _deadZone = 0.125f;
     [SerializeField] private SnakeGrid _snakeGrid;
+    [SerializeField] private PickupSpawner _pickupSpawner;
     
     private Vector2 _playerPosition = Vector2.zero;
     private Vector2 _previousPosition = Vector2.zero;
@@ -27,6 +28,9 @@ public class SnakePlayer : MonoBehaviour
 
     private CardinalDirection _previousDirection;
     private CardinalDirection _lastInput;
+
+    private LinkedList<Pickup> _snakeBody = new ();
+    private HashSet<Vector2Int> _bodyPositions = new ();
 
     private void Start()
     {
@@ -83,6 +87,49 @@ public class SnakePlayer : MonoBehaviour
         transform.position = new Vector3(nextPos.Value.x * _snakeGrid.CellWidth, nextPos.Value.y * _snakeGrid.CellHeight, 0);
         _previousCoordinates = _coordinates;
         _coordinates = nextPos.Value;
+
+        if (_bodyPositions.Contains(_coordinates))
+        {
+            // Crashed into our own tail!
+            GameMgr.Instance.GameOver();
+            // todo play explosion!
+        }
+        
+        // check if object in coord
+        if (_pickupSpawner.SpawnedPickedUpsDict.Remove(_coordinates, out var pickup))
+        {
+            // pickup!
+            _snakeGrid.OccupiedPositions.Remove(_coordinates);
+            
+            pickup.transform.position = new Vector3 (currentCoords.x * _snakeGrid.CellWidth, currentCoords.y * _snakeGrid.CellHeight, 0);
+            pickup.OnPickup();
+            _snakeBody.AddLast(pickup);
+            
+        }
+        
+        // player occupies it
+        _snakeGrid.OccupiedPositions.Add(_coordinates);
+        
+        // todo, asteroids?
+
+        // body position updates
+        _bodyPositions.Clear();
+        Vector2Int partCoords = currentCoords;
+        foreach (var body in _snakeBody)
+        {
+            _bodyPositions.Add(partCoords);
+            partCoords = body.SetPosition(partCoords, _snakeGrid.CellWidth, _snakeGrid.CellWidth);
+        }
+    }
+
+    public void Drop()
+    {
+        if (_snakeBody.Count > 0)
+        {
+            var first = _snakeBody.First.Value;
+            _snakeBody.Remove(first);
+            first.Drop();
+        }
     }
     
 }
