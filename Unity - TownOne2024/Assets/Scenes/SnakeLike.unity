@@ -552,6 +552,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameGlobals
       objectReference: {fileID: 0}
+    - target: {fileID: 8830634453829603153, guid: 931c026d2c7d4406f9ea4ce1972673d4, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

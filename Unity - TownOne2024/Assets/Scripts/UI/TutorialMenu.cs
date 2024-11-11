@@ -19,7 +19,7 @@ public class TutorialMenu : MenuBase
     public void PlayGame()
     {
         AudioMgr.Instance.PauseMusic();
-        SceneMgr.Instance.LoadScene(GameScenes.SnakeLike, GameMenus.InGameUI);
+        SceneMgr.Instance.LoadScene(GameScenes.SnakeLike, GameMenus.None);
     }
 
     public void Back()
