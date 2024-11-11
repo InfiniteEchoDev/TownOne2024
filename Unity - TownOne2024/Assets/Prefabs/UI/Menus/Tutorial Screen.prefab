@@ -642,7 +642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7151d6391c4f630488be854cc450eb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextButton: {fileID: 5516972067055774043}
 --- !u!1 &3964841871847230655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,11 +1158,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 891463982941930220, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
       propertyPath: m_Name
-      value: ButtonPlay
-      objectReference: {fileID: 0}
-    - target: {fileID: 4888258718171414455, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 1
+      value: ButtonResume (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4888258718171414455, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1295,17 +1290,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4958056609607339308, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
   m_PrefabInstance: {fileID: 1100758176909530860}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5516972067055774043 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4888258718171414455, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
-  m_PrefabInstance: {fileID: 1100758176909530860}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 266537010df2f7d42a0c51583f328c0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2131251180808471581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1316,11 +1300,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 891463982941930220, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
       propertyPath: m_Name
-      value: ButtonBack
-      objectReference: {fileID: 0}
-    - target: {fileID: 4888258718171414455, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 1
+      value: ButtonResume
       objectReference: {fileID: 0}
     - target: {fileID: 4888258718171414455, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
