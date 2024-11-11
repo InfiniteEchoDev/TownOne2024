@@ -41,6 +41,7 @@ public class GameMgr : Singleton<GameMgr>
     public void GameOver()
     {
         isGameRunning = false;
+        AudioMgr.Instance.PauseMusic();
         SceneMgr.Instance.LoadScene(GameScenes.GameOver, GameMenus.GameOverMenu);
     }
 
@@ -59,6 +60,8 @@ public class GameMgr : Singleton<GameMgr>
     {
         if (isGameRunning)
         {
+
+            AudioMgr.Instance.PauseMusic();
             isGameRunning = false;
             // Open pause menu here
             UIMgr.Instance.ShowMenu(GameMenus.PauseMenu);
@@ -72,6 +75,7 @@ public class GameMgr : Singleton<GameMgr>
 
     public void UnpauseGame()
     {
+        AudioMgr.Instance.ResumeMusic();
         isGameRunning = true;
         UIMgr.Instance.HideMenu(GameMenus.PauseMenu);
     }

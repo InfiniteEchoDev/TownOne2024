@@ -19,6 +19,8 @@ public class GameLoopManager : Singleton<GameLoopManager>
         
         GameMgr.Instance.StartGame();
 
+        AudioMgr.Instance.PlayMusic(AudioMgr.MusicTypes.RunGameplay, 0.5f);
+
         if (isCountdownTimer)
         {
             gameTimer = maxTimer;

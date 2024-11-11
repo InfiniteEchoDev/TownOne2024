@@ -59,4 +59,12 @@ public class SnakeInput : MonoBehaviour
             }
         }
     }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameMgr.Instance.PauseGame();
+        }
+    }
 }
