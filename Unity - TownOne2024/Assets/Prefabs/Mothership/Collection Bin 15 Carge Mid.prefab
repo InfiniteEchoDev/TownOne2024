@@ -182,3 +182,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 6480666746796610161}
   collectType: 1
+  confirmationParticles: {fileID: 4532719144354202352, guid: c47d883894b8af741a43caac69cc1a2d, type: 3}

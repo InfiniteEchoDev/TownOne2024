@@ -393,6 +393,10 @@ PrefabInstance:
       propertyPath: _pickupSpawner
       value: 
       objectReference: {fileID: 1713698349}
+    - target: {fileID: 2956854984218232204, guid: b130f090b53d89c4b8121312f733420f, type: 3}
+      propertyPath: explosionParticles
+      value: 
+      objectReference: {fileID: 6458334385935375066, guid: 0e0c5e29bdd7fe64585db08fbd9888f4, type: 3}
     m_RemovedComponents:
     - {fileID: 8874453677960642354, guid: b130f090b53d89c4b8121312f733420f, type: 3}
     m_RemovedGameObjects: []
