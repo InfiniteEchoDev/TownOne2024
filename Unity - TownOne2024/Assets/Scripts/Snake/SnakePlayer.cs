@@ -73,7 +73,11 @@ public class SnakePlayer : MonoBehaviour
         if (_bodyPositions.Contains(_coordinates))
         {
             // Crashed into our own tail!
-            GameMgr.Instance.GameOver();
+            while (_snakeBody.Count > 0)
+            {
+                Drop();
+            }
+            GameLoopManager.Instance.RemoveLives();
             // todo play explosion!
         }
         
@@ -82,11 +86,9 @@ public class SnakePlayer : MonoBehaviour
         {
             // pickup!
             _snakeGrid.OccupiedPositions.Remove(_coordinates);
-            
             pickup.transform.position = new Vector3 (previousCoords.x * _snakeGrid.CellWidth, previousCoords.y * _snakeGrid.CellHeight, 0);
             pickup.OnPickup();
             _snakeBody.AddLast(pickup);
-            
         }
         
         // player occupies it
