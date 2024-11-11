@@ -33,11 +33,12 @@ public class Mothership : MonoBehaviour
     [SerializeField]
     List<GameObject> scrapSlices = new List<GameObject>();
 
+
     Quaternion target;
 
     void Start()
     {
-        Debug.Log("fsdjifsdjf");
+        //Debug.Log("fsdjifsdjf");
         trans = GetComponent<Transform>();
         SpawnSlices(containerTypeCount);
     }
