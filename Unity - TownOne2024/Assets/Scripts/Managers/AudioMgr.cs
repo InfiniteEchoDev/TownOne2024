@@ -96,7 +96,6 @@ public class AudioMgr : Singleton<AudioMgr>
     
     private void Start()
     {
-        DontDestroyOnLoad(this);
         SaveUtil.OnLoadCompleted += OnDataLoadComplete;
         SaveUtil.Load();
     }
@@ -110,9 +109,19 @@ public class AudioMgr : Singleton<AudioMgr>
     
     public void UpdateVolumeFromSaveData()
     {
-        Mixer.SetFloat("MasterVol", GlobalVolume);
-        Mixer.SetFloat("MusicVol", MusicVolume);
-        Mixer.SetFloat("SfxVol", SfxVolume);
+        Mixer.SetFloat("MasterVol", DbFromNormalized(GlobalVolume));
+        Mixer.SetFloat("MusicVol", DbFromNormalized(MusicVolume));
+        Mixer.SetFloat("SfxVol", DbFromNormalized(SfxVolume));
+    }
+
+    private float DbFromNormalized(float volumeNormalized)
+    {
+        var dbVolume = Mathf.Log10(volumeNormalized) * 20;
+        if (volumeNormalized == 0.0f)
+        {
+            dbVolume = -80.0f;
+        }
+        return dbVolume;
     }
     
     public void PlayMusic(MusicTypes music, float volumeMod)

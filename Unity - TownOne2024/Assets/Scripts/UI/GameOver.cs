@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
-using System.Collections;
 using UnityEngine.Serialization;
 
 public class GameOver : MenuBase
@@ -24,20 +22,20 @@ public class GameOver : MenuBase
         Retry.Select();
         int intScore = (int)Mathf.Round(GameMgr.Instance.Score); 
         PlayerScore.text = intScore.ToString();
-        if (SaveUtil.SavedValues?.Score == null)
+        if (SaveUtil.SavedValues?.HighScore == null)
         {
             Debug.LogError("[GameOver] SaveUtil.SavedValues is null");
             return;
         }
         
-        if (intScore < SaveUtil.SavedValues.Score)
+        if (intScore < SaveUtil.SavedValues.HighScore)
         {
-            HighScore.text = SaveUtil.SavedValues.Score.ToString();
+            HighScore.text = SaveUtil.SavedValues.HighScore.ToString();
         }
         else
         {
             HighScore.text = intScore.ToString();
-            SaveUtil.SavedValues.Score = intScore;
+            SaveUtil.SavedValues.HighScore = intScore;
             SaveUtil.Save();
         }
     }

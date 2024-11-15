@@ -75,7 +75,8 @@ public class Pickup : MonoBehaviour
 
         if (transform.position.y < DestroyFloor)
         {
-            
+            _spawnManager.SpawnedPickedUps.Remove(this);
+            Destroy(gameObject);
         }
     }
 
@@ -108,7 +109,8 @@ public class Pickup : MonoBehaviour
         _spriteRenderer.DOFade(0f, 0.75f);
         yield return new WaitForSeconds(0.75f);
         _loopManager.RemoveLives();
-        _spawnManager.OnPickupDestroyed(_currentPosition);
+        _spawnManager.OnPickupDestroyed(_currentPosition, this);
+        Destroy(gameObject);
     }
 
     IEnumerator SpawnAnim()

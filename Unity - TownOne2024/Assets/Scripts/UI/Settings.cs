@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -15,6 +16,13 @@ public class Settings : MenuBase
     public override GameMenus MenuType()
     {
         return GameMenus.SettingsMenu;
+    }
+
+    private void Awake()
+    {
+        SliderMasterVolume.onValueChanged.AddListener(delegate { SliderValueChanged(); });
+        SliderMusicVolume.onValueChanged.AddListener(delegate { SliderValueChanged(); });
+        SliderSoundsVolume.onValueChanged.AddListener(delegate { SliderValueChanged(); });
     }
 
     public void Close()

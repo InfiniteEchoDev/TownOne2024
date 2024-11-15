@@ -138,7 +138,7 @@ public class SnakePlayer : MonoBehaviour
             // Crashed into our own tail!
             while (_snakeBody.Count > 0)
             {
-                Drop();
+                Drop(false);
             }
             GameLoopManager.Instance.RemoveLives();
             // todo play explosion!
@@ -179,12 +179,16 @@ public class SnakePlayer : MonoBehaviour
         }
     }
 
-    public void Drop()
+    public void Drop(bool atPlayer)
     {
         if (_snakeBody.Count > 0)
         {
             var first = _snakeBody.First.Value;
             _snakeBody.Remove(first);
+            if (atPlayer)
+            {
+                first.transform.position = transform.position;
+            }
             first.Drop();
         }
         UpdateBody(_coordinates);

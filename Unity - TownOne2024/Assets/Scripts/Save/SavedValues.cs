@@ -1,21 +1,17 @@
 using System;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class SavedValues
 {
-    public bool ToggleValue;
-    public int IntValue;
-    public string StringValue;
-
-    public float GlobalVolume;
-    public float MusicVolume;
-    public float SfxVolume;
-
-
-
-    //New Variables in case of merge conflict
-    public int Score;
-    public string Name;
+    public float GlobalVolume = 0.5f;
+    public float MusicVolume = 0.5f;
+    public float SfxVolume = 0.5f;
+    
+    [FormerlySerializedAs("Score")] 
+    public int HighScore;
+    // todo
+    public string Name = "";
+    // todo
     public float Time;
-
 }

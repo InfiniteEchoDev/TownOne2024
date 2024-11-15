@@ -20,8 +20,15 @@ public static class SaveUtil
     public static void Load()
     {
         string path = Path.Combine(Application.persistentDataPath, SaveFileName);
-        string data = File.ReadAllText(path);
-        SavedValues = JsonUtility.FromJson<SavedValues>(data) ?? new SavedValues();
+        if (File.Exists(path))
+        {
+            string data = File.ReadAllText(path);
+            SavedValues = JsonUtility.FromJson<SavedValues>(data);
+        }
+        else
+        {
+            SavedValues = new SavedValues();
+        }
         OnLoadCompleted?.Invoke();
     }
 }

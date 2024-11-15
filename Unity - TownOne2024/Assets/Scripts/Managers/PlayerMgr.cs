@@ -48,6 +48,6 @@ public class PlayerMgr : Singleton<PlayerMgr>
     public void DestroyPickup(Pickup p)
     {
         PickupSpawner.SpawnedPickedUps.Remove(p);
-        Destroy(p);
+        Destroy(p.gameObject);
     }
 }

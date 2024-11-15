@@ -56,7 +56,7 @@ public class SnakeInput : MonoBehaviour
             if (context.performed)
             {
                 _canDrop = false;
-                SnakePlayer.Drop();
+                SnakePlayer.Drop(true);
             }
         }
     }

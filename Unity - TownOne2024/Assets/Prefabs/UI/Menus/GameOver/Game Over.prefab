@@ -890,9 +890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4f1a3276393461b8a69522e3fa5634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScore: {fileID: 9138873805903446789}
-  highScore: {fileID: 6883208078661430072}
-  retry: {fileID: 7427108918052203452}
+  PlayerScore: {fileID: 9138873805903446789}
+  HighScore: {fileID: 6883208078661430072}
+  Retry: {fileID: 7427108918052203452}
 --- !u!1001 &1795378523858550362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -923,7 +923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888258718171414455, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenu
+      value: ButtonMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4888258718171414455, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1065,7 +1065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888258718171414455, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Retry
+      value: ButtonRetry
       objectReference: {fileID: 0}
     - target: {fileID: 4888258718171414455, guid: e0d6ad42ec9824eeab85aa7c923765b7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

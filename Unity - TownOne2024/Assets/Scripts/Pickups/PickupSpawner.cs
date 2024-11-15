@@ -150,8 +150,9 @@ public class PickupSpawner : MonoBehaviour
     }
 
     // not for snake body, only uncollected pickups
-    public void OnPickupDestroyed(Vector2Int coords)
+    public void OnPickupDestroyed(Vector2Int coords, Pickup pickup)
     {
+        _spawnedPickedUps.Remove(pickup);
         _spawnedPickedUpsDict.Remove(coords);
         Grid.OccupiedPositions.Remove(coords);
     }
