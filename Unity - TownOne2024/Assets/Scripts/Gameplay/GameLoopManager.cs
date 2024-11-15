@@ -1,17 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Serialization;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class GameLoopManager : Singleton<GameLoopManager>
 {
+    [FormerlySerializedAs("gameTimer")] [SerializeField] float GameTimer;
+    [FormerlySerializedAs("lives")] [SerializeField] int Lives = 5;
 
-    [SerializeField] float gameTimer;
-    [SerializeField] int lives = 5;
+    [FormerlySerializedAs("maxTimer")] [SerializeField] float MaxTimer = 120f;
+    [FormerlySerializedAs("isCountdownTimer")] [SerializeField] bool IsCountdownTimer;
 
-    [SerializeField] float maxTimer = 120f;
-    [SerializeField] bool isCountdownTimer;
-
-    public int Lives { get => lives; set => lives = value; }
+    public int GetLives => Lives;
 
     private void Start()
     {
@@ -22,9 +22,9 @@ public class GameLoopManager : Singleton<GameLoopManager>
 
         AudioMgr.Instance.PlayMusic(AudioMgr.MusicTypes.RunGameplay, 0.5f);
 
-        if (isCountdownTimer)
+        if (IsCountdownTimer)
         {
-            gameTimer = maxTimer;
+            GameTimer = MaxTimer;
         }
 
     }
@@ -33,21 +33,21 @@ public class GameLoopManager : Singleton<GameLoopManager>
     {
         if (GameMgr.Instance.IsGameRunning)
         {
-            if (!isCountdownTimer)
+            if (!IsCountdownTimer)
             {
-                gameTimer += 1 * Time.deltaTime; // Count up for now, may change later.
+                GameTimer += 1 * Time.deltaTime; // Count up for now, may change later.
             }
             else
             {
-                gameTimer -= 1 * Time.deltaTime;
+                GameTimer -= 1 * Time.deltaTime;
 
-                if(gameTimer <= 0)
+                if(GameTimer <= 0)
                 {
                     GameMgr.Instance.NextLevel();
                 }
             }
 
-            if (lives <= 0)
+            if (Lives <= 0)
             {
                 GameOver();
             }
@@ -61,12 +61,12 @@ public class GameLoopManager : Singleton<GameLoopManager>
 
     public void RemoveLives()
     {
-        lives -= 1;
+        Lives -= 1;
     }
 
     public void ResetLives()
     {
-        lives = 5;
+        Lives = 5;
     }
 
 }

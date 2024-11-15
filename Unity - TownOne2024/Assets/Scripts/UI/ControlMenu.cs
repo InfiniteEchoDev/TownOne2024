@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 public class ControlMenu : MenuBase
 {
-    [SerializeField]
-    Button nextButton;
+    [FormerlySerializedAs("nextButton")] [SerializeField]
+    Button NextButton;
+    
     public override GameMenus MenuType()
     {
         return GameMenus.ControlMenu;
@@ -11,7 +13,7 @@ public class ControlMenu : MenuBase
 
     private void Start()
     {
-        nextButton.Select();
+        NextButton.Select();
     }
 
     public void NextMenu()

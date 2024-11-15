@@ -1,58 +1,59 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Gley.AllPlatformsSave.Internal;
+using UnityEngine.Serialization;
 
 public class Mothership : MonoBehaviour
 {
-    float rotateZAxis = 0.5f;
+    float _rotateZAxis = 0.5f;
 
-    [SerializeField]
-    float smooth = 5.0f;
+    [FormerlySerializedAs("smooth")] [SerializeField]
+    float Smooth = 5.0f;
 
-    float tiltAngle = 20.0f;
+    float _tiltAngle = 20.0f;
 
-    [SerializeField]
-    float turnAmount = 0.5f;
+    [FormerlySerializedAs("turnAmount")] [SerializeField]
+    float TurnAmount = 0.5f;
 
-    [SerializeField]
-    public bool reverse;
+    [FormerlySerializedAs("reverse")] [SerializeField]
+    private bool Clockwise;
 
-    int sliceCount = 24;
+    int _sliceCount = 24;
 
-    [SerializeField]
-    public int containerTypeCount;
+    [FormerlySerializedAs("containerTypeCount")] [SerializeField]
+    public int ContainerTypeCount;
 
-    Transform trans;
+    Transform _trans;
 
-    [SerializeField]
-    List<GameObject> medSlices = new List<GameObject>();
+    [FormerlySerializedAs("medSlices")] [SerializeField]
+    List<GameObject> MedSlices = new List<GameObject>();
 
-    [SerializeField]
-    List<GameObject> cargoSlices = new List<GameObject>();
+    [FormerlySerializedAs("cargoSlices")] [SerializeField]
+    List<GameObject> CargoSlices = new List<GameObject>();
 
-    [SerializeField]
-    List<GameObject> scrapSlices = new List<GameObject>();
+    [FormerlySerializedAs("scrapSlices")] [SerializeField]
+    List<GameObject> ScrapSlices = new List<GameObject>();
 
 
-    Quaternion target;
+    Quaternion _target;
 
     void Start()
     {
         //Debug.Log("fsdjifsdjf");
-        trans = GetComponent<Transform>();
-        SpawnSlices(containerTypeCount);
+        _trans = GetComponent<Transform>();
+        SpawnSlices(ContainerTypeCount);
     }
 
     public bool Reverse
     {
-        get { return reverse; }
-        set { reverse = value; }
+        get { return Clockwise; }
+        set { Clockwise = value; }
     }
 
     public int SliceCount
     {
-        get { return sliceCount; }
-        set { sliceCount = value; }
+        get { return _sliceCount; }
+        set { _sliceCount = value; }
     }
 
 
@@ -61,20 +62,20 @@ public class Mothership : MonoBehaviour
     {
         if (GameMgr.Instance.IsGameRunning)
         {
-            if (!reverse)
+            if (!Clockwise)
             {
-                rotateZAxis = rotateZAxis + turnAmount;
+                _rotateZAxis += TurnAmount;
             }
             else
             {
-                rotateZAxis = rotateZAxis - turnAmount;
+                _rotateZAxis -= TurnAmount;
             }
 
-            float tiltAroundZ = rotateZAxis * tiltAngle;
-            target = Quaternion.Euler(0, 0, tiltAroundZ);
+            float tiltAroundZ = _rotateZAxis * _tiltAngle;
+            _target = Quaternion.Euler(0, 0, tiltAroundZ);
 
             // Dampen towards the target rotation
-            trans.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+            _trans.rotation = Quaternion.Slerp(transform.rotation, _target, Time.deltaTime * Smooth);
         }
     }
 
@@ -84,9 +85,9 @@ public class Mothership : MonoBehaviour
         //Half Half
         if(containerTypeCount == 2)
         {
-            for (int i = 0; i < sliceCount; i++)
+            for (int i = 0; i < _sliceCount; i++)
             {
-                if(i < sliceCount/2)
+                if(i < _sliceCount/2)
                 {
                     //Instantiate(scrapSlices[0], trans.position, Quaternion.Euler(0, 0, (15f * sliceCcount)), trans);
                     //Instantiate(slices[0], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
@@ -101,14 +102,14 @@ public class Mothership : MonoBehaviour
         //Three Even Split
         else if (containerTypeCount == 3)
         {
-            for (int i = 0; i < sliceCount; i++)
+            for (int i = 0; i < _sliceCount; i++)
             {
                 
-                if (i < sliceCount / 3)
+                if (i < _sliceCount / 3)
                 {
                     //Instantiate(slices[0], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
                 }
-                else if(i < ((sliceCount/3)*2)){
+                else if(i < ((_sliceCount/3)*2)){
                     //Instantiate(slices[1], trans.position, Quaternion.Euler(0, 0, (15f * i)), trans);
                 }
                 else
@@ -128,62 +129,62 @@ public class Mothership : MonoBehaviour
             int scrapArrayRange = (scrapRange - 1);
             int cargoArrayRange = (cargoRange - 1);
             int count = 0;
-            while (count < sliceCount) {
+            while (count < _sliceCount) {
 
                 for (int i = 0; i < scrapRange; i++)
                 {
-                    if (count == sliceCount) break;
+                    if (count == _sliceCount) break;
 
                     if(i == scrapArrayRange || count == 23)
                     {
-                        Instantiate(scrapSlices[0], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);    
+                        Instantiate(ScrapSlices[0], _trans.position, Quaternion.Euler(0, 0, (15f * count)), _trans);    
                     }
                     else if(i == 0)
                     {
-                        Instantiate(scrapSlices[2], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
+                        Instantiate(ScrapSlices[2], _trans.position, Quaternion.Euler(0, 0, (15f * count)), _trans);
                     }
                     else
                     {
-                        Instantiate(scrapSlices[1], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
+                        Instantiate(ScrapSlices[1], _trans.position, Quaternion.Euler(0, 0, (15f * count)), _trans);
                     }
 
                     count++;
                 }
                 for (int i = 0; i < humanRange; i++)
                 {
-                    if (count == sliceCount) break;
+                    if (count == _sliceCount) break;
 
 
                     if (i == humanArrayRange || count == 23)
                     {
-                        Instantiate(medSlices[0], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
+                        Instantiate(MedSlices[0], _trans.position, Quaternion.Euler(0, 0, (15f * count)), _trans);
                     }
                     else if (i == 0)
                     {
-                        Instantiate(medSlices[2], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
+                        Instantiate(MedSlices[2], _trans.position, Quaternion.Euler(0, 0, (15f * count)), _trans);
                     }
                     else
                     {
-                        Instantiate(medSlices[1], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
+                        Instantiate(MedSlices[1], _trans.position, Quaternion.Euler(0, 0, (15f * count)), _trans);
                     }
 
                     count++;
                 }
                 for (int i = 0; i < cargoRange; i++)
                 {
-                    if (count == sliceCount) break;
+                    if (count == _sliceCount) break;
 
                     if (i == cargoArrayRange || count == 23)
                     {
-                        Instantiate(cargoSlices[0], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
+                        Instantiate(CargoSlices[0], _trans.position, Quaternion.Euler(0, 0, (15f * count)), _trans);
                     }
                     else if (i == 0)
                     {
-                        Instantiate(cargoSlices[2], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
+                        Instantiate(CargoSlices[2], _trans.position, Quaternion.Euler(0, 0, (15f * count)), _trans);
                     }
                     else
                     {
-                        Instantiate(cargoSlices[1], trans.position, Quaternion.Euler(0, 0, (15f * count)), trans);
+                        Instantiate(CargoSlices[1], _trans.position, Quaternion.Euler(0, 0, (15f * count)), _trans);
                     }
 
                     count++;

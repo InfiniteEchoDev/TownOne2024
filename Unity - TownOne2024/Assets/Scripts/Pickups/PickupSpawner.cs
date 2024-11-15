@@ -8,20 +8,20 @@ using Random = UnityEngine.Random;
 
 public class PickupSpawner : MonoBehaviour
 {
-    [SerializeField] private SnakeGrid _grid;
-    [SerializeField] Pickup[] _pickups;
+    [FormerlySerializedAs("_grid")] [SerializeField] private SnakeGrid Grid;
+    [FormerlySerializedAs("_pickups")] [SerializeField] Pickup[] Pickups;
 
-    [SerializeField] int _spawnTimeMin = 3;
-    [SerializeField] int _spawnTimeMax = 5;
+    [FormerlySerializedAs("_spawnTimeMin")] [SerializeField] int SpawnTimeMin = 3;
+    [FormerlySerializedAs("_spawnTimeMax")] [SerializeField] int SpawnTimeMax = 5;
 
-    [SerializeField] float spawnBufferRadius = 1f;
+    [FormerlySerializedAs("spawnBufferRadius")] [SerializeField] float SpawnBufferRadius = 1f;
 
-    bool canSpawn = true;
+    bool _canSpawn = true;
 
-    Vector3 randomPos;
+    Vector3 _randomPos;
 
     private int _spawnTimer = 0;
-    private int NextSpawn => Random.Range(_spawnTimeMin, _spawnTimeMax);
+    private int NextSpawn => Random.Range(SpawnTimeMin, SpawnTimeMax);
     
     private List<Pickup> _spawnedPickedUps = new ();
     public List<Pickup> SpawnedPickedUps => _spawnedPickedUps;
@@ -44,9 +44,9 @@ public class PickupSpawner : MonoBehaviour
         _spawnTimer++;
         foreach (var pickup in _spawnedPickedUps)
         {
-            _grid.OccupiedPositions.Add(pickup.SpawnedCoordinates);
+            Grid.OccupiedPositions.Add(pickup.SpawnedCoordinates);
         }
-        if (_spawnTimer > NextSpawn / _grid.GridUpdateTime)
+        if (_spawnTimer > NextSpawn / Grid.GetGridUpdateTime)
         {
             _spawnTimer = 0;
             SpawnPickup();
@@ -57,9 +57,9 @@ public class PickupSpawner : MonoBehaviour
     {
         int randomPickup = GetWeightedRandomPickup();
         Vector2Int spawnCoords = SetObjectSpawnPosition();
-        Pickup newPickup = Instantiate(_pickups[randomPickup], randomPos, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
-        newPickup.Setup(spawnCoords, Random.Range(10, 30));
-        _grid.OccupiedPositions.Add(spawnCoords);
+        Pickup newPickup = Instantiate(Pickups[randomPickup], _randomPos, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
+        newPickup.Setup(spawnCoords, Random.Range(10, 30), this);
+        Grid.OccupiedPositions.Add(spawnCoords);
         _spawnedPickedUpsDict.Add(spawnCoords, newPickup);
         if(newPickup.GetPickupType == PickupTypes.Human)
         {
@@ -91,9 +91,9 @@ public class PickupSpawner : MonoBehaviour
     int GetWeightedRandomPickup()
     {
         List<int> weights = new List<int>();
-        for(int i = 0; i < _pickups.Length; i++)
+        for(int i = 0; i < Pickups.Length; i++)
         {
-            weights.Add(_pickups[i].GetComponent<Pickup>().GetPickupConfig.spawnWeight);
+            weights.Add(Pickups[i].GetComponent<Pickup>().GetPickupConfig.SpawnWeight);
         }
 
         int totalWeight = 0;
@@ -127,12 +127,12 @@ public class PickupSpawner : MonoBehaviour
         Vector2Int spawnCoords;
         do
         {
-            spawnCoords = new Vector2Int(Random.Range(0, _grid.GridWidth), Random.Range(0, _grid.GridHeight));
-        } while (_grid.OccupiedPositions.Contains(spawnCoords));
+            spawnCoords = new Vector2Int(Random.Range(0, Grid.GetGridWidth), Random.Range(0, Grid.GetGridHeight));
+        } while (Grid.OccupiedPositions.Contains(spawnCoords));
 
-        Vector3 targetPos = new Vector3(spawnCoords.x * _grid.CellWidth, spawnCoords.y * _grid.CellHeight, 0);
+        Vector3 targetPos = new Vector3(spawnCoords.x * Grid.GetCellWidth, spawnCoords.y * Grid.GetCellHeight, 0);
         
-        randomPos = targetPos;
+        _randomPos = targetPos;
         return spawnCoords;
     }
 
@@ -140,17 +140,19 @@ public class PickupSpawner : MonoBehaviour
     {
         if (GameMgr.Instance.IsGameRunning)
         {
-            canSpawn = true;
+            _canSpawn = true;
         }
         else
         {
-            canSpawn = false;
+            _canSpawn = false;
         }
 
     }
 
-    public void OnPickupGrabbed(Vector2Int coords, Pickup grabbedPickup)
+    // not for snake body, only uncollected pickups
+    public void OnPickupDestroyed(Vector2Int coords)
     {
         _spawnedPickedUpsDict.Remove(coords);
+        Grid.OccupiedPositions.Remove(coords);
     }
 }

@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class SnakeInput : MonoBehaviour
 {
-    [SerializeField] private SnakePlayer _snakePlayer;
-    [SerializeField] private float _dropCooldown = 0.2f;
+    [FormerlySerializedAs("_snakePlayer")] [SerializeField] private SnakePlayer SnakePlayer;
+    [FormerlySerializedAs("_dropCooldown")] [SerializeField] private float DropCooldown = 0.2f;
 
     private float _timer = 0f;
     private bool _canDrop = true;
@@ -15,7 +16,7 @@ public class SnakeInput : MonoBehaviour
         if (!_canDrop)
         {
             _timer += Time.deltaTime;
-            if (_timer >= _dropCooldown)
+            if (_timer >= DropCooldown)
             {
                 _canDrop = true;
                 _timer = 0f;
@@ -34,7 +35,7 @@ public class SnakeInput : MonoBehaviour
         {
             float movement = context.ReadValue<float>();
             Debug.Log("OnNavigateX called: " + movement);
-            _snakePlayer.PlayerXInput(movement);
+            SnakePlayer.PlayerXInput(movement);
         }
     }
     
@@ -44,7 +45,7 @@ public class SnakeInput : MonoBehaviour
         {
             float movement = context.ReadValue<float>();
             Debug.Log("OnNavigateY called: " + movement);
-            _snakePlayer.PlayerYInput(movement);
+            SnakePlayer.PlayerYInput(movement);
         }
     }
 
@@ -55,7 +56,7 @@ public class SnakeInput : MonoBehaviour
             if (context.performed)
             {
                 _canDrop = false;
-                _snakePlayer.Drop();
+                SnakePlayer.Drop();
             }
         }
     }

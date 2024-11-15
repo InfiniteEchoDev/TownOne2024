@@ -3,6 +3,7 @@
 
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 public class AudioMgr : Singleton<AudioMgr>
 {
@@ -36,30 +37,32 @@ public class AudioMgr : Singleton<AudioMgr>
         PersonDying=15      // in pickup despawn code
     }
     
+    [FormerlySerializedAs("_mixer")]
     [Header("Mixer")]
-    [SerializeField] private AudioMixer _mixer;
+    [SerializeField] private AudioMixer Mixer;
     
+    [FormerlySerializedAs("_musicSource")]
     [Header("Sources")]
-    [SerializeField] private AudioSource _musicSource;
+    [SerializeField] private AudioSource MusicSource;
     
-    [SerializeField] private AudioSource _sfxSource;
+    [FormerlySerializedAs("_sfxSource")] [SerializeField] private AudioSource SfxSource;
     
-    [Header("Reusable Clips")] [SerializeField]
-    private AudioClip[] _reusableMusicClips;
+    [FormerlySerializedAs("_reusableMusicClips")] [Header("Reusable Clips")] [SerializeField]
+    private AudioClip[] ReusableMusicClips;
     
-    [SerializeField] private AudioClip[] _reusableSoundClips;
+    [FormerlySerializedAs("_reusableSoundClips")] [SerializeField] private AudioClip[] ReusableSoundClips;
     
     private AudioSource MusicPlayer
     {
         get
         {
-            if (_musicSource == null)
+            if (MusicSource == null)
             {
-                _musicSource = gameObject.AddComponent<AudioSource>();
-                _musicSource.loop = true;
+                MusicSource = gameObject.AddComponent<AudioSource>();
+                MusicSource.loop = true;
             }
     
-            return _musicSource;
+            return MusicSource;
         }
     }
     
@@ -67,8 +70,8 @@ public class AudioMgr : Singleton<AudioMgr>
     {
         get
         {
-            if (_sfxSource == null) _sfxSource = gameObject.AddComponent<AudioSource>();
-            return _sfxSource;
+            if (SfxSource == null) SfxSource = gameObject.AddComponent<AudioSource>();
+            return SfxSource;
         }
     }
     
@@ -107,21 +110,21 @@ public class AudioMgr : Singleton<AudioMgr>
     
     public void UpdateVolumeFromSaveData()
     {
-        _mixer.SetFloat("MasterVol", GlobalVolume);
-        _mixer.SetFloat("MusicVol", MusicVolume);
-        _mixer.SetFloat("SfxVol", SfxVolume);
+        Mixer.SetFloat("MasterVol", GlobalVolume);
+        Mixer.SetFloat("MusicVol", MusicVolume);
+        Mixer.SetFloat("SfxVol", SfxVolume);
     }
     
     public void PlayMusic(MusicTypes music, float volumeMod)
     {
         var index = (int) music;
-        if (_reusableMusicClips.Length < index)
+        if (ReusableMusicClips.Length < index)
         {
             Debug.LogWarning($"Music type {music.ToString()} not found in music clips");
             return;
         }
     
-        PlayMusic(_reusableMusicClips[(int) music], volumeMod);
+        PlayMusic(ReusableMusicClips[(int) music], volumeMod);
     }
     
     public void PlayMusic(AudioClip clip, float volumeMod)
@@ -159,13 +162,13 @@ public class AudioMgr : Singleton<AudioMgr>
     public void PlaySound(SoundTypes sound, float volumeMod = 1f)
     {
         var index = (int) sound;
-        if (_reusableSoundClips.Length < index)
+        if (ReusableSoundClips.Length < index)
         {
             Debug.LogWarning($"Sound type {sound.ToString()} not found in sound clips");
             return;
         }
     
-        PlaySound(_reusableSoundClips[(int) sound], volumeMod);
+        PlaySound(ReusableSoundClips[(int) sound], volumeMod);
     }
     
     public void PlaySound(AudioClip clip, float volumeMod = 1f)

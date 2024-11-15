@@ -1,35 +1,37 @@
 using UnityEngine;
 using System.Collections;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public class Pickup : MonoBehaviour
 {
-    [SerializeField] PickupSO pickupConfig;
-    public PickupSO GetPickupConfig { get { return pickupConfig; } }
+    [FormerlySerializedAs("pickupConfig")] [SerializeField] PickupSo PickupConfig;
+    [SerializeField] private float DestroyFloor = -15f;
+    public PickupSo GetPickupConfig { get { return PickupConfig; } }
 
-    PickupTypes pickupType;
-    public PickupTypes GetPickupType { get { return pickupType; } }
+    PickupTypes _pickupType;
+    public PickupTypes GetPickupType { get { return _pickupType; } }
 
-    Sprite sprite;
+    Sprite _sprite;
 
-    bool hasTimer;
-    public bool SetHasTimer { set { hasTimer = value; } }
+    bool _hasTimer;
+    public bool SetHasTimer { set { _hasTimer = value; } }
 
-    float timer;
+    float _timer;
 
-    float pointValue;
+    float _pointValue;
 
-    SpriteRenderer spriteRenderer;
+    SpriteRenderer _spriteRenderer;
 
-    float randomRotSpeed;
+    float _randomRotSpeed;
 
-    GameLoopManager loopManager;
+    GameLoopManager _loopManager;
 
-    Rigidbody2D rb;
+    Rigidbody2D _rb;
     
     public Vector2Int SpawnedCoordinates { get; private set; }
-    public float PointValue => pickupConfig.pointValue;
-    public float BasePointValue => pickupConfig.pointValue;
+    public float PointValue => PickupConfig.PointValue;
+    public float BasePointValue => PickupConfig.PointValue;
 
     private Vector2Int _currentPosition;
     private Vector2Int _previousPosition;
@@ -37,16 +39,19 @@ public class Pickup : MonoBehaviour
 
     private Coroutine _timerRoutine;
 
-    public void Setup(Vector2Int coords, float rotSpeed)
+    private PickupSpawner _spawnManager;
+
+    public void Setup(Vector2Int coords, float rotSpeed, PickupSpawner spawner)
     {
-        randomRotSpeed = rotSpeed;
+        _randomRotSpeed = rotSpeed;
         SpawnedCoordinates = coords;
+        _spawnManager = spawner;
         UpdateConfig();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = sprite;
-        loopManager = FindAnyObjectByType<GameLoopManager>();
-        rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(SpawnAnim());
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.sprite = _sprite;
+        _loopManager = FindAnyObjectByType<GameLoopManager>();
+        _rb = GetComponent<Rigidbody2D>();
+        _timerRoutine = StartCoroutine(SpawnAnim());
     }
 
     // Update is called once per frame
@@ -54,62 +59,65 @@ public class Pickup : MonoBehaviour
     {
         if (GameMgr.Instance.IsGameRunning)
         {
-            transform.Rotate(new Vector3(0, 0, randomRotSpeed * Time.deltaTime));
-            if (rb.bodyType == RigidbodyType2D.Dynamic)
+            transform.Rotate(new Vector3(0, 0, _randomRotSpeed * Time.deltaTime));
+            if (_rb.bodyType == RigidbodyType2D.Dynamic)
             {
-                rb.gravityScale = 5f;
+                _rb.gravityScale = 5f;
             }
         }
         else
         {
-            if (rb.bodyType == RigidbodyType2D.Dynamic)
+            if (_rb.bodyType == RigidbodyType2D.Dynamic)
             {
-                rb.gravityScale = 0f;
+                _rb.gravityScale = 0f;
             }
+        }
+
+        if (transform.position.y < DestroyFloor)
+        {
+            
         }
     }
 
     void UpdateConfig()
     {
-        pickupType = pickupConfig.pickupType;
-        sprite = pickupConfig.sprite;
-        hasTimer = pickupConfig.hasTimer;
-        hasTimer = pickupConfig.hasTimer;
-        timer = pickupConfig.timer;
+        _pickupType = PickupConfig.PickupType;
+        _sprite = PickupConfig.Sprite;
+        _hasTimer = PickupConfig.HasTimer;
+        _hasTimer = PickupConfig.HasTimer;
+        _timer = PickupConfig.Timer;
     }
 
     IEnumerator DespawnTimer()
     {
         yield return new WaitUntil(() => GameMgr.Instance.IsGameRunning);
-        yield return new WaitForSeconds(timer);
+        yield return new WaitForSeconds(_timer);
         yield return new WaitUntil(() => GameMgr.Instance.IsGameRunning);
         for (int i = 0; i < 9; i++)
         {
             AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonDying);
             yield return new WaitUntil(() => GameMgr.Instance.IsGameRunning);
-            spriteRenderer.DOFade(0.25f, 0.33f);
+            _spriteRenderer.DOFade(0.25f, 0.33f);
             yield return new WaitForSeconds(0.33f);
-            spriteRenderer.DOFade(1f, 0.33f);
+            _spriteRenderer.DOFade(1f, 0.33f);
             yield return new WaitForSeconds(0.33f);
         }
         yield return new WaitUntil(() => GameMgr.Instance.IsGameRunning);
         AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonDespawn);
         transform.DOScale(0f, 0.75f);
-        spriteRenderer.DOFade(0f, 0.75f);
+        _spriteRenderer.DOFade(0f, 0.75f);
         yield return new WaitForSeconds(0.75f);
-        loopManager.RemoveLives();
-        Destroy(gameObject);
-
+        _loopManager.RemoveLives();
+        _spawnManager.OnPickupDestroyed(_currentPosition);
     }
 
     IEnumerator SpawnAnim()
     {
         yield return new WaitUntil(() => GameMgr.Instance.IsGameRunning);
         transform.DOScale(1f, 0.75f);
-        spriteRenderer.DOFade(1f, 0.75f);
-
+        _spriteRenderer.DOFade(1f, 0.75f);
         
-        if (hasTimer)
+        if (_hasTimer)
         {
             _timerRoutine = StartCoroutine(DespawnTimer());
         }
@@ -120,8 +128,14 @@ public class Pickup : MonoBehaviour
     public void OnPickup()
     {
         if (_timerRoutine != null)
+        {
             StopCoroutine(_timerRoutine);
-        if (hasTimer)
+            transform.DOKill();
+            transform.DOScale(1f, 0.1f);
+            _spriteRenderer.DOKill();
+            _spriteRenderer.DOFade(1f, 0.1f);
+        }
+        if (_hasTimer)
         {
             AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonPickedUp);
         }
@@ -143,7 +157,7 @@ public class Pickup : MonoBehaviour
     public void Drop()
     {
         AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.DropItems,0.5f);
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.gravityScale = 5f;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+        _rb.gravityScale = 5f;
     }
 }

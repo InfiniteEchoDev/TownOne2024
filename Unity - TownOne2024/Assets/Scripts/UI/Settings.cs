@@ -1,14 +1,16 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Settings : MenuBase
 {
-    [SerializeField] private Button _backButton;
+    [FormerlySerializedAs("_backButton")] [SerializeField] private Button BackButton;
     
+    [FormerlySerializedAs("_sliderMasterVolume")]
     [Header("Audio")] 
-    [SerializeField] private Slider _sliderMasterVolume;
-    [SerializeField] private Slider _sliderMusicVolume;
-    [SerializeField] private Slider _sliderSoundsVolume;
+    [SerializeField] private Slider SliderMasterVolume;
+    [FormerlySerializedAs("_sliderMusicVolume")] [SerializeField] private Slider SliderMusicVolume;
+    [FormerlySerializedAs("_sliderSoundsVolume")] [SerializeField] private Slider SliderSoundsVolume;
 
     public override GameMenus MenuType()
     {
@@ -22,7 +24,7 @@ public class Settings : MenuBase
 
     private void OnEnable()
     {
-        _backButton.Select();
+        BackButton.Select();
         UpdateAudioDisplay();
     }
 
@@ -30,9 +32,9 @@ public class Settings : MenuBase
 
     public void SliderValueChanged()
     {
-        AudioMgr.Instance.GlobalVolume = _sliderMasterVolume.value;
-        AudioMgr.Instance.MusicVolume = _sliderMusicVolume.value;
-        AudioMgr.Instance.SfxVolume = _sliderSoundsVolume.value;
+        AudioMgr.Instance.GlobalVolume = SliderMasterVolume.value;
+        AudioMgr.Instance.MusicVolume = SliderMusicVolume.value;
+        AudioMgr.Instance.SfxVolume = SliderSoundsVolume.value;
             
         SaveUtil.Save();
             
@@ -43,9 +45,9 @@ public class Settings : MenuBase
 
     private void UpdateAudioDisplay()
     {
-        _sliderMasterVolume.SetValueWithoutNotify(SaveUtil.SavedValues.GlobalVolume);
-        _sliderMusicVolume.SetValueWithoutNotify(SaveUtil.SavedValues.MusicVolume);
-        _sliderSoundsVolume.SetValueWithoutNotify(SaveUtil.SavedValues.SfxVolume);
+        SliderMasterVolume.SetValueWithoutNotify(SaveUtil.SavedValues.GlobalVolume);
+        SliderMusicVolume.SetValueWithoutNotify(SaveUtil.SavedValues.MusicVolume);
+        SliderSoundsVolume.SetValueWithoutNotify(SaveUtil.SavedValues.SfxVolume);
     }
     #endregion
 }

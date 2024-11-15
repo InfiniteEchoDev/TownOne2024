@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class SnakePlayer : MonoBehaviour
 {
 
+    [FormerlySerializedAs("_shipSprite")]
     [Header( "Obj Refs" )]
-    public SpriteRenderer _shipSprite;
-    public GameObject _attachPoint;
+    [SerializeField] SpriteRenderer ShipSprite;
+    [FormerlySerializedAs("_attachPoint")] [SerializeField] GameObject AttachPoint;
     
-    [SerializeField] private int _cameraSize = 20;
-    [SerializeField] private float _deadZone = 0.125f;
-    [SerializeField] private SnakeGrid _snakeGrid;
-    [SerializeField] private PickupSpawner _pickupSpawner;
+    [FormerlySerializedAs("_cameraSize")] [SerializeField] private int CameraSize = 20;
+    [FormerlySerializedAs("_deadZone")] [SerializeField] private float DeadZone = 0.125f;
+    [FormerlySerializedAs("_snakeGrid")] [SerializeField] private SnakeGrid SnakeGrid;
+    [FormerlySerializedAs("_pickupSpawner")] [SerializeField] private PickupSpawner PickupSpawner;
 
-    [SerializeField] GameObject explosionParticles;
+    [FormerlySerializedAs("explosionParticles")] [SerializeField] GameObject ExplosionParticles;
 
     private Vector2 _playerPosition = Vector2.zero;
     private Vector2 _previousPosition = Vector2.zero;
@@ -43,21 +45,21 @@ public class SnakePlayer : MonoBehaviour
 
     private void Start()
     {
-        _snakeGrid.TimerReset += MovePlayerWithTimer;
-        _coordinates = new Vector2Int(_snakeGrid.GridWidth / 2, _snakeGrid.GridHeight / 2);
-        transform.position = new Vector3(_coordinates.x * _snakeGrid.CellWidth, _coordinates.y * _snakeGrid.CellHeight, 0);
+        SnakeGrid.TimerReset += MovePlayerWithTimer;
+        _coordinates = new Vector2Int(SnakeGrid.GetGridWidth / 2, SnakeGrid.GetGridHeight / 2);
+        transform.position = new Vector3(_coordinates.x * SnakeGrid.GetCellWidth, _coordinates.y * SnakeGrid.GetCellHeight, 0);
     }
     
     public void PlayerXInput(float xInput)
     {
-        if (xInput > _deadZone)
+        if (xInput > DeadZone)
         {
             // Right move
             if( _lastInput != CardinalDirection.West ) {
                 _currentDirection = _lastInput;
                 _lastInput = CardinalDirection.East;
             }
-        } else if (xInput < -_deadZone)
+        } else if (xInput < -DeadZone)
         {
             // Left Move
             if( _lastInput != CardinalDirection.East ) {
@@ -69,14 +71,14 @@ public class SnakePlayer : MonoBehaviour
 
     public void PlayerYInput(float yInput)
     {
-        if (yInput > _deadZone)
+        if (yInput > DeadZone)
         {
             // Right move
             if( _lastInput != CardinalDirection.South ) {
                 _currentDirection = _lastInput;
                 _lastInput = CardinalDirection.North;
             }
-        } else if (yInput < -_deadZone)
+        } else if (yInput < -DeadZone)
         {
             // Left Move
             if( _lastInput != CardinalDirection.North ) {
@@ -91,9 +93,9 @@ public class SnakePlayer : MonoBehaviour
         _previousDirection = _lastInput;
         var currentCoords = _coordinates;
         
-        var nextPos = _snakeGrid.NextValidPositionInDirection(_lastInput, _coordinates);
+        var nextPos = SnakeGrid.NextValidPositionInDirection(_lastInput, _coordinates);
         if( nextPos == null ) {
-            var validPosList = _snakeGrid.GetAllValidMovementPosFromPos( _coordinates );
+            var validPosList = SnakeGrid.GetAllValidMovementPosFromPos( _coordinates );
             validPosList.Remove( validPosList.First( validPos => validPos.pos == _previousCoordinates ) );
 
             int randIdx = Random.Range( 0, validPosList.Count );
@@ -101,7 +103,7 @@ public class SnakePlayer : MonoBehaviour
             nextPos = validPosList[randIdx].pos;
         }
 
-        transform.position = new Vector3(nextPos.Value.x * _snakeGrid.CellWidth, nextPos.Value.y * _snakeGrid.CellHeight, 0);
+        transform.position = new Vector3(nextPos.Value.x * SnakeGrid.GetCellWidth, nextPos.Value.y * SnakeGrid.GetCellHeight, 0);
         _previousCoordinates = _coordinates;
         _coordinates = nextPos.Value;
 
@@ -142,33 +144,38 @@ public class SnakePlayer : MonoBehaviour
             // todo play explosion!
             AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PlayerLoseLife);
             CameraShake.Shake(0.25f,1f);
-            GameObject explosion = Instantiate(explosionParticles, transform.position, Quaternion.identity);
+            GameObject explosion = Instantiate(ExplosionParticles, transform.position, Quaternion.identity);
             Destroy(explosion, 3f);
         }
         
         // check if object in coord
-        if (_pickupSpawner.SpawnedPickedUpsDict.Remove(_coordinates, out var pickup))
+        if (PickupSpawner.SpawnedPickedUpsDict.Remove(_coordinates, out var pickup))
         {
             // pickup!
-            _snakeGrid.OccupiedPositions.Remove(_coordinates);
+            SnakeGrid.OccupiedPositions.Remove(_coordinates);
             
-            pickup.transform.position = new Vector3 (currentCoords.x * _snakeGrid.CellWidth, currentCoords.y * _snakeGrid.CellHeight, 0);
+            pickup.transform.position = new Vector3 (currentCoords.x * SnakeGrid.GetCellWidth, currentCoords.y * SnakeGrid.GetCellHeight, 0);
             pickup.OnPickup();
             _snakeBody.AddLast(pickup);
         }
         
         // player occupies it
-        _snakeGrid.OccupiedPositions.Add(_coordinates);
+        SnakeGrid.OccupiedPositions.Add(_coordinates);
         
         // todo, asteroids?
 
+        UpdateBody(_previousCoordinates);
+    }
+
+    private void UpdateBody(Vector2Int currentCoords)
+    {
         // body position updates
         _bodyPositions.Clear();
         Vector2Int partCoords = currentCoords;
         foreach (var body in _snakeBody)
         {
             _bodyPositions.Add(partCoords);
-            partCoords = body.SetPosition(partCoords, _snakeGrid.CellWidth, _snakeGrid.CellWidth);
+            partCoords = body.SetPosition(partCoords, SnakeGrid.GetCellWidth, SnakeGrid.GetCellWidth);
         }
     }
 
@@ -180,6 +187,7 @@ public class SnakePlayer : MonoBehaviour
             _snakeBody.Remove(first);
             first.Drop();
         }
+        UpdateBody(_coordinates);
     }
 
 }

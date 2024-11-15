@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class StarFieldMgr : Singleton<StarFieldMgr>
 {
-    public float GridSize = 1;
-
-    //[Header( "Obj Refs" )]
-    //public GameObject GameObject;
+    //public float GridSize = 1;
 
 }

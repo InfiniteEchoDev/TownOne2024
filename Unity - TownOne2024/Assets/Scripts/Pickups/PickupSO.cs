@@ -1,28 +1,29 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
-[CreateAssetMenu(menuName = "Create PickupSO", fileName ="PickupSO", order = 0)]
+[CreateAssetMenu(menuName = "Create PickupSo", fileName ="PickupSo", order = 0)]
 
-public class PickupSO : ScriptableObject
+public class PickupSo : ScriptableObject
 {
     // Pickup type
-    public PickupTypes pickupType;
+    [FormerlySerializedAs("pickupType")] public PickupTypes PickupType;
 
     // Pickup sprite
-    public Sprite sprite;
+    [FormerlySerializedAs("sprite")] public Sprite Sprite;
 
 
     // Has timer?
-    public bool hasTimer;
+    [FormerlySerializedAs("hasTimer")] public bool HasTimer;
 
     // Timer 
-    public float timer;
+    [FormerlySerializedAs("timer")] public float Timer;
 
     // Points
-    public float pointValue;
+    [FormerlySerializedAs("pointValue")] public float PointValue;
 
     // Spawn Weight
-    public int spawnWeight;
+    [FormerlySerializedAs("spawnWeight")] public int SpawnWeight;
 }
 
 public enum PickupTypes

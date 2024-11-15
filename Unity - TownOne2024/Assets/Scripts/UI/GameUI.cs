@@ -1,20 +1,21 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameUI : MenuBase
 {
-    [SerializeField]
-    TMP_Text displayLives;
-    [SerializeField]
-    TMP_Text displayScore;
+    [FormerlySerializedAs("displayLives")] [SerializeField]
+    TMP_Text DisplayLives;
+    [FormerlySerializedAs("displayScore")] [SerializeField]
+    TMP_Text DisplayScore;
 
-    [SerializeField] private Transform _addedScoreParent;
-    [SerializeField] private TMP_Text _addedScoreMsg;
+    [FormerlySerializedAs("_addedScoreParent")] [SerializeField] private Transform AddedScoreParent;
+    [FormerlySerializedAs("_addedScoreMsg")] [SerializeField] private TMP_Text AddedScoreMsg;
 
-    GameLoopManager gameLoopManager;
-    GameMgr gameMgr;
+    GameLoopManager _gameLoopManager;
+    GameMgr _gameMgr;
 
-    private int previousScore = 0;
+    private int _previousScore = 0;
     public override GameMenus MenuType()
     {
         return GameMenus.InGameUI;
@@ -28,7 +29,7 @@ public class GameUI : MenuBase
         else if(GameLoopManager.Instance != null)
         {
             Debug.Log("We load gameloopman");
-            gameLoopManager = GameLoopManager.Instance;
+            _gameLoopManager = GameLoopManager.Instance;
         }
         if (GameMgr.Instance == null)
         {
@@ -37,8 +38,9 @@ public class GameUI : MenuBase
         else if (GameMgr.Instance != null)
         {
             Debug.Log("We load Gamemgrman");
-            gameMgr = GameMgr.Instance;
+            _gameMgr = GameMgr.Instance;
         }
+        OnScoreChange(0,0);
     }
 
     private void Update()
@@ -48,35 +50,39 @@ public class GameUI : MenuBase
 
             string livesCount;
 
-            livesCount = "x " + gameLoopManager.Lives;
+            livesCount = "x " + _gameLoopManager.GetLives;
 
-            displayLives.text = livesCount;
+            DisplayLives.text = livesCount;
 
         }
 
-        if (gameMgr != null)
+        if (_gameMgr != null)
         {
             string score;
-            int integerScore = Mathf.FloorToInt(gameMgr.Score);
+            int integerScore = Mathf.FloorToInt(_gameMgr.Score);
 
-            if (previousScore != integerScore)
+            if (_previousScore != integerScore)
             {
-                OnScoreChange(integerScore, integerScore-previousScore);
-                previousScore = integerScore;
+                OnScoreChange(integerScore, integerScore-_previousScore);
+                _previousScore = integerScore;
             }
         }
     }
 
     private void OnScoreChange(int score, int diff)
     {
-        var msg = Instantiate(_addedScoreMsg, _addedScoreParent, false);
-        if (diff < 0)
+        if (diff != 0)
         {
-            msg.color = Color.red;
+            var msg = Instantiate(AddedScoreMsg, AddedScoreParent, false);
+            if (diff < 0)
+            {
+                msg.color = Color.red;
+            }
+
+            msg.text = diff > 0 ? $"+{diff}" : $"{diff}";
+            msg.gameObject.SetActive(true);
         }
-        msg.text = diff > 0 ? $"+{diff}" : $"{diff}";
-        msg.gameObject.SetActive(true);
-        
-        displayScore.text = score.ToString();
+
+        DisplayScore.text = score.ToString();
     }
 }

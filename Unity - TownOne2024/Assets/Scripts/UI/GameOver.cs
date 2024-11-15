@@ -3,80 +3,61 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Collections;
+using UnityEngine.Serialization;
+
 public class GameOver : MenuBase
 {
-    [SerializeField]
-    TMP_Text playerScore;
-    [SerializeField]
-    TMP_Text highScore;
-    GameMgr gameMgr;
-    GameLoopManager gameLoopManager;
+    [FormerlySerializedAs("playerScore")] [SerializeField]
+    TMP_Text PlayerScore;
+    [FormerlySerializedAs("highScore")] [SerializeField]
+    TMP_Text HighScore;
+    GameMgr _gameMgr;
+    GameLoopManager _gameLoopManager;
 
-    [SerializeField]
-    Button retry;
+    [FormerlySerializedAs("retry")] [SerializeField]
+    Button Retry;
 
-    int score;
+    int _score;
+    
     void Start()
     {
-
+        Retry.Select();
         int intScore = (int)Mathf.Round(GameMgr.Instance.Score); 
-        SaveUtil.Load();
-        playerScore.text = intScore.ToString();
-        try
+        PlayerScore.text = intScore.ToString();
+        if (SaveUtil.SavedValues?.Score == null)
         {
-            if (SaveUtil.SavedValues.Score != null && intScore < SaveUtil.SavedValues.Score)
-            {
-                highScore.text = SaveUtil.SavedValues.Score.ToString();
-
-            }
-            else
-            {
-                highScore.text = intScore.ToString();
-                SaveUtil.SavedValues.Score = intScore;
-                SaveUtil.Save();
-            }
+            Debug.LogError("[GameOver] SaveUtil.SavedValues is null");
+            return;
         }
-        catch (Exception ex)
+        
+        if (intScore < SaveUtil.SavedValues.Score)
         {
-            highScore.text = intScore.ToString();
-            if (SaveUtil.SavedValues != null)
-            {
-                SaveUtil.SavedValues.Score = intScore;
-                SaveUtil.Save();
-            }
-        }
-        /*
-        if (SaveUtil.SavedValues.Score != null && intScore < SaveUtil.SavedValues.Score)
-        {
-            highScore.text = SaveUtil.SavedValues.Score.ToString();
-
+            HighScore.text = SaveUtil.SavedValues.Score.ToString();
         }
         else
         {
-            highScore.text = intScore.ToString();
+            HighScore.text = intScore.ToString();
             SaveUtil.SavedValues.Score = intScore;
             SaveUtil.Save();
         }
-        */
-        retry.Select();
     }
     public override GameMenus MenuType()
     {
         return GameMenus.GameOverMenu;
     }
 
-    public void Retry()
+    public void ButtonRetry()
     {
-        gameMgr.ResetScore();
-        gameLoopManager.ResetLives();
+        _gameMgr.ResetScore();
+        _gameLoopManager.ResetLives();
 
         SceneMgr.Instance.LoadScene(GameScenes.SnakeLike, GameMenus.InGameUI);
     }
 
-    public void MainMenu()
+    public void ButtonMainMenu()
     {
-        gameMgr.ResetScore();
-        gameLoopManager.ResetLives();
+        _gameMgr.ResetScore();
+        _gameLoopManager.ResetLives();
         SceneMgr.Instance.LoadScene(GameScenes.MainMenu, GameMenus.MainMenu);
     }
 }

@@ -1,21 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
+
 public class CollectionBin : MonoBehaviour
 {
-    [SerializeField]
-    PolygonCollider2D col;
+    [FormerlySerializedAs("col")] [SerializeField]
+    PolygonCollider2D Col;
 
-    [SerializeField]
-    PickupTypes collectType;
+    [FormerlySerializedAs("collectType")] [SerializeField]
+    PickupTypes CollectType;
     
     private PickupSpawner _collectSpawner;
 
-    GameMgr gameMgr;
+    GameMgr _gameMgr;
 
-    float scoreMultiplier = 1f;
+    float _scoreMultiplier = 1f;
 
-    [SerializeField]
-    GameObject confirmationParticles;
+    [FormerlySerializedAs("confirmationParticles")] [SerializeField]
+    GameObject ConfirmationParticles;
 
     void Start()
     {
@@ -26,7 +28,7 @@ public class CollectionBin : MonoBehaviour
         else if (GameMgr.Instance != null)
         {
             Debug.Log("We load Gamemgrman");
-            gameMgr = GameMgr.Instance;
+            _gameMgr = GameMgr.Instance;
         }
 
     }
@@ -39,15 +41,15 @@ public class CollectionBin : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Pickup p = other.GetComponent<Pickup>();
-        if (p != null && p.GetPickupType == collectType)
+        if (p != null && p.GetPickupType == CollectType)
         {
             Debug.Log("GOOD HAPPEN");
             //TODO: Gain Score
 
-            GameObject confirmation = Instantiate(confirmationParticles, transform.position, Quaternion.identity);
+            GameObject confirmation = Instantiate(ConfirmationParticles, transform.position, Quaternion.identity);
             Destroy(confirmation, 3f);
 
-            if (collectType == PickupTypes.Human)
+            if (CollectType == PickupTypes.Human)
             {
                 AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonSaved,0.5f);
             }
@@ -56,7 +58,7 @@ public class CollectionBin : MonoBehaviour
                 AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.CorrectObject,0.5f);
             }
 
-            gameMgr.AddScore(p.PointValue);
+            _gameMgr.AddScore(p.PointValue);
             DestroyPickup(p);
         }
         else
@@ -68,7 +70,7 @@ public class CollectionBin : MonoBehaviour
                 CameraShake.Shake(0.25f, 0.5f);
                 if (p.GetPickupType == PickupTypes.Human)
                 {
-                    gameMgr.SubtractScore(p.BasePointValue);
+                    _gameMgr.SubtractScore(p.BasePointValue);
                     AudioMgr.Instance.PlaySound(AudioMgr.SoundTypes.PersonSortingError,0.5f);
                 }
                 else

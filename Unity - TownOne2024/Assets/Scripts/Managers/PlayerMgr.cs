@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class PlayerMgr : Singleton<PlayerMgr>
@@ -10,9 +11,9 @@ public class PlayerMgr : Singleton<PlayerMgr>
     public PlayerShip PlayerShip;
     public ShipStorage ShipStorage;
     
-    [SerializeField] private PickupSpawner _pickupSpawner;
+    [FormerlySerializedAs("_pickupSpawner")] [SerializeField] private PickupSpawner PickupSpawner;
 
-    bool canPause;
+    bool _canPause;
 
     public override void Awake() {
         base.Awake();
@@ -35,18 +36,18 @@ public class PlayerMgr : Singleton<PlayerMgr>
     {
         //Debug.Log(inputFloat);
         // Run pause from game manager
-        if (canPause)
+        if (_canPause)
         {
             if (inputFloat == 1) GameMgr.Instance.PauseGame();
-            canPause = false;
+            _canPause = false;
         }
 
-        if (inputFloat == 0) canPause = true;
+        if (inputFloat == 0) _canPause = true;
     }
 
     public void DestroyPickup(Pickup p)
     {
-        _pickupSpawner.SpawnedPickedUps.Remove(p);
+        PickupSpawner.SpawnedPickedUps.Remove(p);
         Destroy(p);
     }
 }

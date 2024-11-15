@@ -1,24 +1,25 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SplashMenu : MenuBase
 {
-    [SerializeField] private Animator _animator;
+    [FormerlySerializedAs("_animator")] [SerializeField] private Animator Animator;
     
     private Action _onAnimationComplete;
 
-    [SerializeField] AudioClip audioClip;
+    [FormerlySerializedAs("audioClip")] [SerializeField] AudioClip AudioClip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
-        AudioMgr.Instance.PlayOneShotMusic(audioClip, 0.25f);
+        AudioMgr.Instance.PlayOneShotMusic(AudioClip, 0.25f);
     }
 
     public void OnShow(Action onAnimationComplete)
     {
         _onAnimationComplete = onAnimationComplete;
-        _animator.Play(0);
+        Animator.Play(0);
     }
 
     /// <summary>
