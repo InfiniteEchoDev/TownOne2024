@@ -34,7 +34,7 @@ public class SnakeInput : MonoBehaviour
         if (context.performed)
         {
             float movement = context.ReadValue<float>();
-            Debug.Log("OnNavigateX called: " + movement);
+            //Debug.Log("OnNavigateX called: " + movement);
             SnakePlayer.PlayerXInput(movement);
         }
     }
@@ -44,7 +44,7 @@ public class SnakeInput : MonoBehaviour
         if (context.performed)
         {
             float movement = context.ReadValue<float>();
-            Debug.Log("OnNavigateY called: " + movement);
+            //Debug.Log("OnNavigateY called: " + movement);
             SnakePlayer.PlayerYInput(movement);
         }
     }

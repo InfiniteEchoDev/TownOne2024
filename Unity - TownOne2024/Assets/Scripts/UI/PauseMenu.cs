@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PauseMenu : MenuBase
 {
-    [SerializeField] private Button _continueButton;
+    [FormerlySerializedAs("_continueButton")] [SerializeField] private Button ContinueButton;
     
     public override GameMenus MenuType()
     {
@@ -13,7 +14,7 @@ public class PauseMenu : MenuBase
 
     private void OnEnable()
     {
-        _continueButton.Select();
+        ContinueButton.Select();
     }
 
     public void MainMenu()

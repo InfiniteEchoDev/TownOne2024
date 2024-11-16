@@ -191,7 +191,7 @@ public class SnakePlayer : MonoBehaviour
             }
             first.Drop();
         }
-        UpdateBody(_coordinates);
+        UpdateBody(_previousCoordinates);
     }
 
 }

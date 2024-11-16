@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MainMenu : MenuBase
 {
-    [SerializeField] private Button _startButton;
+    [FormerlySerializedAs("_startButton")] [SerializeField] private Button StartGameButton;
     
     public override GameMenus MenuType()
     {
@@ -12,7 +13,7 @@ public class MainMenu : MenuBase
 
     private void OnEnable()
     {
-        _startButton.Select();
+        StartGameButton.Select();
         AudioMgr.Instance.PlayMusic(AudioMgr.MusicTypes.MainMenu, 0.5f);
     }
 

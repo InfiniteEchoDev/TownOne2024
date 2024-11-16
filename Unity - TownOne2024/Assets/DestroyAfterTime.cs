@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DestroyAfterTime : MonoBehaviour
 {
-    [SerializeField] Vector3 _movementOverTime = Vector3.up;
-    [SerializeField] float _destroyAfterTime = 2f;
+    [FormerlySerializedAs("_movementOverTime")] [SerializeField] Vector3 MovementOverTime = Vector3.up;
+    [FormerlySerializedAs("_destroyAfterTime")] [SerializeField] float DestroyTime = 2f;
 
     private float _timer = 0f;
     
@@ -17,11 +18,11 @@ public class DestroyAfterTime : MonoBehaviour
 
     private void Update()
     {
-        var pos = transform.position + (_movementOverTime * Time.deltaTime);
+        var pos = transform.position + (MovementOverTime * Time.deltaTime);
         transform.position = pos;
         _timer += Time.deltaTime;
-        _canvasGroup.alpha = Mathf.Lerp(1, 0, _timer / _destroyAfterTime);
-        if (_timer >= _destroyAfterTime)
+        _canvasGroup.alpha = Mathf.Lerp(1, 0, _timer / DestroyTime);
+        if (_timer >= DestroyTime)
         {
             Destroy(gameObject);
         }

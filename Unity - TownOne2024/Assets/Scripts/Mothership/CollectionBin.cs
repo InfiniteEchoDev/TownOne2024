@@ -27,7 +27,7 @@ public class CollectionBin : MonoBehaviour
         }
         else if (GameMgr.Instance != null)
         {
-            Debug.Log("We load Gamemgrman");
+            //Debug.Log("We load Gamemgrman");
             _gameMgr = GameMgr.Instance;
         }
 
@@ -43,7 +43,7 @@ public class CollectionBin : MonoBehaviour
         Pickup p = other.GetComponent<Pickup>();
         if (p != null && p.GetPickupType == CollectType)
         {
-            Debug.Log("GOOD HAPPEN");
+            //Debug.Log("GOOD HAPPEN");
             //TODO: Gain Score
 
             GameObject confirmation = Instantiate(ConfirmationParticles, transform.position, Quaternion.identity);
@@ -63,7 +63,7 @@ public class CollectionBin : MonoBehaviour
         }
         else
         {
-            Debug.Log("BAD HAPPEN");
+            //Debug.Log("BAD HAPPEN");
             
             if (p != null)
             {
