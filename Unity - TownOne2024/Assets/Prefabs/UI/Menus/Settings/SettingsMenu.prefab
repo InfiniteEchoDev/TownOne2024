@@ -313,7 +313,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 5395828044991598077}
   m_FillRect: {fileID: 7133025584764658257}
   m_HandleRect: {fileID: 5483732827943964893}
@@ -321,22 +321,10 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7759477483224727364}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SliderValueChanged
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &3238770381346140117
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +933,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 6271729512850947951}
   m_FillRect: {fileID: 6831086830386359385}
   m_HandleRect: {fileID: 4257541855068856258}
@@ -953,22 +941,10 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7759477483224727364}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SliderValueChanged
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5838612800211675568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,10 +2209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652d5c6a367f2490780cbb1097fc60f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backButton: {fileID: 1148292494970102240}
-  _sliderMasterVolume: {fileID: 1616204922056100267}
-  _sliderMusicVolume: {fileID: 0}
-  _sliderSoundsVolume: {fileID: 0}
+  BackButton: {fileID: 1148292494970102240}
+  SliderMasterVolume: {fileID: 1616204922056100267}
+  SliderMusicVolume: {fileID: 2956150512774716819}
+  SliderSoundsVolume: {fileID: 5220432572336385767}
 --- !u!1 &8620323320878982635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,7 +2463,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 6197615575833562495}
   m_FillRect: {fileID: 2006926823309191567}
   m_HandleRect: {fileID: 3161384796509103790}
@@ -2495,22 +2471,10 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7759477483224727364}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SliderValueChanged
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8923985411892183737
 GameObject:
   m_ObjectHideFlags: 0

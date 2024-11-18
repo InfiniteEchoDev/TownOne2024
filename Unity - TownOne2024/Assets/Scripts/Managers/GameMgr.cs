@@ -6,17 +6,17 @@ using UnityEngine;
 /// </summary>
 public class GameMgr : Singleton<GameMgr> 
 {
-    float score;
+    float _score;
 
-    bool isGameRunning;
+    bool _isGameRunning;
 
     public bool IsGameRunning
     {
-        get { return isGameRunning; }
-        set { isGameRunning = value; }
+        get { return _isGameRunning; }
+        set { _isGameRunning = value; }
     }
 
-    public float Score { get => score; set => score = value; }
+    public float Score { get => _score; set => _score = value; }
 
     public override void Awake() {
         base.Awake();
@@ -25,23 +25,23 @@ public class GameMgr : Singleton<GameMgr>
 
     public void AddScore(float value)
     {
-        score += value;
+        _score += value;
     }
 
     public void ResetScore()
     {
-        score = 0;
+        _score = 0;
     }
 
 
     public void SubtractScore(float value)
     {
-        score -= value;
+        _score -= value;
     }
 
     public void GameOver()
     {
-        isGameRunning = false;
+        _isGameRunning = false;
         AudioMgr.Instance.PauseMusic();
         SceneMgr.Instance.LoadScene(GameScenes.GameOver, GameMenus.GameOverMenu);
     }
@@ -54,16 +54,16 @@ public class GameMgr : Singleton<GameMgr>
 
     public void StartGame()
     {
-        isGameRunning = true;
+        _isGameRunning = true;
     }
 
     public void PauseGame()
     {
-        if (isGameRunning)
+        if (_isGameRunning)
         {
 
             AudioMgr.Instance.PauseMusic();
-            isGameRunning = false;
+            _isGameRunning = false;
             // Open pause menu here
             UIMgr.Instance.ShowMenu(GameMenus.PauseMenu);
             //Debug.Log("Pause state enabled");
@@ -77,7 +77,7 @@ public class GameMgr : Singleton<GameMgr>
     public void UnpauseGame()
     {
         AudioMgr.Instance.ResumeMusic();
-        isGameRunning = true;
+        _isGameRunning = true;
         UIMgr.Instance.HideMenu(GameMenus.PauseMenu);
     }
 

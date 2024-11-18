@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TutorialMenu : MenuBase
 {
-    [SerializeField] private Button _nextButton;
+    [FormerlySerializedAs("_nextButton")] [SerializeField] private Button NextButton;
 
     private void OnEnable()
     {
-        _nextButton.Select();
+        NextButton.Select();
     }
 
     public override GameMenus MenuType()

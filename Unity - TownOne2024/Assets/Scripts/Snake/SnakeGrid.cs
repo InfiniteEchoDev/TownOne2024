@@ -1,22 +1,23 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SnakeGrid : MonoBehaviour
 {
-    [SerializeField] private int _gridWidth = 20;
-    [SerializeField] private int _gridHeight = 20;
-    [SerializeField] private int _cellWidth = 1;
-    [SerializeField] private int _cellHeight = 1;
-    [SerializeField] private float _gridUpdateTime = 1f;
-    [SerializeField] private PickupSpawner _pickupSpawner;
+    [FormerlySerializedAs("_gridWidth")] [SerializeField] private int GridWidth = 20;
+    [FormerlySerializedAs("_gridHeight")] [SerializeField] private int GridHeight = 20;
+    [FormerlySerializedAs("_cellWidth")] [SerializeField] private int CellWidth = 1;
+    [FormerlySerializedAs("_cellHeight")] [SerializeField] private int CellHeight = 1;
+    [FormerlySerializedAs("_gridUpdateTime")] [SerializeField] private float GridUpdateTime = 1f;
+    [FormerlySerializedAs("_pickupSpawner")] [SerializeField] private PickupSpawner PickupSpawner;
 
-    public int GridWidth => _gridWidth;
-    public int GridHeight => _gridHeight;
-    public int CellWidth => _cellWidth;
-    public int CellHeight => _cellHeight;
-    public float GridUpdateTime => _gridUpdateTime;
-    public Vector2Int GridTotal => new Vector2Int(_gridWidth,_gridHeight);
+    public int GetGridWidth => GridWidth;
+    public int GetGridHeight => GridHeight;
+    public int GetCellWidth => CellWidth;
+    public int GetCellHeight => CellHeight;
+    public float GetGridUpdateTime => GridUpdateTime;
+    public Vector2Int GridTotal => new Vector2Int(GridWidth,GridHeight);
 
     private HashSet<Vector2Int> _gridPositions = new();
     public HashSet<Vector2Int> GridPositions => _gridPositions;
@@ -30,9 +31,9 @@ public class SnakeGrid : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < _gridWidth; i++)
+        for (int i = 0; i < GridWidth; i++)
         {
-            for (int j = 0; j < _gridHeight; j++)
+            for (int j = 0; j < GridHeight; j++)
             {
                 var pos = new Vector2Int(i, j);
                 _gridPositions.Add(pos);
@@ -45,12 +46,12 @@ public class SnakeGrid : MonoBehaviour
         if (GameMgr.Instance.IsGameRunning)
         {
             _timer += Time.deltaTime;
-            if (_timer >= _gridUpdateTime)
+            if (_timer >= GridUpdateTime)
             {
                 _occupiedPositions.Clear();
                 _timer = 0f;
                 TimerReset?.Invoke();
-                _pickupSpawner.OnGridTimerReset();
+                PickupSpawner.OnGridTimerReset();
             }
         }
     }
@@ -58,11 +59,11 @@ public class SnakeGrid : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
-        for (int i = 0; i < _gridWidth; i++)
+        for (int i = 0; i < GridWidth; i++)
         {
-            for (int j = 0; j < _gridHeight; j++)
+            for (int j = 0; j < GridHeight; j++)
             {
-                Gizmos.DrawWireCube(new Vector3(i * _cellWidth, j * _cellHeight, 0) , new Vector3(_cellWidth, _cellHeight, 1));
+                Gizmos.DrawWireCube(new Vector3(i * CellWidth, j * CellHeight, 0) , new Vector3(CellWidth, CellHeight, 1));
             }
         }
     }

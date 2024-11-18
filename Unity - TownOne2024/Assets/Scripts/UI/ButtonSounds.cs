@@ -1,11 +1,12 @@
 using TheraBytes.BetterUi;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ButtonSounds : MonoBehaviour
     {
-        [SerializeField] private AudioClip _clickSound;
-        [SerializeField] private AudioClip _hoverSound;
+        [FormerlySerializedAs("_clickSound")] [SerializeField] private AudioClip ClickSound;
+        [FormerlySerializedAs("_hoverSound")] [SerializeField] private AudioClip HoverSound;
 
         // Start is called before the first frame update
         private void Start()
@@ -37,24 +38,24 @@ public class ButtonSounds : MonoBehaviour
             if (!toggle) return;
             if (!state && toggle.group != null && toggle.group.AnyTogglesOn()) return;
             
-            AudioMgr.Instance.PlaySound(_clickSound);
+            AudioMgr.Instance.PlaySound(ClickSound);
         }
         
         private void PlayClickSound(float _)
         {
-            AudioMgr.Instance.PlaySound(_clickSound, _);
+            AudioMgr.Instance.PlaySound(ClickSound, _);
         }
 
         private void PlayClickSound()
         {
-            AudioMgr.Instance.PlaySound(_clickSound);
+            AudioMgr.Instance.PlaySound(ClickSound);
         }
 
         public void PlayHoverSound()
         {
-            if (_hoverSound != null)
+            if (HoverSound != null)
             {
-                AudioMgr.Instance.PlaySound(_hoverSound);
+                AudioMgr.Instance.PlaySound(HoverSound);
             }
             else
             {
