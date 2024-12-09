@@ -1,0 +1,416 @@
+fileFormatVersion: 2
+guid: e6cd3629c03911d41a3bfb8dcfd415ce
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 737582782891098108
+    second: team_logo_splash_screen_0
+  - first:
+      213: -2796756165699633371
+    second: team_logo_splash_screen_1
+  - first:
+      213: -7722323038739648065
+    second: team_logo_splash_screen_2
+  - first:
+      213: -735351857221314891
+    second: team_logo_splash_screen_3
+  - first:
+      213: -2271531693555695062
+    second: team_logo_splash_screen_4
+  - first:
+      213: -3714044933528338504
+    second: team_logo_splash_screen_5
+  - first:
+      213: 2838837823992199167
+    second: team_logo_splash_screen_6
+  - first:
+      213: 1247329082114344887
+    second: team_logo_splash_screen_7
+  - first:
+      213: 562009477457127191
+    second: team_logo_splash_screen_8
+  - first:
+      213: 1318581130484376752
+    second: team_logo_splash_screen_9
+  - first:
+      213: 6209065994991369939
+    second: team_logo_splash_screen_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: team_logo_splash_screen_0
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 274
+        width: 916
+        height: 524
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfffaa612ab6c3a00800000000000000
+      internalID: 737582782891098108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_1
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 143
+        width: 51
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52ff61cc51def29d0800000000000000
+      internalID: -2796756165699633371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_2
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 144
+        width: 116
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb1bb136c1cc4d490800000000000000
+      internalID: -7722323038739648065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_3
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 144
+        width: 45
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b65665c1618bc5f0800000000000000
+      internalID: -735351857221314891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_4
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 143
+        width: 73
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a224295b5f5e970e0800000000000000
+      internalID: -2271531693555695062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_5
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 144
+        width: 63
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bf34319fcf057cc0800000000000000
+      internalID: -3714044933528338504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_6
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 144
+        width: 73
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff77ff9c5f3956720800000000000000
+      internalID: 2838837823992199167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_7
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 144
+        width: 54
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b7807901376f4110800000000000000
+      internalID: 1247329082114344887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_8
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 144
+        width: 116
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7172c3064a8acc700800000000000000
+      internalID: 562009477457127191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_9
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 143
+        width: 73
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b4ed025d8a8c4210800000000000000
+      internalID: 1318581130484376752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: team_logo_splash_screen_10
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 144
+        width: 103
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3defa6a10a80b2650800000000000000
+      internalID: 6209065994991369939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      team_logo_splash_screen_0: 737582782891098108
+      team_logo_splash_screen_1: -2796756165699633371
+      team_logo_splash_screen_10: 6209065994991369939
+      team_logo_splash_screen_2: -7722323038739648065
+      team_logo_splash_screen_3: -735351857221314891
+      team_logo_splash_screen_4: -2271531693555695062
+      team_logo_splash_screen_5: -3714044933528338504
+      team_logo_splash_screen_6: 2838837823992199167
+      team_logo_splash_screen_7: 1247329082114344887
+      team_logo_splash_screen_8: 562009477457127191
+      team_logo_splash_screen_9: 1318581130484376752
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
